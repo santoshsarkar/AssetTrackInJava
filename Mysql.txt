@@ -1,0 +1,2 @@
+create database test;
+CREATE TABLE assets(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY, sid int, tag_number BigInt(20), descr VARCHAR(60),  accounting_dt date, acquisition_dt date, asset VARCHAR(60), business_unit VARCHAR(60), category VARCHAR(60), cost DOUBLE, descrshort VARCHAR(60), fund_code VARCHAR(60), in_service_dt date, locations VARCHAR(60), location_effdt date, ntfc_type VARCHAR(60), profile_id VARCHAR(60), purchase_order VARCHAR(60), quantity  BigInt(20), serial_id VARCHAR(60), trans_dt date, vin VARCHAR(60));
