@@ -4,7 +4,10 @@ import hcd.ca.gov.assets.util.JsfUtil;
 import hcd.ca.gov.assets.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -27,7 +30,19 @@ public class AssetsController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    
+    List<String> assetType;
+
+    public List<String> getAssetType() {
+        return assetType;
+    }
+ 
     public AssetsController() {
+        assetType=new ArrayList<String>();
+        assetType.add("IT Hardware");
+        assetType.add("IT Software");
+        assetType.add("Equipment");
+        assetType.add("Other");
     }
 
     public Assets getSelected() {

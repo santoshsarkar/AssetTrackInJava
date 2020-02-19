@@ -41,13 +41,19 @@
                                                        
                                 
                         <b:row>
-                            <b:column span="6"><b:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" >
-                                                <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                                <f:selectItem itemLabel="IT Hardware" itemValue="IT Hardware" />
-                                                <f:selectItem itemLabel="IT Software" itemValue="IT Software" />
-                                                <f:selectItem itemLabel="Equipment" itemValue="Equipment" />
-
+                            <b:column span="6">
+                                
+                                <b:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" >
+                                    <f:selectItems value="#{assetsController.assetType}"/>
+                                                
                                 </b:selectOneMenu>
+                                <ui:remove>
+                                <p:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="IT Hardware" itemValue="IT Hardware" />
+                                    <f:selectItem itemLabel="IT Software" itemValue="IT Software" />
+                                    <f:selectItem itemLabel="Equipment" itemValue="Equipment" />                   
+                                </p:selectOneMenu>
+                                </ui:remove>    
                             </b:column>
                             <b:column span="6"><b:inputText type="number" id="tagNumber" value="#{assetsController.selected.tagNumber}" label="Tag Number"  required="false" />     </b:column>
                         </b:row>
