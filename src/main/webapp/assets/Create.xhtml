@@ -44,8 +44,7 @@
                             <b:column span="6">
                                 
                                 <b:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" >
-                                    <f:selectItems value="#{assetsController.assetType}"/>
-                                                
+                                    <f:selectItems value="#{formData.get_asset_type()}"></f:selectItems>          
                                 </b:selectOneMenu>
                                 <ui:remove>
                                 <p:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" filter="true" filterMatchMode="startsWith">
