@@ -1,12 +1,32 @@
-create database test;
-CREATE TABLE assets(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY, sid int, tag_number BigInt(20), descr VARCHAR(60),  accounting_dt date, acquisition_dt date, asset VARCHAR(60), business_unit VARCHAR(60), category VARCHAR(60), cost DOUBLE, descrshort VARCHAR(60), fund_code VARCHAR(60), in_service_dt date, locations VARCHAR(60), location_effdt date, ntfc_type VARCHAR(60), profile_id VARCHAR(60), purchase_order VARCHAR(60), quantity  BigInt(20), serial_id VARCHAR(60), trans_dt date, vin VARCHAR(60));
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 21, 2020 at 06:22 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.1.32
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-CREATE TABLE asset_type(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY,asset_type_no varchar(50),asset_type varchar(50))
-CREATE TABLE asset_subtype(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY)
-INSERT INTO asset_type (asset_type_no,asset_type)
-VALUES ('010','IT Hardware'),('020','IT Software'),('040','Equipment'),('050','Property'),('060','Fleet'),('070','Machinery'),('080','Furniture'),('090','Facility'),('100','Intangible'),('999','Other')
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `test`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_type_subtype`
+--
 
 CREATE TABLE `asset_type_subtype` (
   `tid` int(11) DEFAULT NULL,
@@ -243,3 +263,8 @@ INSERT INTO `asset_type_subtype` (`tid`, `revision_id`, `parent_target_id`, `nam
 (218, 218, 13, 'STATUTES', 'Intangible', 'STATUTES', '100'),
 (219, 219, 13, 'TRADEMARKS', 'Intangible', 'TRADEMARKS', '100'),
 (220, 220, 13, 'WATER RIGHTS', 'Intangible', 'WATER RIGHTS', '100');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

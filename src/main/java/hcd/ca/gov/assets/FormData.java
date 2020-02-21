@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
@@ -36,6 +37,7 @@ public class FormData {
     public List<String> get_asset_type(){
         
         try{
+            /*
             Connection connection=null;
             Class.forName("com.mysql.jdbc.Driver");
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","santosh","sarkar@1234");
@@ -44,6 +46,13 @@ public class FormData {
             ps=connection.prepareStatement("select * from asset_type");
             
             ResultSet rs=ps.executeQuery();
+            */
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            String myUrl = "jdbc:mysql://localhost:3306/test";
+            Connection conn = DriverManager.getConnection(myUrl, "santosh", "sarkar@1234");
+            String query = "select distinct asset_type from asset_type_subtype";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
             
             while(rs.next()){
                 assetTypeList.add(rs.getString("asset_type"));
@@ -60,6 +69,7 @@ public class FormData {
     
     
     public FormData() {
+        
     }
     
 }
