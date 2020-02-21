@@ -24,7 +24,7 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "formData")
 @RequestScoped
 public class FormData {
-
+    String selected_asset= null ;
     String myUrl = "jdbc:mysql://localhost:3306/test";
     String uname = "santosh";
     String pass = "sarkar@1234";
@@ -75,9 +75,10 @@ public class FormData {
         return assetTypeList;
     }
     
-
+    //Assets aa =new Assets();
     public List<String> get_asset_subtype() {
-       System.out.println("Hello Santosh Asstet Type is calling.");
+       //selected_asset=aa.getAsset();
+       System.out.println("Hello Santosh Asstet Type is calling."+selected_asset);
         return assetTypeList;
     }
     
