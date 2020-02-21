@@ -42,17 +42,17 @@
                                 
                         <b:row>
                             <b:column span="6">
-                                
+                                <b:column span="6">
                                 <b:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" >
                                     <f:selectItems value="#{formData.get_asset_type()}"></f:selectItems>          
+                                    <p:ajax listener="#{formData.get_asset_subtype}" update="asset_subtype"/>
                                 </b:selectOneMenu>
-                                <ui:remove>
-                                <p:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" filter="true" filterMatchMode="startsWith">
-                                    <f:selectItem itemLabel="IT Hardware" itemValue="IT Hardware" />
-                                    <f:selectItem itemLabel="IT Software" itemValue="IT Software" />
-                                    <f:selectItem itemLabel="Equipment" itemValue="Equipment" />                   
-                                </p:selectOneMenu>
-                                </ui:remove>    
+                                </b:column>    
+                                <b:column span="6">
+                                <b:selectOneMenu id="asset_subtype" label="Asset Subtype">
+                                    <f:selectItems value="#{formData.get_asset_subtype()}"></f:selectItems>
+                                </b:selectOneMenu>
+                                </b:column>    
                             </b:column>
                             <b:column span="6"><b:inputText type="number" id="tagNumber" value="#{assetsController.selected.tagNumber}" label="Tag Number"  required="false" />     </b:column>
                         </b:row>
@@ -63,13 +63,11 @@
                         </b:row>
                         
                         <b:row>
-                            <b:column span="6"><b:selectOneMenu id="locations" value="#{assetsController.selected.locations}" label="Location"  required="false" >
-                                                <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                                <f:selectItem itemLabel="2240000001" itemValue="2240000001" />
-                                                <f:selectItem itemLabel="2240000002" itemValue="2240000002" />
-                                                <f:selectItem itemLabel="2240000003" itemValue="2240000003" />
-                                                
-                                               </b:selectOneMenu>
+                            <b:column span="6">
+                                <b:selectOneMenu id="locations" value="#{assetsController.selected.locations}" label="Location"  required="false" >
+                                    <f:selectItems value="#{formData.locations}" />
+                                </b:selectOneMenu>
+                                
                             </b:column>
                             <b:column span="6"><b:datepicker required="false" id="locationEffdt" value="#{assetsController.selected.locationEffdt}"  label="Location Effective Date" /></b:column>                            
                         </b:row>
@@ -80,24 +78,19 @@
                         </b:row> 
                                                       
                         <b:row>
-                            <b:column span="4"><b:selectOneMenu id="profileId" value="#{assetsController.selected.profileId}" label="Profile Id" >
-                                                <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                                <f:selectItem itemLabel="NONCAP" itemValue="NONCAP" />
-                                                <f:selectItem itemLabel="VIHCLE LEASE" itemValue="VIHCLE LEASE" />
-                                                <f:selectItem itemLabel="BUILDING LEASE" itemValue="BUILDING LEASE" />
-                                                
-                                               </b:selectOneMenu>
-                            
+                            <b:column span="4">
+                                <b:selectOneMenu id="profileId" value="#{assetsController.selected.profileId}" label="Profile Id" >
+                                    <f:selectItems value="#{formData.profileid}" />
+                                </b:selectOneMenu>
+                                
+                                
                             </b:column>
                             
                             
-                            <b:column span="4"><b:selectOneMenu id="category" value="#{assetsController.selected.category}" label="#{bundle.CreateAssetsTitle_category}" >
-                                                <f:selectItem itemLabel="(Please select)" itemValue="" />
-                                                <f:selectItem itemLabel="Leased Equipment" itemValue="Leased Equipment" />
-                                                <f:selectItem itemLabel="Collections" itemValue="Collections" />
-                                                <f:selectItem itemLabel="State Highway Infrastructure" itemValue="State Highway Infrastructure" />
-                                                
-                                               </b:selectOneMenu>
+                            <b:column span="4">
+                                <b:selectOneMenu id="category" value="#{assetsController.selected.category}" label="#{bundle.CreateAssetsTitle_category}" >
+                                <f:selectItems value="#{formData.category}" />
+                                </b:selectOneMenu>
                             
                             </b:column>
                             <b:column span="4"><b:inputText id="fundCode" value="#{assetsController.selected.fundCode}" label="Fund Code" /></b:column>
