@@ -74,8 +74,10 @@ public class AssetsController implements Serializable {
         }
         return pagination;
     }
+    
 
     public String prepareList() {
+        
         recreateModel();
         return "List";
     }
@@ -85,8 +87,9 @@ public class AssetsController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-
-    public String prepareCreate() {
+FormData fd=new FormData();
+        public String prepareCreate() {
+            fd.clearAssetSubasset();
         current = new Assets();
         selectedItemIndex = -1;
         return "Create";

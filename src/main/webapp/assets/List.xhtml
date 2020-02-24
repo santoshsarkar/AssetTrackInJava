@@ -19,25 +19,30 @@
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>
                         <b:dataTable value="#{assetsController.items}" var="item" >
-                          <b:dataTableColumn value="#{item.id}"  />
-                          <b:dataTableColumn value="#{item.sid}"  />
-                          <b:dataTableColumn value="#{item.tagNumber}"  />
-                          <b:dataTableColumn value="#{item.descr}"  />
-                          <b:dataTableColumn value="#{item.accountingDt}"  />
-                          <b:dataTableColumn value="#{item.asset}"  />
-                          <b:dataTableColumn value="#{item.profileId}"  />
-                          <b:dataTableColumn value="#{item.category}"  />
-                          <b:dataTableColumn value="#{item.cost}"  />
+                          <b:dataTableColumn value="#{item.businessUnit}" label="Business Unit"/>
+                          <b:dataTableColumn value="#{item.ntfcType}" label="Transaction Type"  />
+                          <b:dataTableColumn value="#{item.purchaseOrder}" label="PO"/>
+                          <b:dataTableColumn value="#{item.asset}" label="Asset Type"  />
+                          <b:dataTableColumn value="#{item.profileId}" label="Profile ID"  />
+                          <b:dataTableColumn value="#{item.category}" label="Category"  />
+                          <b:dataTableColumn value="#{item.accountingDt}" label="Accounting Date"  />
+                          <b:dataTableColumn value="#{item.tagNumber}" label="Tag Number"  />
+                          <b:dataTableColumn value="#{item.descr}" label="Description"  />
+                          <b:dataTableColumn value="#{item.locations}" label="Location"  />
+                          <b:dataTableColumn value="#{item.quantity}" label="Quantity"  />
+                          <b:dataTableColumn value="#{item.fundCode}" label="Fund Code"  />
+                          <b:dataTableColumn value="#{item.cost}" label="Cost"  />
+                          
+                          <ui:remove>
+                          
                           <b:dataTableColumn value="#{item.descrshort}"  />
-                          <b:dataTableColumn value="#{item.fundCode}"  />
                           <b:dataTableColumn value="#{item.inServiceDt}"  />
-                          <b:dataTableColumn value="#{item.locations}"  />
                           <b:dataTableColumn value="#{item.locationEffdt}"  />
-                          <b:dataTableColumn value="#{item.purchaseOrder}"  />
-                          <b:dataTableColumn value="#{item.quantity}"  />
+                          
                           <b:dataTableColumn value="#{item.serialId}"  />
                           <b:dataTableColumn value="#{item.transDt}"  />
                           <b:dataTableColumn value="#{item.vin}"  />
+                          </ui:remove>
                           <b:dataTableColumn label=" Action " >
                             <h:commandLink action="#{assetsController.prepareView}" value="#{bundle.ListAssetsViewLink}"/>
                             <h:outputText value=" "/>

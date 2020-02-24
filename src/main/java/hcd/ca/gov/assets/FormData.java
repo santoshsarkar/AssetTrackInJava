@@ -5,6 +5,7 @@
  */
 package hcd.ca.gov.assets;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,20 +17,26 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  *
  * @author santosh
  */
 @Named(value = "formData")
-@RequestScoped
-public class FormData {
+@SessionScoped
+public class FormData implements Serializable{
     String selected_asset= null ;
     String myUrl = "jdbc:mysql://localhost:3306/test";
     String uname = "santosh";
     String pass = "sarkar@1234";
     Connection connection = null;
 
+    public FormData() {
+        assetTypeList.clear();
+        assetSubTypeList.clear();
+    }    
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -41,19 +48,32 @@ public class FormData {
     }
 
     private List<String> assetTypeList = new ArrayList<>();
+    private List<String> assetSubTypeList = new ArrayList<>();
+    
 
+    /* Setter & Getter */
     public List<String> getAssetTypeList() {
         return assetTypeList;
     }
 
-    
     public void setAssetTypeList(List<String> assetTypeList) {
         this.assetTypeList = assetTypeList;
     }
+
+    public List<String> getAssetSubTypeList() {
+        return assetSubTypeList;
+    }
+
+    public void setAssetSubTypeList(List<String> assetSubTypeList) {
+        this.assetSubTypeList = assetSubTypeList;
+    }
     
+    
+    
+    /* Setter & Getter */    
     
     public List<String> get_asset_type() {
-
+        assetTypeList.clear();
         try {
             connection = DriverManager.getConnection(myUrl, uname, pass);
 
@@ -72,26 +92,46 @@ public class FormData {
         } catch (Exception e) {
             System.out.println(e);
         }
+        assetSubTypeList.clear();
         return assetTypeList;
     }
     
+    public void change_asset_type(ValueChangeEvent e){
+        selected_asset=e.getNewValue().toString();
+    }
     //Assets aa =new Assets();
     public List<String> get_asset_subtype() {
        //selected_asset=aa.getAsset();
+       assetSubTypeList.clear();
        System.out.println("Hello Santosh Asstet Type is calling."+selected_asset);
-        return assetTypeList;
+        try {
+            connection = DriverManager.getConnection(myUrl, uname, pass);
+
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement("select distinct asset_Sub_Type from asset_type_subtype where asset_Sub_Type is not null and asset_type = '"+selected_asset+"'");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                //assetType.put("asset_type", "asset_type");
+                assetSubTypeList.add(rs.getString("asset_Sub_Type"));
+
+            }
+            rs.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return assetSubTypeList; 
     }
+    
+    public void clearAssetSubasset(){
+     assetTypeList.clear();
+     assetSubTypeList.clear();
+    }
+    
+    
     
 
-    
-    
-    
-    
-    
-    
-    
-    public FormData() {
-    }
 
     //Locations Dropdown Data
     private static Map<String, Object> locations;

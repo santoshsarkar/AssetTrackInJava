@@ -19,23 +19,40 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
               <h:form>
+                        <b:row>
+                            <b:column span="4">
+                                <b:inputText required="true" id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}" label="#{bundle.CreateAssetsTitle_purchaseOrder}" />
+                            </b:column>
+                            <b:column span="4">
+                            <b:selectOneMenu id="businessUnit" value="#{assetsController.selected.businessUnit}" label="Business Unit">
+                                    <f:selectItem itemLabel="2240" itemValue="2240" /> 
+                            </b:selectOneMenu>
+                            </b:column>
+                            <b:column span="4">
+                               
+                            <b:selectOneMenu id="ntfcType" value="#{assetsController.selected.ntfcType}"  label="Transaction Type">
+                                    <f:selectItem itemLabel="FAD" itemValue="FAD" /> 
+                            </b:selectOneMenu>
+
+                            </b:column>
+                        </b:row>
 
                         <b:row>
                             <b:column span="6">
-                                <b:datepicker required="true" id="transDt" value="#{assetsController.selected.transDt}" label="Transaction Date" />
+                                <b:datepicker placeholder="MM/DD/YYYY"  required="true" id="transDt" value="#{assetsController.selected.transDt}" label="Transaction Date" />
                                 
                             </b:column>
                             <b:column span="6">
-                                <b:datepicker required="true" id="accountingDt" value="#{assetsController.selected.accountingDt}"  label="Accounting Date" />
+                                <b:datepicker placeholder="MM/DD/YYYY" required="true" id="accountingDt" value="#{assetsController.selected.accountingDt}"  label="Accounting Date" />
                             </b:column>
                         </b:row>
                         <b:row>
                             <b:column span="6">
-                                <b:datepicker required="false" id="inServiceDt" value="#{assetsController.selected.inServiceDt}" label="In Service Date" />
+                                <b:datepicker placeholder="MM/DD/YYYY" required="false" id="inServiceDt" value="#{assetsController.selected.inServiceDt}" label="In Service Date" />
                                 
                             </b:column>
                             <b:column span="6">
-                                <b:datepicker id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}"  label="Acquisition Date" />
+                                <b:datepicker placeholder="MM/DD/YYYY" id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}"  label="Acquisition Date" />
                             </b:column>
                         </b:row>
                                                        
@@ -43,10 +60,12 @@
                         <b:row>
                             <b:column span="6">
                                 <b:column span="6">
-                                <b:selectOneMenu id="asset" value="#{assetsController.selected.asset}" label="Asset Type" >
+                                    <label for="asset"  style="margin-top: 0">Asset Type</label><br/>
+                                    <p:selectOneMenu required="true" id="asset" value="#{assetsController.selected.asset}" label="Asset Type" valueChangeListener="#{formData.change_asset_type}" >
+                                    <f:selectItem itemLabel="Select Asset Type" itemValue="" /> 
                                     <f:selectItems value="#{formData.get_asset_type()}"></f:selectItems>          
                                     <p:ajax listener="#{formData.get_asset_subtype}" update="asset_subtype"/>
-                                </b:selectOneMenu>
+                                </p:selectOneMenu>
                                 </b:column>    
                                 <b:column span="6">
                                 <b:selectOneMenu id="asset_subtype" label="Asset Subtype">
@@ -69,7 +88,7 @@
                                 </b:selectOneMenu>
                                 
                             </b:column>
-                            <b:column span="6"><b:datepicker required="false" id="locationEffdt" value="#{assetsController.selected.locationEffdt}"  label="Location Effective Date" /></b:column>                            
+                            <b:column span="6"><b:datepicker placeholder="MM/DD/YYYY" required="false" id="locationEffdt" value="#{assetsController.selected.locationEffdt}"  label="Location Effective Date" /></b:column>                            
                         </b:row>
                             
                         <b:row>
@@ -93,7 +112,7 @@
                                 </b:selectOneMenu>
                             
                             </b:column>
-                            <b:column span="4"><b:inputText id="fundCode" value="#{assetsController.selected.fundCode}" label="Fund Code" /></b:column>
+                            <b:column span="4"><b:inputText placeholder="0648" id="fundCode" value="#{assetsController.selected.fundCode}" label="Fund Code" /></b:column>
                         </b:row>    
                               
                          <b:row>
