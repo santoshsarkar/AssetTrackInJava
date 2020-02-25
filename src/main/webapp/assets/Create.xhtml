@@ -19,42 +19,59 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
               <h:form>
-                        <b:row>
-                            <b:column span="4">
-                                <b:inputText required="true" id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}" label="#{bundle.CreateAssetsTitle_purchaseOrder}" />
-                            </b:column>
-                            <b:column span="4">
-                            <b:selectOneMenu id="businessUnit" value="#{assetsController.selected.businessUnit}" label="Business Unit">
-                                    <f:selectItem itemLabel="2240" itemValue="2240" /> 
-                            </b:selectOneMenu>
-                            </b:column>
-                            <b:column span="4">
-                               
-                            <b:selectOneMenu id="ntfcType" value="#{assetsController.selected.ntfcType}"  label="Transaction Type">
-                                    <f:selectItem itemLabel="FAD" itemValue="FAD" /> 
-                            </b:selectOneMenu>
+              <b:row>
+                <b:column span="6">
+                    <b:selectOneMenu id="businessUnit" value="#{assetsController.selected.businessUnit}" >
+                        <f:selectItem itemLabel="2240" itemValue="2240" /> 
+                        <f:facet name="prepend">
+                          <h:outputText value="Business Unit" />
+                        </f:facet>
+                </b:selectOneMenu>
+                </b:column>
+                <b:column span="6">
 
-                            </b:column>
-                        </b:row>
+                <b:selectOneMenu id="ntfcType" value="#{assetsController.selected.ntfcType}">
+                        <f:selectItem itemLabel="FAD" itemValue="FAD" /> 
+                        <f:facet name="prepend">
+                          <h:outputText value="Transaction Type" />
+                        </f:facet>                        
+                </b:selectOneMenu>
 
-                        <b:row>
-                            <b:column span="6">
-                                <b:datepicker placeholder="MM/DD/YYYY"  required="true" id="transDt" value="#{assetsController.selected.transDt}" label="Transaction Date" />
-                                
-                            </b:column>
-                            <b:column span="6">
-                                <b:datepicker placeholder="MM/DD/YYYY" required="true" id="accountingDt" value="#{assetsController.selected.accountingDt}"  label="Accounting Date" />
-                            </b:column>
-                        </b:row>
-                        <b:row>
-                            <b:column span="6">
-                                <b:datepicker placeholder="MM/DD/YYYY" required="false" id="inServiceDt" value="#{assetsController.selected.inServiceDt}" label="In Service Date" />
-                                
-                            </b:column>
-                            <b:column span="6">
-                                <b:datepicker placeholder="MM/DD/YYYY" id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}"  label="Acquisition Date" />
-                            </b:column>
-                        </b:row>
+                </b:column>
+              </b:row>  <hr/>
+                <b:row>
+                    <b:column span="6">
+                        <b:inputText required="true" id="purchaseOrder" class="po" value="#{assetsController.selected.purchaseOrder}" >
+                        <f:facet name="prepend">
+                          <h:outputText value="Purchase Order" />
+                        </f:facet>
+                        </b:inputText>
+                    </b:column>
+                    
+                    <b:column span="6">
+                        <b:button onclick="resetForm();" value="Reset Form" />
+                    </b:column>
+
+                </b:row>
+
+                  <b:row>
+                      <b:column span="6">
+                          <b:datepicker placeholder="MM/DD/YYYY"  required="true" id="transDt" value="#{assetsController.selected.transDt}" label="Transaction Date" />
+
+                      </b:column>
+                      <b:column span="6">
+                          <b:datepicker placeholder="MM/DD/YYYY" required="true" id="accountingDt" value="#{assetsController.selected.accountingDt}"  label="Accounting Date" />
+                      </b:column>
+                  </b:row>
+                  <b:row>
+                      <b:column span="6">
+                          <b:datepicker placeholder="MM/DD/YYYY" required="false" id="inServiceDt" value="#{assetsController.selected.inServiceDt}" label="In Service Date" />
+
+                      </b:column>
+                      <b:column span="6">
+                          <b:datepicker placeholder="MM/DD/YYYY" id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}"  label="Acquisition Date" />
+                      </b:column>
+                  </b:row>
                                                        
                                 
                         <b:row>
@@ -73,11 +90,11 @@
                                 </b:selectOneMenu>
                                 </b:column>    
                             </b:column>
-                            <b:column span="6"><b:inputText type="number" id="tagNumber" value="#{assetsController.selected.tagNumber}" label="Tag Number"  required="false" />     </b:column>
+                            <b:column span="6"><b:inputText id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}"  label="Tag Number"  required="false" />     </b:column>
                         </b:row>
                                          
                         <b:row>
-                            <b:column span="6"><b:inputText id="descr" value="#{assetsController.selected.descr}" label="Description"  required="false" />     </b:column>
+                            <b:column span="6"><b:inputText mask="DESD" id="descr" value="#{assetsController.selected.descr}" label="Description"  required="false" />     </b:column>
                             <b:column span="6"><b:inputText id="descrshort" value="#{assetsController.selected.descrshort}"  label="Short Description"  required="false" />     </b:column>
                         </b:row>
                         

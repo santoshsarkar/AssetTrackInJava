@@ -32,6 +32,7 @@ public class FormData implements Serializable{
     String uname = "santosh";
     String pass = "sarkar@1234";
     Connection connection = null;
+    
 
     public FormData() {
         assetTypeList.clear();
@@ -68,9 +69,30 @@ public class FormData implements Serializable{
         this.assetSubTypeList = assetSubTypeList;
     }
     
+    /* Setter & Getter */ 
+    int maxTagNum=0;
+    public int maxTagNumber(){
+        
+        try {
+            connection = DriverManager.getConnection(myUrl, uname, pass);
+
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement("select max(tag_number) as tgn from assets");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                //assetType.put("asset_type", "asset_type");
+                maxTagNum=(rs.getInt("tgn"));
+            }
+            rs.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     
-    
-    /* Setter & Getter */    
+        return maxTagNum+1;
+    }
     
     public List<String> get_asset_type() {
         assetTypeList.clear();

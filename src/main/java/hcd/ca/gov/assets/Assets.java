@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Assets.findAll", query = "SELECT a FROM Assets a"),
+    @NamedQuery(name = "Assets.findByMaxTag", query = "SELECT max(a.tagNumber) FROM Assets a"),
     @NamedQuery(name = "Assets.findById", query = "SELECT a FROM Assets a WHERE a.id = :id"),
     @NamedQuery(name = "Assets.findBySid", query = "SELECT a FROM Assets a WHERE a.sid = :sid"),
     @NamedQuery(name = "Assets.findByTagNumber", query = "SELECT a FROM Assets a WHERE a.tagNumber = :tagNumber"),
