@@ -32,7 +32,7 @@
                           <b:dataTableColumn value="#{item.quantity}" label="Quantity"  />
                           <b:dataTableColumn value="#{item.fundCode}" label="Fund Code"  />
                           <b:dataTableColumn value="#{item.cost}" label="Cost"  />
-                          
+
                           <ui:remove>
                           
                           <b:dataTableColumn value="#{item.descrshort}"  />
@@ -43,11 +43,12 @@
                           <b:dataTableColumn value="#{item.transDt}"  />
                           <b:dataTableColumn value="#{item.vin}"  />
                           </ui:remove>
-                          <b:dataTableColumn label=" Action " >
-                            <h:commandLink action="#{assetsController.prepareView}" value="#{bundle.ListAssetsViewLink}"/>
-                            <h:outputText value=" "/>
+                          <b:dataTableColumn label=" Action " value="" >
+                            <ui:remove><h:commandLink action="#{assetsController.prepareView}" value="#{bundle.ListAssetsViewLink}"/></ui:remove>  
+                            <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}/#{item.descr}">Print</a>
+                            <h:outputText value=" |"/>
                             <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
-                            <h:outputText value=" "/>
+                            <h:outputText value=" |"/>
                             <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>  
                           </b:dataTableColumn>
                           

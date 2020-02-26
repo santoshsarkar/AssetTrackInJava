@@ -78,6 +78,11 @@ public class Assets implements Serializable {
     @Column(name = "asset")
     private String asset;
     @Size(max = 60)
+    /* Add Asset_Subtype */
+    @Column(name = "asset_subtype")
+    private String asset_subtype;
+    @Size(max = 60)
+    
     @Column(name = "business_unit")
     private String businessUnit;
     @Size(max = 60)
@@ -121,8 +126,14 @@ public class Assets implements Serializable {
     @Size(max = 60)
     @Column(name = "vin")
     private String vin;
+    
 
     public Assets() {
+        int maxTagNo=0;
+        FormData fd=new FormData();
+        maxTagNo=fd.maxTagNumber();
+        System.out.println("MaxTagNumber="+maxTagNo);
+        tagNumber=BigInteger.valueOf(maxTagNo);
     }
 
     public Assets(Integer id) {
@@ -184,6 +195,16 @@ public class Assets implements Serializable {
     public void setAsset(String asset) {
         this.asset = asset;
     }
+
+    public String getAsset_subtype() {
+        return asset_subtype;
+    }
+
+    public void setAsset_subtype(String asset_subtype) {
+        this.asset_subtype = asset_subtype;
+    }
+    
+    
 
     public String getBusinessUnit() {
         return businessUnit;

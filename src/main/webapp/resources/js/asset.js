@@ -6,6 +6,8 @@ window.onload = function() {
     document.getElementById('j_idt13:transDt_input').setAttribute("value",date );
     document.getElementById('j_idt13:inServiceDt_input').setAttribute("value",date );
     document.getElementById('j_idt13:acquisitionDt_input').setAttribute("value",date );
+    document.getElementById('j_idt13:locationEffdt_input').setAttribute("value",date );
+    
 
   }
   function resetForm() {
@@ -24,9 +26,9 @@ window.onload = function() {
   document.getElementById("j_idt13:acquisitionDt_input").value="";
   document.getElementById("j_idt13:locationEffdt_input").value="";
   document.getElementById("input_j_idt13:fundCode").value="";
-  document.getElementById("").value="";
-  document.getElementById("").value="";
-  document.getElementById("").value="";
+  document.getElementById("j_idt13:asset").value="";
+  document.getElementById("j_idt13:asset_subtypeInner").value="";
+  document.getElementById("j_idt13:asset_items").value="";
   
   
   

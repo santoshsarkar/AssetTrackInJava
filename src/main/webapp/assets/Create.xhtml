@@ -85,12 +85,12 @@
                                 </p:selectOneMenu>
                                 </b:column>    
                                 <b:column span="6">
-                                <b:selectOneMenu id="asset_subtype" label="Asset Subtype">
+                                    <b:selectOneMenu id="asset_subtype" value="#{assetsController.selected.asset_subtype}" label="Asset Subtype">
                                     <f:selectItems value="#{formData.get_asset_subtype()}"></f:selectItems>
                                 </b:selectOneMenu>
                                 </b:column>    
                             </b:column>
-                            <b:column span="6"><b:inputText type="number"  id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}" label="Tag Number"  required="false" />     </b:column>
+                            <b:column span="6"><b:inputText disabled="TRUE" type="number"  id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}" label="Tag Number"  required="false" />     </b:column>
                         </b:row>
                                          
                         <b:row>
