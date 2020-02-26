@@ -4,10 +4,7 @@ import hcd.ca.gov.assets.util.JsfUtil;
 import hcd.ca.gov.assets.util.PaginationHelper;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -18,8 +15,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @Named("assetsController")
 @SessionScoped
@@ -31,12 +26,8 @@ public class AssetsController implements Serializable {
     private hcd.ca.gov.assets.AssetsFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    private List<Assets> asset;
 
-
- 
     public AssetsController() {
-        
     }
 
     public Assets getSelected() {
@@ -68,10 +59,8 @@ public class AssetsController implements Serializable {
         }
         return pagination;
     }
-    
 
     public String prepareList() {
-        
         recreateModel();
         return "List";
     }
@@ -81,19 +70,8 @@ public class AssetsController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-    @PersistenceContext(unitName = "hcd.ca.gov_AssetTrackInJava_war_1PU")
-    private EntityManager em;
 
-    public List<Assets> findByMaxTag(){
-        System.out.println("NamedQuery By Santosh Sarkar...........");
-     asset=em.createNamedQuery("Assets.findByMaxTag").getResultList();
-        return asset;
-    }
-
-    
     public String prepareCreate() {
-         
-         System.out.println(findByMaxTag());
         current = new Assets();
         selectedItemIndex = -1;
         return "Create";

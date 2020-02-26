@@ -90,11 +90,11 @@
                                 </b:selectOneMenu>
                                 </b:column>    
                             </b:column>
-                            <b:column span="6"><b:inputText id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}"  label="Tag Number"  required="false" />     </b:column>
+                            <b:column span="6"><b:inputText type="number"  id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}" label="Tag Number"  required="false" />     </b:column>
                         </b:row>
                                          
                         <b:row>
-                            <b:column span="6"><b:inputText mask="DESD" id="descr" value="#{assetsController.selected.descr}" label="Description"  required="false" />     </b:column>
+                            <b:column span="6"><b:inputText id="descr" value="#{assetsController.selected.descr}" label="Description"  required="false" />     </b:column>
                             <b:column span="6"><b:inputText id="descrshort" value="#{assetsController.selected.descrshort}"  label="Short Description"  required="false" />     </b:column>
                         </b:row>
                         

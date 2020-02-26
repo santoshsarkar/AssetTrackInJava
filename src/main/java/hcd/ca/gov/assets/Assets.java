@@ -7,10 +7,7 @@ package hcd.ca.gov.assets;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Assets.findAll", query = "SELECT a FROM Assets a"),
-    @NamedQuery(name = "Assets.findByMaxTag", query = "SELECT max(a.tagNumber) FROM Assets a"),
     @NamedQuery(name = "Assets.findById", query = "SELECT a FROM Assets a WHERE a.id = :id"),
     @NamedQuery(name = "Assets.findBySid", query = "SELECT a FROM Assets a WHERE a.sid = :sid"),
     @NamedQuery(name = "Assets.findByTagNumber", query = "SELECT a FROM Assets a WHERE a.tagNumber = :tagNumber"),
@@ -82,7 +78,6 @@ public class Assets implements Serializable {
     @Column(name = "asset")
     private String asset;
     @Size(max = 60)
-
     @Column(name = "business_unit")
     private String businessUnit;
     @Size(max = 60)

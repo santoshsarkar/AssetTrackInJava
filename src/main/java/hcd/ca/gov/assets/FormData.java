@@ -28,11 +28,10 @@ import javax.faces.event.ValueChangeEvent;
 @SessionScoped
 public class FormData implements Serializable{
     String selected_asset= null ;
-    String myUrl = "jdbc:mysql://localhost:3306/test";
+    String myUrl = "jdbc:mysql://localhost/test";
     String uname = "santosh";
     String pass = "sarkar@1234";
     Connection connection = null;
-    
 
     public FormData() {
         assetTypeList.clear();
@@ -69,7 +68,7 @@ public class FormData implements Serializable{
         this.assetSubTypeList = assetSubTypeList;
     }
     
-    /* Setter & Getter */ 
+    /* Setter & Getter */    
     int maxTagNum=0;
     public int maxTagNumber(){
         
@@ -125,7 +124,7 @@ public class FormData implements Serializable{
     public List<String> get_asset_subtype() {
        //selected_asset=aa.getAsset();
        assetSubTypeList.clear();
-       System.out.println("Hello Santosh Asstet Type is calling."+selected_asset);
+       System.out.println("Hello Asstet Type is calling."+selected_asset);
         try {
             connection = DriverManager.getConnection(myUrl, uname, pass);
 
@@ -146,10 +145,6 @@ public class FormData implements Serializable{
         return assetSubTypeList; 
     }
     
-    public void clearAssetSubasset(){
-     assetTypeList.clear();
-     assetSubTypeList.clear();
-    }
     
     
     
