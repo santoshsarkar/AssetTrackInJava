@@ -1,6 +1,8 @@
+.hidden{ display: none;}
 #growl{ z-index: 999999}
 /* .maincontent{ margin-top:115px; } */
 .maincontent form{ width: 100%;}
+.maincontent .title .fa-home{ padding-right: 15px}
 .masthead-subheading a{ color: white;}
 
 /* Footer  */

@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,55 +15,48 @@
             <div class="container maincontent">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(List)</h1></div><hr/>
                 <div class="row">
+  
+                    
                     <h:form>
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>
-                        <b:dataTable value="#{assetsController.items}" var="item" >
+                        <b:dataTable value="#{assetsController.items}" var="item"  
+                                     responsive="true"
+                                     >
                           <b:dataTableColumn value="#{item.businessUnit}" label="Business Unit"/>
-                          <b:dataTableColumn value="#{item.ntfcType}" label="Transaction Type"  />
+                          <b:dataTableColumn value="#{item.tagNumber}" label="Tag No"  />
                           <b:dataTableColumn value="#{item.purchaseOrder}" label="PO"/>
                           <b:dataTableColumn value="#{item.asset}" label="Asset Type"  />
-                          <b:dataTableColumn value="#{item.profileId}" label="Profile ID"  />
+                          <b:dataTableColumn value="#{item.asset_subtype}" label="Asset Sub Type"  />
                           <b:dataTableColumn value="#{item.category}" label="Category"  />
                           <b:dataTableColumn value="#{item.accountingDt}" label="Accounting Date"  />
-                          <b:dataTableColumn value="#{item.tagNumber}" label="Tag Number"  />
                           <b:dataTableColumn value="#{item.descr}" label="Description"  />
-                          <b:dataTableColumn value="#{item.locations}" label="Location"  />
                           <b:dataTableColumn value="#{item.quantity}" label="Quantity"  />
-                          <b:dataTableColumn value="#{item.fundCode}" label="Fund Code"  />
                           <b:dataTableColumn value="#{item.cost}" label="Cost"  />
-
+                          <b:dataTableColumn selectionMode="multiple" style="width:16px;text-align:center"/>
                           <ui:remove>
-                          
-                          <b:dataTableColumn value="#{item.descrshort}"  />
-                          <b:dataTableColumn value="#{item.inServiceDt}"  />
-                          <b:dataTableColumn value="#{item.locationEffdt}"  />
-                          
-                          <b:dataTableColumn value="#{item.serialId}"  />
-                          <b:dataTableColumn value="#{item.transDt}"  />
-                          <b:dataTableColumn value="#{item.vin}"  />
-                          </ui:remove>
                           <b:dataTableColumn label=" Action " value="" >
                             <ui:remove><h:commandLink action="#{assetsController.prepareView}" value="#{bundle.ListAssetsViewLink}"/></ui:remove>  
-                            <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}/#{item.descr}">Print</a>
+                            <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}?#{item.descr}">Print</a>
                             <h:outputText value=" |"/>
                             <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
                             <h:outputText value=" |"/>
                             <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>  
                           </b:dataTableColumn>
-                          
-                          
+                          </ui:remove>
                         </b:dataTable>
-                       <br />
-                <h:commandLink action="#{assetsController.prepareCreate}" value="#{bundle.ListAssetsCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListAssetsIndexLink}"/> 
-                    </h:form>
-            
-        
-                    
+                        
+                        <br />
+                        <b:row>
+                            <b:column span="2" offset="0"><h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="#{bundle.ListAssetsCreateLink}"/></b:column>
+                            <b:column span="3"><h:link class="btn btn-primary"  outcome="/index" value="#{bundle.ListAssetsIndexLink}"/> </b:column>
+                            
+                        </b:row>
+                        <br /><br />
+      
+                
+                </h:form>
                     
                     
                     

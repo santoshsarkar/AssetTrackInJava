@@ -1,3 +1,11 @@
+$(document).ready(function() {
+    //alert("ss");
+    //$('#j_idt12:j_idt14_wrapper') j_idt12:j_idt14
+        
+
+} );
+
+
 window.onload = function() {
     var today = new Date();
     var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
@@ -10,6 +18,9 @@ window.onload = function() {
     
 
   }
+  
+  
+  
   function resetForm() {
  //alert("I am working!");
   document.getElementById("input_j_idt13:purchaseOrder").value = "";

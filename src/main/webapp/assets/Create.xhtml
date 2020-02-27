@@ -19,7 +19,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
               <h:form>
-              <b:row>
+                  <b:row class="hidden">
                 <b:column span="6">
                     <b:selectOneMenu id="businessUnit" value="#{assetsController.selected.businessUnit}" >
                         <f:selectItem itemLabel="2240" itemValue="2240" /> 
@@ -37,8 +37,8 @@
                         </f:facet>                        
                 </b:selectOneMenu>
 
-                </b:column>
-              </b:row>  <hr/>
+                </b:column><hr/>
+              </b:row>  
                 <b:row>
                     <b:column span="6">
                         <b:inputText required="true" id="purchaseOrder" class="po" value="#{assetsController.selected.purchaseOrder}" >
@@ -143,7 +143,7 @@
                             <b:column span="6"></b:column>
                         </b:row>                                 
                         
-                        <br /><br /><br />
+                        <br />
                      
                     
                 <b:row>
