@@ -2,13 +2,20 @@ package hcd.ca.gov.assets;
 
 import hcd.ca.gov.assets.util.JsfUtil;
 import hcd.ca.gov.assets.util.PaginationHelper;
+import java.io.IOException;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
@@ -26,6 +33,54 @@ public class AssetsController implements Serializable {
     private hcd.ca.gov.assets.AssetsFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    /* Santosh Code */
+    private Assets selectedAsset;
+    private List<Assets> selectedAssets;
+
+    public Assets getSelectedAsset() {
+        return selectedAsset;
+    }
+
+    public void setSelectedAsset(Assets selectedAsset) {
+        this.selectedAsset = selectedAsset;
+    }
+
+    public List<Assets> getSelectedAssets() {
+        return selectedAssets;
+    }
+
+    public void setSelectedAssets(List<Assets> selectedAssets) {
+        this.selectedAssets = selectedAssets;
+    }
+  
+    public void printAssets() throws IOException {
+        List<Integer> asset_id = new ArrayList<Integer>();
+        List<BigInteger> tagNo = new ArrayList<BigInteger>();
+        List<String> descr = new ArrayList<String>();
+        
+        String parameter=null;
+       
+        for(Assets ass:selectedAssets){ 
+            asset_id.add(ass.getId());
+            tagNo.add(ass.getTagNumber());
+            descr.add(ass.getDescr());
+            
+            //myIntArray=new int[]{ass.getId()};
+            //System.out.println("Tag:="+ass.getTagNumber()+" Desc:"+ass.getDescr());
+            
+        }
+        for (int d : asset_id) { System.out.println(d); }
+        
+        System.out.println("Print Asset Function is Working");
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.redirect("http://localhost/Assets/api/AssetAPIController/action?code="+tagNo+"?"+descr);
+        // return "www.google.com";
+    }
+ 
+
+    /* Santosh Code */
+    
 
     public AssetsController() {
     }

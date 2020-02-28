@@ -12,229 +12,55 @@
             <h:outputText value="#{bundle.ListAssetsTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <div class="container maincontent">
+            <div class="container maincontent margintop">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(List)</h1></div><hr/>
                 <div class="row">
-  
-                    
-                    <h:form>
+                    <h:form  id="form">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>
-                        <b:dataTable value="#{assetsController.items}" var="item"  
-                                     responsive="true"
-                                     >
-                          <b:dataTableColumn value="#{item.businessUnit}" label="Business Unit"/>
-                          <b:dataTableColumn value="#{item.tagNumber}" label="Tag No"  />
-                          <b:dataTableColumn value="#{item.purchaseOrder}" label="PO"/>
-                          <b:dataTableColumn value="#{item.asset}" label="Asset Type"  />
-                          <b:dataTableColumn value="#{item.asset_subtype}" label="Asset Sub Type"  />
-                          <b:dataTableColumn value="#{item.category}" label="Category"  />
-                          <b:dataTableColumn value="#{item.accountingDt}" label="Accounting Date"  />
-                          <b:dataTableColumn value="#{item.descr}" label="Description"  />
-                          <b:dataTableColumn value="#{item.quantity}" label="Quantity"  />
-                          <b:dataTableColumn value="#{item.cost}" label="Cost"  />
-                          <b:dataTableColumn selectionMode="multiple" style="width:16px;text-align:center"/>
-                          <ui:remove>
-                          <b:dataTableColumn label=" Action " value="" >
-                            <ui:remove><h:commandLink action="#{assetsController.prepareView}" value="#{bundle.ListAssetsViewLink}"/></ui:remove>  
-                            <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}?#{item.descr}">Print</a>
-                            <h:outputText value=" |"/>
-                            <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
-                            <h:outputText value=" |"/>
-                            <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>  
-                          </b:dataTableColumn>
-                          </ui:remove>
-                        </b:dataTable>
-                        
-                        <br />
-                        <b:row>
-                            <b:column span="2" offset="0"><h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="#{bundle.ListAssetsCreateLink}"/></b:column>
-                            <b:column span="3"><h:link class="btn btn-primary"  outcome="/index" value="#{bundle.ListAssetsIndexLink}"/> </b:column>
-                            
-                        </b:row>
-                        <br /><br />
-      
-                
-                </h:form>
-                    
-                    
-                    
-        <ui:remove>
-        <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListAssetsEmpty}" rendered="#{assetsController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{assetsController.items.rowCount > 0}">
-                    <h:outputText value="#{assetsController.pagination.pageFirstItem + 1}..#{assetsController.pagination.pageLastItem + 1}/#{assetsController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{assetsController.previous}" value="#{bundle.Previous} #{assetsController.pagination.pageSize}" rendered="#{assetsController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{assetsController.next}" value="#{bundle.Next} #{assetsController.pagination.pageSize}" rendered="#{assetsController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{assetsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_id}"/>
+                        </h:panelGroup>                        
+                        <p:dataTable id="checkboxDT" var="item" value="#{assetsController.items}" selection="#{assetsController.selectedAssets}" rowKey="#{item.id}" style="margin-bottom:0">
+
+                            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                            <p:column headerText="Id">
+                                <h:outputText value="#{item.id}" />
+                            </p:column>
+                            <p:column headerText="Tag Number">
+                                <h:outputText value="#{item.tagNumber}" />
+                            </p:column>
+                            <p:column headerText="PO">
+                                <h:outputText value="#{item.purchaseOrder}" />
+                            </p:column>        
+                            <p:column headerText="Asset Type">
+                                <h:outputText value="#{item.asset}" />
+                            </p:column>
+                            <p:column headerText="Asset SubType">
+                                <h:outputText value="#{item.asset_subtype}" />
+                            </p:column>
+                            <p:column headerText="Description">
+                                <h:outputText value="#{item.descr}" />
+                            </p:column>
+                            <p:column headerText="Cost">
+                                <h:outputText value="#{item.cost}" />
+                            </p:column>        
+
+
+                            <f:facet name="footer">
+                                <ui:remove><p:commandButton process="checkboxDT" update=":form:multiAssetDetail" icon="pi pi-search" value="Print" oncomplete="PF('multiAssetDialog').show()"  /></ui:remove>
+                                <p:commandButton action="#{assetsController.printAssets}" value="Print" />
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_sid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.sid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_tagNumber}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tagNumber}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_descr}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descr}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_accountingDt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.accountingDt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_acquisitionDt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.acquisitionDt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_asset}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.asset}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_businessUnit}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.businessUnit}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_category}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.category}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_cost}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cost}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_descrshort}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descrshort}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_fundCode}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fundCode}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_inServiceDt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.inServiceDt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_locations}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.locations}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_locationEffdt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.locationEffdt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_ntfcType}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ntfcType}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_profileId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.profileId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_purchaseOrder}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.purchaseOrder}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_quantity}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.quantity}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_serialId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.serialId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_transDt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.transDt}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssetsTitle_vin}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.vin}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{assetsController.prepareView}" value="#{bundle.ListAssetsViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{assetsController.prepareCreate}" value="#{bundle.ListAssetsCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListAssetsIndexLink}"/>
-            </h:form>
-        </ui:remove>            
-                
-                
-        </div></div>
+                        </p:dataTable>
+                        <p:dialog header="Selected Cars" widgetVar="multiAssetDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                            <p:outputPanel id="multiAssetDetail" style="text-align:center;">
+                                <p>URL: <a href="#">Click Here</a> </p>
+                                <ui:repeat value="#{assetsController.selectedAssets}" var="item">
+                                    <h:outputText value="#{item.id}- #{item.tagNumber}" style=" display: block" />
+                                </ui:repeat>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>                        
+
+                </div></div><br/><br/>
         </ui:define>
     </ui:composition>
 
