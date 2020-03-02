@@ -99,7 +99,7 @@ public class AssetsController implements Serializable {
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
-            pagination = new PaginationHelper(10) {
+            pagination = new PaginationHelper(500000000) {
 
                 @Override
                 public int getItemsCount() {

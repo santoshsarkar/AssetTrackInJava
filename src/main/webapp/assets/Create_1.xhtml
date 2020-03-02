@@ -12,7 +12,6 @@
             <h:outputText value="#{bundle.CreateAssetsTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <script src="../resources/js/create_asset.js" type="text/javascript"></script>
             <div class="container maincontent">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(Create)</h1></div><hr/>
                 <div class="row">
@@ -145,62 +144,15 @@
                         </b:row>                                 
                         
                         <br />
-                <ui:remove>
-                <b:modal id="amodal2" title="Asset Confirmation" styleClass="modalPseudoClass"
-                closable="false"  close-on-escape="false" backdrop="false">
-                    <h2>Tag Number : </h2>
-                    <p>
-                        Purchase Order : <strong id="a_po">PO</strong>
-                    </p>
-                    <p>
-                        Transaction Date : <strong id="a_trans_dt">PO</strong>
-                    </p>
-                    <p>
-                        Accounting Date : <strong id="a_acc_dt">PO</strong>
-                    </p>
-                    <p>
-                        In Service Date : <strong id="a_inServiceDt_input">PO</strong>
-                    </p>
-                    <p>
-                        Description : <strong id="a_descr">PO</strong>
-                    </p>
-                    <p>
-                        Serial Id : <strong id="a_serialId">PO</strong>
-                    </p>
-                    <p>
-                        Quantity : <strong id="a_quantity">PO</strong>
-                    </p>
+                     
                     
-                 <f:facet name="footer">
-                   <b:button value="Close" dismiss="modal" />
-                   
-                   <b:commandLink update="@form" icon-awesome="fa-floppy-o" action="#{assetsController.create}" value="#{bundle.CreateAssetsSaveLink}" class="btn btn-primary" style="width:100%"/>
-                 </f:facet>
-               </b:modal>     
-               </ui:remove>     
                 <b:row>
-                <b:column span="2" offset="0">
-                    <ui:remove>   <b:commandLink onclick="confirm()" update="@form" icon-awesome="fa-floppy-o" action="#{assetsController.create}" value="#{bundle.CreateAssetsSaveLink}" class="btn btn-primary" style="width:100%"/></ui:remove>
-                    <p:commandButton value="Create Asset" action="#{assetsController.create}" update="growl @form">
-                        <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
-                    </p:commandButton>
-                </b:column>
+                <b:column span="2" offset="0"><b:commandLink icon-awesome="fa-floppy-o" action="#{assetsController.create}" value="#{bundle.CreateAssetsSaveLink}" class="btn btn-primary" style="width:100%"/></b:column>
                 <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
                 <b:column span="2"><h:link outcome="/index" value="#{bundle.CreateAssetsIndexLink}"/></b:column>
                 
                 </b:row>   <br /><br />
-                    
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                    <ui:remove>
-                    <h2>Tag Number :#{assetsController.selected.tagNumber} </h2>
-                    <p> Purchase Order : #{assetsController.selected.tagNumber} </p>
-                    <p> Transaction Date : #{assetsController.selected.transDt} </p>
-                    </ui:remove>
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-                </p:confirmDialog>
-              
-              </h:form>             
+                    </h:form>             
                     
                     
                     
@@ -209,7 +161,76 @@
             
                     
                     
-                        
+            <ui:remove>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <ui:remove>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{assetsController.selected.id}" title="#{bundle.CreateAssetsTitle_id}" required="true" requiredMessage="#{bundle.CreateAssetsRequiredMessage_id}"/>
+                    </ui:remove>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_sid}" for="sid" />
+                    <h:inputText id="sid" value="#{assetsController.selected.sid}" title="#{bundle.CreateAssetsTitle_sid}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_tagNumber}" for="tagNumber" />
+                    <h:inputText id="tagNumber" value="#{assetsController.selected.tagNumber}" title="#{bundle.CreateAssetsTitle_tagNumber}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_descr}" for="descr" />
+                    <h:inputText id="descr" value="#{assetsController.selected.descr}" title="#{bundle.CreateAssetsTitle_descr}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_accountingDt}" for="accountingDt" />
+                    <h:inputText id="accountingDt" value="#{assetsController.selected.accountingDt}" title="#{bundle.CreateAssetsTitle_accountingDt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_acquisitionDt}" for="acquisitionDt" />
+                    <h:inputText id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}" title="#{bundle.CreateAssetsTitle_acquisitionDt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_asset}" for="asset" />
+                    <h:inputText id="asset" value="#{assetsController.selected.asset}" title="#{bundle.CreateAssetsTitle_asset}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_businessUnit}" for="businessUnit" />
+                    <h:inputText id="businessUnit" value="#{assetsController.selected.businessUnit}" title="#{bundle.CreateAssetsTitle_businessUnit}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_category}" for="category" />
+                    <h:inputText id="category" value="#{assetsController.selected.category}" title="#{bundle.CreateAssetsTitle_category}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_cost}" for="cost" />
+                    <h:inputText id="cost" value="#{assetsController.selected.cost}" title="#{bundle.CreateAssetsTitle_cost}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_descrshort}" for="descrshort" />
+                    <h:inputText id="descrshort" value="#{assetsController.selected.descrshort}" title="#{bundle.CreateAssetsTitle_descrshort}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_fundCode}" for="fundCode" />
+                    <h:inputText id="fundCode" value="#{assetsController.selected.fundCode}" title="#{bundle.CreateAssetsTitle_fundCode}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_inServiceDt}" for="inServiceDt" />
+                    <h:inputText id="inServiceDt" value="#{assetsController.selected.inServiceDt}" title="#{bundle.CreateAssetsTitle_inServiceDt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_locations}" for="locations" />
+                    <h:inputText id="locations" value="#{assetsController.selected.locations}" title="#{bundle.CreateAssetsTitle_locations}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_locationEffdt}" for="locationEffdt" />
+                    <h:inputText id="locationEffdt" value="#{assetsController.selected.locationEffdt}" title="#{bundle.CreateAssetsTitle_locationEffdt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_ntfcType}" for="ntfcType" />
+                    <h:inputText id="ntfcType" value="#{assetsController.selected.ntfcType}" title="#{bundle.CreateAssetsTitle_ntfcType}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_profileId}" for="profileId" />
+                    <h:inputText id="profileId" value="#{assetsController.selected.profileId}" title="#{bundle.CreateAssetsTitle_profileId}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_purchaseOrder}" for="purchaseOrder" />
+                    <h:inputText id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}" title="#{bundle.CreateAssetsTitle_purchaseOrder}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_quantity}" for="quantity" />
+                    <h:inputText id="quantity" value="#{assetsController.selected.quantity}" title="#{bundle.CreateAssetsTitle_quantity}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_serialId}" for="serialId" />
+                    <h:inputText id="serialId" value="#{assetsController.selected.serialId}" title="#{bundle.CreateAssetsTitle_serialId}" />
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_transDt}" for="transDt" />
+                    <h:inputText id="transDt" value="#{assetsController.selected.transDt}" title="#{bundle.CreateAssetsTitle_transDt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAssetsLabel_vin}" for="vin" />
+                    <h:inputText id="vin" value="#{assetsController.selected.vin}" title="#{bundle.CreateAssetsTitle_vin}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{assetsController.create}" value="#{bundle.CreateAssetsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAssetsIndexLink}"/>
+            </h:form>
+            </ui:remove>            
             </div></div>
         </ui:define>
     </ui:composition>

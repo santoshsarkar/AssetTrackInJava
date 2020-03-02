@@ -41,7 +41,7 @@
                             <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}?#{item.descr}">Print</a>
                             <h:outputText value=" |"/>
                             <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
-                            <h:outputText value=" |"/>
+                            <h:outputText value=" | "/>
                             <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>  
                           </b:dataTableColumn>
                           </ui:remove>

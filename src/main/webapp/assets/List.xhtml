@@ -19,12 +19,18 @@
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>                        
-                        <p:dataTable id="checkboxDT" var="item" value="#{assetsController.items}" selection="#{assetsController.selectedAssets}" rowKey="#{item.id}" style="margin-bottom:0">
+                        <p:dataTable reflow="true" id="checkboxDT" var="item" value="#{assetsController.items}" selection="#{assetsController.selectedAssets}" 
+                                     rowKey="#{item.id}" style="margin-bottom:0"
+                                     rows="10"
+                                    paginator="true"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                    rowsPerPageTemplate="5,10,15">
+                                     
+                                     >
 
-                            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-                            <p:column headerText="Id">
-                                <h:outputText value="#{item.id}" />
-                            </p:column>
+                                     <ui:remove>    <p:column selectionMode="multiple" style="width:16px;text-align:center"/></ui:remove>
+                            
                             <p:column headerText="Tag Number">
                                 <h:outputText value="#{item.tagNumber}" />
                             </p:column>
@@ -40,14 +46,34 @@
                             <p:column headerText="Description">
                                 <h:outputText value="#{item.descr}" />
                             </p:column>
+                            <p:column headerText="Transaction Date">
+                                <h:outputText value="#{item.transDt}" />
+                            </p:column>
+                            <p:column headerText="Accounting Date">
+                                <h:outputText value="#{item.accountingDt}" />
+                            </p:column>
+                            <p:column headerText="Quantity">
+                                <h:outputText value="#{item.quantity}" />
+                            </p:column>
                             <p:column headerText="Cost">
                                 <h:outputText value="#{item.cost}" />
-                            </p:column>        
+                            </p:column> 
+                            <p:column headerText="Action">
+                                <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}/#{item.descr}">Print</a>
+                                <h:outputText value=" | "/>
+                                <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
+                                <h:outputText value=" | "/>
+                                <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>
+                            </p:column>
 
 
                             <f:facet name="footer">
                                 <ui:remove><p:commandButton process="checkboxDT" update=":form:multiAssetDetail" icon="pi pi-search" value="Print" oncomplete="PF('multiAssetDialog').show()"  /></ui:remove>
-                                <p:commandButton action="#{assetsController.printAssets}" value="Print" />
+                                <ui:remove><p:commandButton action="#{assetsController.printAssets}" value="Print" /></ui:remove>
+                                
+                                <p:linkButton outcome="Create" value="Create New" style="margin-right:20px;" />
+                                
+                                
                             </f:facet>
                         </p:dataTable>
                         <p:dialog header="Selected Cars" widgetVar="multiAssetDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
