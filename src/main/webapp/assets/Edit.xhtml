@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -74,6 +75,10 @@
                     </h:inputText>
                     <h:outputLabel value="#{bundle.EditAssetsLabel_vin}" for="vin" />
                     <h:inputText id="vin" value="#{assetsController.selected.vin}" title="#{bundle.EditAssetsTitle_vin}" />
+                    
+                    <h:outputLabel value="Status" for="status" />
+                    <p:inputSwitch id="status" value="#{assetsController.selected.status}"  />
+                   
                 </h:panelGrid>
                 <h:commandLink action="#{assetsController.update}" value="#{bundle.EditAssetsSaveLink}"/>
                 <br />

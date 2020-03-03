@@ -74,6 +74,8 @@
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewAssetsLabel_vin}"/>
                     <h:outputText value="#{assetsController.selected.vin}" title="#{bundle.ViewAssetsTitle_vin}"/>
+                    <h:outputText value="Status"/>
+                    <h:outputText value="#{assetsController.selected.status}" title="#{bundle.ViewAssetsTitle_vin}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{assetsController.destroyAndView}" value="#{bundle.ViewAssetsDestroyLink}"/>

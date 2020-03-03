@@ -52,6 +52,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Assets.findByQuantity", query = "SELECT a FROM Assets a WHERE a.quantity = :quantity"),
     @NamedQuery(name = "Assets.findBySerialId", query = "SELECT a FROM Assets a WHERE a.serialId = :serialId"),
     @NamedQuery(name = "Assets.findByTransDt", query = "SELECT a FROM Assets a WHERE a.transDt = :transDt"),
+    @NamedQuery(name = "Assets.findByStatus", query = "SELECT a FROM Assets a WHERE a.status = :status"),
     @NamedQuery(name = "Assets.findByVin", query = "SELECT a FROM Assets a WHERE a.vin = :vin")})
 public class Assets implements Serializable {
 
@@ -126,6 +127,16 @@ public class Assets implements Serializable {
     @Size(max = 60)
     @Column(name = "vin")
     private String vin;
+    @Column(name = "status")
+    private Boolean status;
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
     
 
     public Assets() {

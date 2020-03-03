@@ -129,7 +129,7 @@ public class AssetsController implements Serializable {
     public String prepareCreate() {
         current = new Assets();
         selectedItemIndex = -1;
-        return "Create";
+        return "List";
     }
 
     public String create() {

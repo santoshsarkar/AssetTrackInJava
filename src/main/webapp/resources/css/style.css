@@ -1,11 +1,12 @@
 .hidden{ display: none;}
 #growl{ z-index: 999999}
-/* .maincontent{ margin-top:115px; } */
-.margintop{ margin-top:125px; }
+/* .maincontent{ margin-top:115px; } 
+.margintop{ margin-top:125px; } */
 .maincontent form{ width: 100%;}
 .maincontent .title .fa-home{ padding-right: 15px}
 .masthead-subheading a{ color: white;}
-
+.asset_form label{ min-width: 180px}
+.asset_form{ padding-bottom: 100px}
 /* Footer  */
 .global-footer {
     

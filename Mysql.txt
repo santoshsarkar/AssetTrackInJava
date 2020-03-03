@@ -4,6 +4,11 @@ CREATE TABLE assets(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY, sid int, tag_num
 
 CREATE TABLE asset_type(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY,asset_type_no varchar(50),asset_type varchar(50))
 CREATE TABLE asset_subtype(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY)
+
+ALTER TABLE assets ADD asset_subtype VARCHAR(60) AFTER asset;
+ALTER TABLE assets ADD status BOOLEAN;
+
+
 INSERT INTO asset_type (asset_type_no,asset_type)
 VALUES ('010','IT Hardware'),('020','IT Software'),('040','Equipment'),('050','Property'),('060','Fleet'),('070','Machinery'),('080','Furniture'),('090','Facility'),('100','Intangible'),('999','Other')
 
@@ -18,7 +23,7 @@ CREATE TABLE `asset_type_subtype` (
   `asset_type_no` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE assets ADD asset_subtype VARCHAR(60) AFTER asset;
+
 --
 -- Dumping data for table `asset_type_subtype`
 --
