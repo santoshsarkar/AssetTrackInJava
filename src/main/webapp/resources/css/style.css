@@ -3,10 +3,12 @@
 /* .maincontent{ margin-top:115px; } 
 .margintop{ margin-top:125px; } */
 .maincontent form{ width: 100%;}
+.maincontent .title{ margin-top: 10px}
 .maincontent .title .fa-home{ padding-right: 15px}
 .masthead-subheading a{ color: white;}
-.asset_form label{ min-width: 180px}
+.asset_form label,.editasset label{ min-width: 180px}
 .asset_form{ padding-bottom: 100px}
+.outputLabel{font-weight: bold;}
 /* Footer  */
 .global-footer {
     

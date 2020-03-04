@@ -13,84 +13,172 @@
         </ui:define>
         <ui:define name="body">
             <div class="container maincontent">
-                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(View)</h1></div><hr/>
+                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(Edit)</h1></div><hr/>
                 <div class="row">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <b:row></b:row>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{assetsController.selected.id}" title="#{bundle.EditAssetsTitle_id}" required="true" requiredMessage="#{bundle.EditAssetsRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_sid}" for="sid" />
-                    <h:inputText id="sid" value="#{assetsController.selected.sid}" title="#{bundle.EditAssetsTitle_sid}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_tagNumber}" for="tagNumber" />
-                    <h:inputText id="tagNumber" value="#{assetsController.selected.tagNumber}" title="#{bundle.EditAssetsTitle_tagNumber}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_descr}" for="descr" />
-                    <h:inputText id="descr" value="#{assetsController.selected.descr}" title="#{bundle.EditAssetsTitle_descr}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_accountingDt}" for="accountingDt" />
-                    <h:inputText id="accountingDt" value="#{assetsController.selected.accountingDt}" title="#{bundle.EditAssetsTitle_accountingDt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_acquisitionDt}" for="acquisitionDt" />
-                    <h:inputText id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}" title="#{bundle.EditAssetsTitle_acquisitionDt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_asset}" for="asset" />
-                    <h:inputText id="asset" value="#{assetsController.selected.asset}" title="#{bundle.EditAssetsTitle_asset}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_businessUnit}" for="businessUnit" />
-                    <h:inputText id="businessUnit" value="#{assetsController.selected.businessUnit}" title="#{bundle.EditAssetsTitle_businessUnit}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_category}" for="category" />
-                    <h:inputText id="category" value="#{assetsController.selected.category}" title="#{bundle.EditAssetsTitle_category}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_cost}" for="cost" />
-                    <h:inputText id="cost" value="#{assetsController.selected.cost}" title="#{bundle.EditAssetsTitle_cost}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_descrshort}" for="descrshort" />
-                    <h:inputText id="descrshort" value="#{assetsController.selected.descrshort}" title="#{bundle.EditAssetsTitle_descrshort}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_fundCode}" for="fundCode" />
-                    <h:inputText id="fundCode" value="#{assetsController.selected.fundCode}" title="#{bundle.EditAssetsTitle_fundCode}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_inServiceDt}" for="inServiceDt" />
-                    <h:inputText id="inServiceDt" value="#{assetsController.selected.inServiceDt}" title="#{bundle.EditAssetsTitle_inServiceDt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_locations}" for="locations" />
-                    <h:inputText id="locations" value="#{assetsController.selected.locations}" title="#{bundle.EditAssetsTitle_locations}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_locationEffdt}" for="locationEffdt" />
-                    <h:inputText id="locationEffdt" value="#{assetsController.selected.locationEffdt}" title="#{bundle.EditAssetsTitle_locationEffdt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_ntfcType}" for="ntfcType" />
-                    <h:inputText id="ntfcType" value="#{assetsController.selected.ntfcType}" title="#{bundle.EditAssetsTitle_ntfcType}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_profileId}" for="profileId" />
-                    <h:inputText id="profileId" value="#{assetsController.selected.profileId}" title="#{bundle.EditAssetsTitle_profileId}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_purchaseOrder}" for="purchaseOrder" />
-                    <h:inputText id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}" title="#{bundle.EditAssetsTitle_purchaseOrder}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_quantity}" for="quantity" />
-                    <h:inputText id="quantity" value="#{assetsController.selected.quantity}" title="#{bundle.EditAssetsTitle_quantity}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_serialId}" for="serialId" />
-                    <h:inputText id="serialId" value="#{assetsController.selected.serialId}" title="#{bundle.EditAssetsTitle_serialId}" />
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_transDt}" for="transDt" />
-                    <h:inputText id="transDt" value="#{assetsController.selected.transDt}" title="#{bundle.EditAssetsTitle_transDt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditAssetsLabel_vin}" for="vin" />
-                    <h:inputText id="vin" value="#{assetsController.selected.vin}" title="#{bundle.EditAssetsTitle_vin}" />
-                    
-                    <h:outputLabel value="Status" for="status" />
-                    <p:inputSwitch id="status" value="#{assetsController.selected.status}"  />
-                   
-                </h:panelGrid>
-                <h:commandLink action="#{assetsController.update}" value="#{bundle.EditAssetsSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditAssetsViewLink}"/>
-                <br />
-                <h:commandLink action="#{assetsController.prepareList}" value="#{bundle.EditAssetsShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditAssetsIndexLink}" />
-            </h:form>
-        </div></div>
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:form class="editasset">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_sid}" for="sid" />
+                                <h:inputText id="sid" value="#{assetsController.selected.sid}" title="#{bundle.EditAssetsTitle_sid}" />
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_tagNumber}" for="tagNumber" />
+                                <h:inputText id="tagNumber" value="#{assetsController.selected.tagNumber}" title="#{bundle.EditAssetsTitle_tagNumber}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_descr}" for="descr" />
+                                <h:inputText id="descr" value="#{assetsController.selected.descr}" title="#{bundle.EditAssetsTitle_descr}" />
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_descrshort}" for="descrshort" />
+                                <h:inputText id="descrshort" value="#{assetsController.selected.descrshort}" title="#{bundle.EditAssetsTitle_descrshort}" />
+
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_acquisitionDt}" for="acquisitionDt" />
+                                <h:inputText id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}" title="#{bundle.EditAssetsTitle_acquisitionDt}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_asset}" for="asset" />
+                                <h:inputText id="asset" value="#{assetsController.selected.asset}" title="#{bundle.EditAssetsTitle_asset}" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_businessUnit}" for="businessUnit" />
+                                <h:inputText id="businessUnit" value="#{assetsController.selected.businessUnit}" title="#{bundle.EditAssetsTitle_businessUnit}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_category}" for="category" />
+                                <h:inputText id="category" value="#{assetsController.selected.category}" title="#{bundle.EditAssetsTitle_category}" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_cost}" for="cost" />
+                                <h:inputText id="cost" value="#{assetsController.selected.cost}" title="#{bundle.EditAssetsTitle_cost}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_accountingDt}" for="accountingDt" />
+                                <h:inputText id="accountingDt" value="#{assetsController.selected.accountingDt}" title="#{bundle.EditAssetsTitle_accountingDt}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+                                
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_fundCode}" for="fundCode" />
+                                <h:inputText id="fundCode" value="#{assetsController.selected.fundCode}" title="#{bundle.EditAssetsTitle_fundCode}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_inServiceDt}" for="inServiceDt" />
+                                <h:inputText id="inServiceDt" value="#{assetsController.selected.inServiceDt}" title="#{bundle.EditAssetsTitle_inServiceDt}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_locations}" for="locations" />
+                                <h:inputText id="locations" value="#{assetsController.selected.locations}" title="#{bundle.EditAssetsTitle_locations}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_locationEffdt}" for="locationEffdt" />
+                                <h:inputText id="locationEffdt" value="#{assetsController.selected.locationEffdt}" title="#{bundle.EditAssetsTitle_locationEffdt}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_ntfcType}" for="ntfcType" />
+                                <h:inputText id="ntfcType" value="#{assetsController.selected.ntfcType}" title="#{bundle.EditAssetsTitle_ntfcType}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_profileId}" for="profileId" />
+                                <h:inputText id="profileId" value="#{assetsController.selected.profileId}" title="#{bundle.EditAssetsTitle_profileId}" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_purchaseOrder}" for="purchaseOrder" />
+                                <h:inputText id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}" title="#{bundle.EditAssetsTitle_purchaseOrder}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_quantity}" for="quantity" />
+                                <h:inputText id="quantity" value="#{assetsController.selected.quantity}" title="#{bundle.EditAssetsTitle_quantity}" />
+
+                            </div>
+                        </div>     
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_serialId}" for="serialId" />
+                                <h:inputText id="serialId" value="#{assetsController.selected.serialId}" title="#{bundle.EditAssetsTitle_serialId}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_transDt}" for="transDt" />
+                                <h:inputText id="transDt" value="#{assetsController.selected.transDt}" title="#{bundle.EditAssetsTitle_transDt}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+
+                            </div>
+                        </div>     
+                        <div class="row">
+                            <div class="col-sm">
+                                <h:outputLabel value="#{bundle.EditAssetsLabel_vin}" for="vin" />
+                                <h:inputText id="vin" value="#{assetsController.selected.vin}" title="#{bundle.EditAssetsTitle_vin}" />
+
+                            </div>
+                            <div class="col-sm">
+                                <h:outputLabel value="Status" for="status" />
+                                <p:inputSwitch onLabel="Active" offLabel="Retire" id="status" value="#{assetsController.selected.status}"  />
+
+                            </div>
+                        </div> 
+
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <h:commandLink class="btn btn-primary" action="#{assetsController.update}" value="#{bundle.EditAssetsSaveLink}"/>  
+                                </td>
+                                <td>
+                                    <h:link class="btn btn-primary" outcome="View" value="#{bundle.EditAssetsViewLink}"/>    
+                                </td>
+                                <td>
+                                    <h:commandLink class="btn btn-primary" action="#{assetsController.prepareList}" value="#{bundle.EditAssetsShowAllLink}" immediate="true"/>   
+                                </td>
+
+
+                            </tr>
+                        </table>
+
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.EditAssetsIndexLink}" />
+                    </h:form>
+                </div></div>
         </ui:define>
     </ui:composition>
 

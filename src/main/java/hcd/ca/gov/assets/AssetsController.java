@@ -129,14 +129,15 @@ public class AssetsController implements Serializable {
     public String prepareCreate() {
         current = new Assets();
         selectedItemIndex = -1;
-        return "List";
+        return "Create";
     }
 
     public String create() {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AssetsCreated"));
-            return prepareCreate();
+            //return prepareCreate();
+            return prepareList();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

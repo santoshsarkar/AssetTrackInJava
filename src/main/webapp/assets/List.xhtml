@@ -28,10 +28,11 @@
                                     rowsPerPageTemplate="5,10,15">
                                      
                                      >
+                                    
 
-                                     <ui:remove>    <p:column selectionMode="multiple" style="width:16px;text-align:center"/></ui:remove>
+                            <ui:remove>    <p:column selectionMode="multiple" style="width:16px;text-align:center"/></ui:remove>
                             
-                            <p:column headerText="Tag Number">
+                            <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
                                 <h:outputText value="#{item.tagNumber}" />
                             </p:column>
                             <p:column headerText="PO">
@@ -71,8 +72,8 @@
                                 <ui:remove><p:commandButton process="checkboxDT" update=":form:multiAssetDetail" icon="pi pi-search" value="Print" oncomplete="PF('multiAssetDialog').show()"  /></ui:remove>
                                 <ui:remove><p:commandButton action="#{assetsController.printAssets}" value="Print" /></ui:remove>
                                 
-                                <p:linkButton outcome="Create" value="Create New" style="margin-right:20px;" />
                                 
+                                <h:commandLink action="#{assetsController.prepareCreate}" value="Create New"/>
                                 
                             </f:facet>
                         </p:dataTable>

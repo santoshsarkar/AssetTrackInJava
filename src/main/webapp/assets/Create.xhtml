@@ -172,10 +172,14 @@
                            <p:inputText type="number" id="cost" value="#{assetsController.selected.cost}" label="#{bundle.CreateAssetsTitle_cost}" />   
                           </td>
                       </tr>
-                      <tr>
+                      <tr class="hidden">
                           <td>
                               <p:outputLabel for="status" value="Status:" />
-                              <p:inputSwitch onLabel="Active" offLabel="Retire" label="true" id="status" value="#{assetsController.selected.status}" />
+                              <ui:remove><p:inputSwitch onLabel="Active" offLabel="Retire" label="true" id="status" value="#{assetsController.selected.status}" /></ui:remove>
+                              <p:selectOneMenu id="status" value="#{assetsController.selected.status}" >
+                              <f:selectItem itemLabel="Active" itemValue="true" />
+                              <f:selectItem itemLabel="Retire" itemValue="false" />
+                              </p:selectOneMenu>
                           </td>
                       </tr>
                       
@@ -213,12 +217,22 @@
                         </tr>
                         <tr>
                             <td>
-                            <h:outputText value="Transaction Date:  " />
-                            <h:outputText value="#{assetsController.selected.transDt}" styleClass="outputLabel"/>   
+                            <h:outputText value="PO:  " />
+                            <h:outputText value="#{assetsController.selected.purchaseOrder}" styleClass="outputLabel"/>   
                             </td>
                             <td>
-                            <h:outputText value="Accounting Date:  " />
-                            <h:outputText value="#{assetsController.selected.accountingDt}" styleClass="outputLabel"/>   
+                            <h:outputText value="Tag No:  " />
+                            <h:outputText value="#{assetsController.selected.tagNumber}" styleClass="outputLabel"/>   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <h:outputText value="Asset Type:  " />
+                            <h:outputText value="#{assetsController.selected.asset}" styleClass="outputLabel"/>   
+                            </td>
+                            <td>
+                            <h:outputText value="Asset Subtype:  " />
+                            <h:outputText value="#{assetsController.selected.asset_subtype}" styleClass="outputLabel"/>   
                             </td>
                         </tr>
                         <tr>
@@ -288,10 +302,7 @@
                             <h:outputText value="Fund Code:  " />
                             <h:outputText value="#{assetsController.selected.fundCode}" styleClass="outputLabel"/>   
                             </td>
-                            <td>
-                            <h:outputText value="Tag Date: " />
-                            <h:outputText value="#{assetsController.selected.acquisitionDt}" styleClass="outputLabel"/>   
-                            </td>
+                            
                         </tr>
                             
                     </table>
@@ -303,7 +314,8 @@
                     
                 </p:panel>    
                 </p:tab>
-            </p:wizard>        
+            </p:wizard>    
+                <h:commandLink action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}" immediate="true"/>
             </h:form>        
             </div>
             
