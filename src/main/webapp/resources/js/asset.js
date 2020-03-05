@@ -5,6 +5,18 @@ $(document).ready(function() {
 
 } );
 
+function callForm728(po,tag,asset){
+    var poNo=po;
+    var tagNo=tag;
+    var asset_type=asset;
+    //alert("Po: "+poNo+"Asst Type: "+asset_type);
+    if(asset_type=="IT Hardware" || asset_type=="IT Software"  )
+    { location.replace("/Form728/faces/itGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
+    else
+    {location.replace("/Form728/faces/nonItGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
+}
+
+
 
 window.onload = function() {
     var today = new Date();

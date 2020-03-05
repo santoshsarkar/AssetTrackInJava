@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>IT-Goods (List)</title>
+            </h:head>   
+            <h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> IT Goods (List)</h1><hr/>
+            
+            
+            <h:form>
+                <b:dataTable value="#{itGoodsController.items}" var="item" >
+                    <b:dataTableColumn value="" label="ID" order="desc" data-order="desc">
+                    <a  target="_blank" href="ITLineItemServlet?id=#{item.itGoodsId}">#{item.itGoodsId}</a>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn  label="PO">
+                    <a  target="_blank" href="ITLineItemServlet?id=#{item.itGoodsId}">#{item.poNumber}</a>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn value="#{item.dateorderReceivingFromVendor}" label="Dat Order Receiving From Vendor" />
+                    <b:dataTableColumn value="#{item.employeereceivingorderBSO}" label="Employee Receiving Order BSO" />
+                    <b:dataTableColumn value="#{item.partialOrder}" label="Partial Order" />
+                    <b:dataTableColumn value="#{item.completeOfOrder}" label="Complete OfOrder" />
+                    <b:dataTableColumn value="#{item.dateorderreceivingfromBSO}" label="Date Order Receiving From Contractor" />
+                    <b:dataTableColumn value="#{item.employeereceivingorderITB}" label="Employee Receiving Order Program" />
+                    
+                    <b:dataTableColumn label=" Action " >
+                        <b:row>
+                            <b:column><b:commandLink icon-awesome="fa-search" action="#{itGoodsController.prepareView}" value="View"/></b:column>
+                            <b:column><b:commandLink icon-awesome="fa-edit" action="#{itGoodsController.prepareEdit}" value="Edit"/></b:column>
+                        </b:row>
+                        
+             <ui:remove> <!--    <b:commandLink icon-awesome="fa-close" action="#{itGoodsController.destroy}" value="#{bundle.ListItGoodsDestroyLink}"/> --></ui:remove>
+                    </b:dataTableColumn>
+                    
+                </b:dataTable>
+                
+                
+                <b:row>
+                        <b:column span="3"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareCreate}" value="Create New ItGoods"/></b:column>
+                        <b:column span="3"><b:link icon-awesome="fas fa-arrow-left" class="btn btn-primary" style="width:100%" outcome="/index" value="Back"/></b:column>
+                    </b:row>    
+                    <br/><br/><br/>
+                    
+            </h:form>
+            
+            <ui:remove>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListItGoodsEmpty}" rendered="#{itGoodsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{itGoodsController.items.rowCount > 0}">
+                    <h:outputText value="#{itGoodsController.pagination.pageFirstItem + 1}..#{itGoodsController.pagination.pageLastItem + 1}/#{itGoodsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{itGoodsController.previous}" value="#{bundle.Previous} #{itGoodsController.pagination.pageSize}" rendered="#{itGoodsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{itGoodsController.next}" value="#{bundle.Next} #{itGoodsController.pagination.pageSize}" rendered="#{itGoodsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{itGoodsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_itGoodsId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.itGoodsId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_poNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.poNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_dateorderReceivingFromVendor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateorderReceivingFromVendor}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_employeereceivingorderBSO}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.employeereceivingorderBSO}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_partialOrder}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.partialOrder}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_completeOfOrder}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.completeOfOrder}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_dateorderreceivingfromBSO}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateorderreceivingfromBSO}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListItGoodsTitle_employeereceivingorderITB}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.employeereceivingorderITB}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{itGoodsController.prepareView}" value="#{bundle.ListItGoodsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{itGoodsController.prepareEdit}" value="#{bundle.ListItGoodsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{itGoodsController.destroy}" value="#{bundle.ListItGoodsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{itGoodsController.prepareCreate}" value="#{bundle.ListItGoodsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListItGoodsIndexLink}"/>
+            </h:form>
+            </ui:remove>    
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

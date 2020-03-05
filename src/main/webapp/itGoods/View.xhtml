@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewItGoodsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>IT-Goods (View)</title>
+            </h:head>
+            <div class="title"><h1><a href="/Form728/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>IT Goods (View)</h1></div><hr/>
+            
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_itGoodsId}"/>
+                    <h:outputText value="#{itGoodsController.selected.itGoodsId}" title="#{bundle.ViewItGoodsTitle_itGoodsId}"/>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_poNumber}"/>
+                    <h:outputText value="#{itGoodsController.selected.poNumber}" title="#{bundle.ViewItGoodsTitle_poNumber}"/>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_dateorderReceivingFromVendor}"/>
+                    <h:outputText value="#{itGoodsController.selected.dateorderReceivingFromVendor}" title="#{bundle.ViewItGoodsTitle_dateorderReceivingFromVendor}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_employeereceivingorderBSO}"/>
+                    <h:outputText value="#{itGoodsController.selected.employeereceivingorderBSO}" title="#{bundle.ViewItGoodsTitle_employeereceivingorderBSO}"/>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_partialOrder}"/>
+                    <h:outputText value="#{itGoodsController.selected.partialOrder}" title="#{bundle.ViewItGoodsTitle_partialOrder}"/>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_completeOfOrder}"/>
+                    <h:outputText value="#{itGoodsController.selected.completeOfOrder}" title="#{bundle.ViewItGoodsTitle_completeOfOrder}"/>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_dateorderreceivingfromBSO}"/>
+                    <h:outputText value="#{itGoodsController.selected.dateorderreceivingfromBSO}" title="#{bundle.ViewItGoodsTitle_dateorderreceivingfromBSO}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewItGoodsLabel_employeereceivingorderITB}"/>
+                    <h:outputText value="#{itGoodsController.selected.employeereceivingorderITB}" title="#{bundle.ViewItGoodsTitle_employeereceivingorderITB}"/>
+                </h:panelGrid>
+                <br />
+                
+                <br />
+                <br />
+                
+                <br />
+                
+                
+                
+                <b:row>
+                    <ui:remove>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-remove" class="btn btn-primary" style="width:100%" action="#{itGoodsController.destroyAndView}" value="#{bundle.ViewItGoodsDestroyLink}"/></b:column>
+                    </ui:remove>
+                    <b:column span="2"><b:link icon-awesome="fa-edit" class="btn btn-primary" style="width:100%" outcome="Edit" value="Edit"/></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareCreate}" value="Create New ItGoods" /></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareList}" value="Show All"/></b:column>
+                    
+                </b:row>
+               <br />
+                
+                <br />
+                <b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" />
+                <br /><br />
+
+            </h:form>
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

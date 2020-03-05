@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditItGoodsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>IT-Goods (Edit)</title>
+            </h:head>
+            <div class="title"><h1><a href="/Form728/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>IT Goods (Edit)</h1></div><hr/>
+            
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_poNumber}" for="poNumber" />
+                    <h:inputText id="poNumber" value="#{itGoodsController.selected.poNumber}" title="#{bundle.EditItGoodsTitle_poNumber}" />
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_dateorderReceivingFromVendor}" for="dateorderReceivingFromVendor" />
+                    <h:inputText id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" title="#{bundle.EditItGoodsTitle_dateorderReceivingFromVendor}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_employeereceivingorderBSO}" for="employeereceivingorderBSO" />
+                    <h:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}" title="#{bundle.EditItGoodsTitle_employeereceivingorderBSO}" />
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_partialOrder}" for="partialOrder" />
+                    <h:inputText id="partialOrder" value="#{itGoodsController.selected.partialOrder}" title="#{bundle.EditItGoodsTitle_partialOrder}" />
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_completeOfOrder}" for="completeOfOrder" />
+                    <h:inputText id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}" title="#{bundle.EditItGoodsTitle_completeOfOrder}" />
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_dateorderreceivingfromBSO}" for="dateorderreceivingfromBSO" />
+                    <h:inputText id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" title="#{bundle.EditItGoodsTitle_dateorderreceivingfromBSO}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditItGoodsLabel_employeereceivingorderITB}" for="employeereceivingorderITB" />
+                    <h:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" title="#{bundle.EditItGoodsTitle_employeereceivingorderITB}" />
+                </h:panelGrid>
+                
+                
+                <br />
+                <br />
+                
+                <br />
+                
+                
+                <b:row>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-floppy-o" class="btn btn-primary" style="width:100%" action="#{itGoodsController.update}" value="Save"/></b:column>
+                    <b:column span="2"><b:link icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" outcome="View" value="View"/></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareList}" value="Show All" immediate="true"/></b:column>
+                </b:row> 
+                <br />
+                <br />
+                <b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" />
+            <br /><br /><br />
+            </h:form>
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

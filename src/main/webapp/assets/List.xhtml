@@ -35,9 +35,17 @@
                             <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
                                 <h:outputText value="#{item.tagNumber}" />
                             </p:column>
-                            <p:column headerText="PO">
-                                <h:outputText value="#{item.purchaseOrder}" />
-                            </p:column>        
+                            <ui:remove>
+                            <p:column sortBy="#{item.purchaseOrder}"  headerText="PO">
+                                <a href="/Form728/faces/itGoods/Create.xhtml?po=#{item.purchaseOrder}#{assetsController.ss()}tag=#{item.tagNumber}#{assetsController.ss()}asset_type=#{item.asset}
+                                   ">#{item.purchaseOrder}</a>
+                               
+                            </p:column> 
+                            </ui:remove>
+                            <p:column sortBy="#{item.purchaseOrder}"  headerText="PO">
+                                <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
+                               
+                            </p:column>
                             <p:column headerText="Asset Type">
                                 <h:outputText value="#{item.asset}" />
                             </p:column>

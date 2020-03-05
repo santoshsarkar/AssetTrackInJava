@@ -28,7 +28,7 @@ import javax.faces.event.ValueChangeEvent;
 @SessionScoped
 public class FormData implements Serializable{
     String selected_asset= null ;
-    String myUrl = "jdbc:mysql://localhost/test";
+    String myUrl = "jdbc:mysql://localhost/form728";
     String uname = "santosh";
     String pass = "sarkar@1234";
     Connection connection = null;

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateItGoodsTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>IT-Goods (Create)</title>
+            </h:head>   
+        
+            <div class="title"><h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>IT Goods (Create)</h1></div><hr/>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>                
+            </h:panelGroup>
+            <h:form id="itGoodsFrm" enctype="multipart/form-data">
+                <b:panel title="(BSO completes this section)" look="primary">
+                 <b:row>
+                     <b:column span="4"><b:datepicker required="true"  id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" label="Date order received from vendor"  /></b:column>
+                     <b:column span="4"><b:inputText required="true"   id="poNumber" value="#{itGoodsController.selected.poNumber}" placeholder="input anything here" label="PO Number" /></b:column>
+                     <b:column span="4"><b:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}" label="Employee Receiving order (Print name)" /></b:column>
+                 </b:row>   
+                 <b:row>
+                        <b:column span="3"><b:selectBooleanCheckbox id="partialOrder" value="#{itGoodsController.selected.partialOrder}" caption="Partial order" label="" /></b:column>
+                        <b:column span="4"><b:selectBooleanCheckbox id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}"  caption="Complete/Remainder of order" label="" /></b:column>
+                 </b:row>   
+                </b:panel>
+                <br />
+                <b:panel title="(ITB completes this section)" look="primary">
+                    <b:row>
+                        <b:column span="4"><b:datepicker  id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" label="Date order received from BSO"  /></b:column>
+                        <b:column span="4"><b:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" label="Employee receiving order" /></b:column>
+                    </b:row>
+                </b:panel>
+                <br />
+                
+            
+                
+                <b:panel title="IT Goods Line Item" look="primary">
+                    <span>Prepare line items from Excel file below</span> 
+                    <p:fileUpload id="fileUpload"  fileUploadListener="#{fileUploadController.upload}"  auto="true" mode="advanced" dragDropSupport="false" oncomplete="hello();"
+                                  multiple="false" update="messagePanel itGoodsLineItemTbl" sizeLimit="10000000"  allowTypes="/(\.|\/)(xls|xlsx)$/" >
+                    </p:fileUpload>  
+                    
+                        
+                  <p:dataTable id="itGoodsLineItemTbl" value="#{itGoodsController.lineItemList}" var="item" 
+                             rowIndexVar="index" style="border:solid 1px">
+                        <p:column headerText="DateReceived">
+                            <h:outputText value="#{item.dateReceived}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Item Desc">
+                            <h:outputText value="#{item.itemDesc}"/>
+                        </p:column>
+                        <p:column headerText="Serial Number">
+                            <h:outputText value="#{item.serialNum}"/>
+                        </p:column>
+                      
+                        <p:column headerText="Decal No">
+                            <h:outputText value="#{item.decalNo}"/>
+                        </p:column>
+                        <p:column headerText="Action">
+                            <h:commandLink value="Delete" 
+                                   action="#{itGoodsController.deleteAction(index)}" >
+                                <f:ajax execute="itGoodsLineItemTbl" render="itGoodsLineItemTbl" />
+                            </h:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink action="#{itGoodsController.clearAll}" value="Clear All Line Items" >
+                    <f:ajax execute="itGoodsLineItemTbl" render="itGoodsLineItemTbl" />
+                    </h:commandLink>
+                   
+                </b:panel>
+                
+               
+                
+                
+                <br />
+               
+                <b:row>
+                    <b:column span="2" offset="0"><b:commandLink icon-awesome="fa-floppy-o" action="#{itGoodsController.create}" value="Save" class="btn btn-primary" style="width:100%" /></b:column>
+                <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
+                <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" /></b:column>
+                
+                </b:row>
+              
+                
+                <ui:remove>
+                <h:commandLink action="#{itGoodsController.prepareList}" value="Show All" />
+                <br />
+                <h:link outcome="/Form728/faces/itGoods/index" value="#{bundle.CreateItGoodsIndexLink}"/>
+                </ui:remove>
+            <br /><br /><br />
+            </h:form>
+        
+        
+            <script>
+                const queryString = window.location.search;
+                console.log(queryString);
+                const urlParams = new URLSearchParams(queryString);
+                var x="";
+                var po = urlParams.get('asset')
+                var po = urlParams.get('po')
+                var tag = urlParams.get('tag')
+                alert("po: "+po+"Tag: "+tag);
+                if(po==null){
+                    document.getElementById('input_itGoodsFrm:poNumber').setAttribute("value",x );
+                }else{
+                document.getElementById('input_itGoodsFrm:poNumber').setAttribute("value",po );
+            }
+            </script>
+        
+        
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
