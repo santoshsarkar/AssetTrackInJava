@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>NonIT-Goods (Create)</title>
+            </h:head>   
+            <div class="title"><h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> Non-IT Goods (Create)</h1></div><hr/>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="nonItGoodsFrm" enctype="multipart/form-data">
+                
+                    <b:panel title="(BSO completes this section)" look="primary">
+                        <b:row>
+                        <b:column span="4"><b:datepicker required="true"  id="dateorderReceivingFromVendor" value="#{nonItGoodsController.selected.dateorderReceivingFromVendor}" label="Date order received from vendor"  /></b:column>
+                        <b:column span="4"><b:inputText required="true"   id="poNumber" value="#{nonItGoodsController.selected.poNumber}" placeholder="input anything here" label="PO Number" /></b:column>
+                        <b:column span="4"><b:inputText id="employeereceivingorderBSO" value="#{nonItGoodsController.selected.employeereceivingorderBSO}" label="Employee Receiving order (Print name)" /></b:column>
+                            
+                        </b:row>
+                        <b:column span="3"><b:selectBooleanCheckbox id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" caption="Partial order" label="" /></b:column>
+                        <b:column span="4"><b:selectBooleanCheckbox id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}"  caption="Complete/Remainder of order" label="" /></b:column>
+                        <b:row>
+                            
+                        </b:row>
+                    </b:panel>
+                    <br />
+                <b:panel title="(ITB completes this section)" look="primary">
+                    <b:row>
+                        <b:column span="4"><b:datepicker  id="dateorderReceivingFromContractor" value="#{nonItGoodsController.selected.dateorderReceivingFromContractor}" label="Date order received from Contractor"  /></b:column>
+                        <b:column span="4"><b:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" placeholder="input anything here" label="Employee receiving order Program" /></b:column>
+                    </b:row>
+                </b:panel>
+                    <ui:remove>
+                    <!--    
+                    <h:panelGrid columns="2">    
+                        
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_nonItGoodsId}" for="nonItGoodsId" />
+                    <h:inputText id="nonItGoodsId" value="#{nonItGoodsController.selected.nonItGoodsId}" title="#{bundle.CreateNonItGoodsTitle_nonItGoodsId}" required="true" requiredMessage="#{bundle.CreateNonItGoodsRequiredMessage_nonItGoodsId}"/>
+                        
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_poNumber}" for="poNumber" />
+                    <h:inputText id="poNumber" value="#{nonItGoodsController.selected.poNumber}" title="#{bundle.CreateNonItGoodsTitle_poNumber}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_dateorderReceivingFromVendor}" for="dateorderReceivingFromVendor" />
+                    
+                    <h:inputText id="dateorderReceivingFromVendor" value="#{nonItGoodsController.selected.dateorderReceivingFromVendor}" title="#{bundle.CreateNonItGoodsTitle_dateorderReceivingFromVendor}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_employeereceivingorderBSO}" for="employeereceivingorderBSO" />
+                    <h:inputText id="employeereceivingorderBSO" value="#{nonItGoodsController.selected.employeereceivingorderBSO}" title="#{bundle.CreateNonItGoodsTitle_employeereceivingorderBSO}" />
+                    <ui:remove>
+                    <h:inputText id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" title="#{bundle.CreateNonItGoodsTitle_partialOrder}" />
+                    <h:inputText id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" title="#{bundle.CreateNonItGoodsTitle_completeOfOrder}" />
+                    </ui:remove>
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_partialOrder}" for="partialOrder" />
+                    <h:selectBooleanCheckbox id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" title="#{bundle.CreateNonItGoodsTitle_partialOrder}" />
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_completeOfOrder}" for="completeOfOrder" />
+                    <h:selectBooleanCheckbox id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" title="#{bundle.CreateNonItGoodsTitle_completeOfOrder}" />
+                    
+                    
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_dateorderReceivingFromContractor}" for="dateorderReceivingFromContractor" />
+                    <h:inputText id="dateorderReceivingFromContractor" value="#{nonItGoodsController.selected.dateorderReceivingFromContractor}" title="#{bundle.CreateNonItGoodsTitle_dateorderReceivingFromContractor}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_employeeReceivingOrderProgram}" for="employeeReceivingOrderProgram" />
+                    <h:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" title="#{bundle.CreateNonItGoodsTitle_employeeReceivingOrderProgram}" />
+                </h:panelGrid>
+                -->
+                </ui:remove>
+                    <b:panel title="Non-IT Goods Line Item" look="primary">
+                     <span>Prepare line items from Excel file below</span> 
+                     <p:fileUpload id="fileUpload2"  fileUploadListener="#{fileUploadController2.upload}"  auto="true" mode="advanced" dragDropSupport="false" 
+                                  multiple="false" update="messagePanel itGoodsLineItemTb2" sizeLimit="10000000"  allowTypes="/(\.|\/)(xls|xlsx)$/" >
+                    </p:fileUpload>   
+                        
+                    <p:dataTable id="itGoodsLineItemTb2" value="#{nonItGoodsController.lineItemList}" var="item" 
+                             rowIndexVar="index" style="border:solid 1px">
+                        <p:column headerText="dateReceived">
+                            <h:outputText value="#{item.dateReceived}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="lineItemNo">
+                            <h:outputText value="#{item.lineItemNo}"/>
+                        </p:column>
+                        <p:column headerText="itemDesc">
+                            <h:outputText value="#{item.itemDesc}"/>
+                        </p:column>
+                        <p:column headerText="modelNo">
+                            <h:outputText value="#{item.modelNo}"/>
+                        </p:column>
+                        <p:column headerText="decalNo">
+                            <h:outputText value="#{item.decalNo}"/>
+                        </p:column>
+                        <p:column headerText="Action">
+                            <h:commandLink value="Delete" 
+                                   action="#{nonItGoodsController.deleteAction(index)}" >
+                                <f:ajax execute="itGoodsLineItemTb2" render="itGoodsLineItemTb2" />
+                            </h:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink action="#{nonItGoodsController.clearAll}" value="Clear All Line Items" >
+                    <f:ajax execute="itGoodsLineItemTb2" render="itGoodsLineItemTb2" />
+                    </h:commandLink>    
+                        
+                        
+                        
+                    </b:panel>
+                <br />
+                
+                <b:row>
+                <b:column span="2" offset="0"><b:commandLink icon-awesome="fa-floppy-o" action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" class="btn btn-primary" style="width:100%"/></b:column>
+                <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{nonItGoodsController.prepareList}" value="#{bundle.CreateNonItGoodsShowAllLink}" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
+                <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="index" value="Back" style="width:100%" /></b:column>
+                
+                </b:row>                
+                <br /><br /><br />
+                <ui:remove>
+                <h:commandLink action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{nonItGoodsController.prepareList}" value="#{bundle.CreateNonItGoodsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNonItGoodsIndexLink}"/>
+                </ui:remove>
+            </h:form>
+            
+            
+            <script>
+                const queryString = window.location.search;
+                console.log(queryString);
+                const urlParams = new URLSearchParams(queryString);
+               
+                var po = urlParams.get('asset')
+                var po = urlParams.get('po')
+                var tag = urlParams.get('tag')
+                alert("po: "+po+"Tag: "+tag);
+                
+                document.getElementById('input_nonItGoodsFrm:poNumber').setAttribute("value",po );
+            </script>
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

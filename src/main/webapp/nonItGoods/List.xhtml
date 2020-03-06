@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>NonIT-Goods (List)</title>
+            </h:head>   
+            <div class="title"><h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>NonIT Goods (List)</h1></div><hr/>
+            <h:form>
+                <b:dataTable value="#{nonItGoodsController.items}" var="item" >
+                    <b:dataTableColumn value="" label="ID" order="desc" data-order="desc">
+                    <a  target="_blank" href="NonITLineItemServlet?id=#{item.nonItGoodsId}">#{item.nonItGoodsId}</a>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn  label="PO">
+                    <a  target="_blank" href="NonITLineItemServlet?id=#{item.nonItGoodsId}">#{item.poNumber}</a>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn value="#{item.dateorderReceivingFromVendor}" label="Dat Order Receiving From Vendor" />
+                    <b:dataTableColumn value="#{item.employeereceivingorderBSO}" label="Employee Receiving Order BSO" />
+                    <b:dataTableColumn value="#{item.partialOrder}" label="Partial Order" />
+                    <b:dataTableColumn value="#{item.completeOfOrder}" label="Complete OfOrder" />
+                    <b:dataTableColumn value="#{item.dateorderReceivingFromContractor}" label="Date Order Receiving From Contractor" />
+                    <b:dataTableColumn value="#{item.employeeReceivingOrderProgram}" label="Employee Receiving Order Program" />
+                    
+                    <b:dataTableColumn label="Action">
+                        <b:commandLink icon-awesome="fa-search" action="#{nonItGoodsController.prepareView}" value="#{bundle.ListNonItGoodsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <b:commandLink icon-awesome="fa-edit" action="#{nonItGoodsController.prepareEdit}" value="#{bundle.ListNonItGoodsEditLink}"/>
+                            <h:outputText value=" "/>
+ <ui:remove> <!--          <b:commandLink icon-awesome="fa-close" action="#{nonItGoodsController.destroy}" value="#{bundle.ListNonItGoodsDestroyLink}"/> --></ui:remove>
+                    </b:dataTableColumn>
+                    
+                </b:dataTable>
+                
+                
+                <b:row>
+                        <b:column span="3"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{nonItGoodsController.prepareCreate}" value="#{bundle.ListNonItGoodsCreateLink}"/></b:column>
+                        <b:column span="3"><b:link icon-awesome="fas fa-arrow-left" class="btn btn-primary" style="width:100%" outcome="index" value="Back"/></b:column>
+                    </b:row>    
+                    <br/><br/><br/>
+                    
+            </h:form>
+            
+            
+                
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

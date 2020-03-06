@@ -9,6 +9,21 @@
 .asset_form label,.editasset label{ min-width: 180px}
 .asset_form{ padding-bottom: 100px}
 .outputLabel{font-weight: bold;}
+ #j_idt13 .ui-inputswitch, #j_idt13 .ui-inputswitch-handle,#j_idt13 .ui-state-active{ min-height: 30px}
+ .frm_aaset_list .po a{ color: green;}
+
+.container .fa-laptop, .container .fa-list {
+    font-size: 5rem;
+    line-height: 1;
+    color: #24b663;
+}
+.frmitindex .fa {
+    font-size: 50px;
+    color: white;
+    background: linear-gradient(-45deg, #3b87bd, #2d71a2);
+    border-radius: 50%;
+    padding: 20px 25px;
+}
 
 /* Footer  */
 .global-footer {

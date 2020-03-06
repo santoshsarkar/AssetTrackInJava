@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditNonItGoodsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+            <h:head>
+                <title>NonIT-Goods (Edit)</title>
+            </h:head>   
+            <div class="title"><h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> Non-IT Goods (Edit)</h1></div><hr/>
+            
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_poNumber}" for="poNumber" />
+                    <h:inputText id="poNumber" value="#{nonItGoodsController.selected.poNumber}" title="#{bundle.EditNonItGoodsTitle_poNumber}" />
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_dateorderReceivingFromVendor}" for="dateorderReceivingFromVendor" />
+                    <h:inputText id="dateorderReceivingFromVendor" value="#{nonItGoodsController.selected.dateorderReceivingFromVendor}" title="#{bundle.EditNonItGoodsTitle_dateorderReceivingFromVendor}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_employeereceivingorderBSO}" for="employeereceivingorderBSO" />
+                    <h:inputText id="employeereceivingorderBSO" value="#{nonItGoodsController.selected.employeereceivingorderBSO}" title="#{bundle.EditNonItGoodsTitle_employeereceivingorderBSO}" />
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_partialOrder}" for="partialOrder" />
+                    <h:inputText id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" title="#{bundle.EditNonItGoodsTitle_partialOrder}" />
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_completeOfOrder}" for="completeOfOrder" />
+                    <h:inputText id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" title="#{bundle.EditNonItGoodsTitle_completeOfOrder}" />
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_dateorderReceivingFromContractor}" for="dateorderReceivingFromContractor" />
+                    <h:inputText id="dateorderReceivingFromContractor" value="#{nonItGoodsController.selected.dateorderReceivingFromContractor}" title="#{bundle.EditNonItGoodsTitle_dateorderReceivingFromContractor}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditNonItGoodsLabel_employeeReceivingOrderProgram}" for="employeeReceivingOrderProgram" />
+                    <h:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" title="#{bundle.EditNonItGoodsTitle_employeeReceivingOrderProgram}" />
+                </h:panelGrid>
+                <h:commandLink action="#{nonItGoodsController.update}" value="#{bundle.EditNonItGoodsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditNonItGoodsViewLink}"/>
+                <br />
+                <h:commandLink action="#{nonItGoodsController.prepareList}" value="#{bundle.EditNonItGoodsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditNonItGoodsIndexLink}" />
+            </h:form>
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

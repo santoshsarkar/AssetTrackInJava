@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <div class="container maincontent margintop">
+        <h:head>
+                <title>NonIT-Goods</title>
+        </h:head>   
+            
+            <center>
+                
+                    <i style="color:#24b663" class="fa fa-list" aria-hidden="true"></i>
+            
+            
+            <h2>Non-IT Goods</h2>   
+            <hr/>
+            </center>
+            <h:form class="frmitindex">
+                
+                <div class="row itblock">
+                    <div class="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="">
+                        <div class="feature-1 text-center">
+                            <h:commandLink action="#{nonItGoodsController.prepareCreate}">
+                                <div class="fa fa-plus">
+                                <span class="icon la la-users"></span>
+                            </div>
+                            </h:commandLink>
+                            <h3 class="mb-3">Create New</h3>
+                            <p>The Information will be entered here prior to releasing/delivering Non-IT goods .</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-1 text-center">
+                            <h:commandLink action="#{nonItGoodsController.prepareList}">
+                            <div class="fa fa-th-list">
+                                <span class="icon la la-toggle-off"></span>
+                            </div>
+                            </h:commandLink>    
+                            <h3 class="mb-3">View All</h3>
+                            <p>To see The Information available on Non-IT goods and it's Line Items Table.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-1 text-center">
+                            <b:commandLink outcome="/index" >
+                            <div class="fa fa-home">
+                                <span class="icon la la-umbrella"></span>
+                            </div>
+                            </b:commandLink>    
+                            <h3 class="mb-3">Go to Index</h3>
+                            <p>Go to the Home page.</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+                 
+
+            </h:form>
+
+
+
+
+
+
+
+</div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

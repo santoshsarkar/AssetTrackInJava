@@ -15,7 +15,7 @@
             <div class="container maincontent margintop">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(List)</h1></div><hr/>
                 <div class="row">
-                    <h:form  id="form">
+                    <h:form  id="form" class="frm_aaset_list">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>                        
@@ -32,9 +32,7 @@
 
                             <ui:remove>    <p:column selectionMode="multiple" style="width:16px;text-align:center"/></ui:remove>
                             
-                            <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
-                                <h:outputText value="#{item.tagNumber}" />
-                            </p:column>
+                            
                             <ui:remove>
                             <p:column sortBy="#{item.purchaseOrder}"  headerText="PO">
                                 <a href="/Form728/faces/itGoods/Create.xhtml?po=#{item.purchaseOrder}#{assetsController.ss()}tag=#{item.tagNumber}#{assetsController.ss()}asset_type=#{item.asset}
@@ -42,9 +40,12 @@
                                
                             </p:column> 
                             </ui:remove>
-                            <p:column sortBy="#{item.purchaseOrder}"  headerText="PO">
+                            <p:column sortBy="#{item.purchaseOrder}" class="po"  headerText="PO">
                                 <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
                                
+                            </p:column>
+                            <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
+                                <h:outputText value="#{item.tagNumber}" />
                             </p:column>
                             <p:column headerText="Asset Type">
                                 <h:outputText value="#{item.asset}" />

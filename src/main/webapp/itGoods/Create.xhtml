@@ -89,7 +89,8 @@
                 <br />
                
                 <b:row>
-                    <b:column span="2" offset="0"><b:commandLink icon-awesome="fa-floppy-o" action="#{itGoodsController.create}" value="Save" class="btn btn-primary" style="width:100%" /></b:column>
+                <p:commandLink class="btn btn-primary fa-floppy-o" update="@form"   action="#{itGoodsController.create}" value="Save" />
+                <ui:remove><b:column span="2" offset="0"><b:commandLink update="messagePanel" icon-awesome="fa-floppy-o" action="#{itGoodsController.create}" value="Save" class="btn btn-primary" style="width:100%" /></b:column></ui:remove>
                 <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
                 <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" /></b:column>
                 
@@ -113,7 +114,7 @@
                 var po = urlParams.get('asset')
                 var po = urlParams.get('po')
                 var tag = urlParams.get('tag')
-                alert("po: "+po+"Tag: "+tag);
+                //alert("po: "+po+"Tag: "+tag);
                 if(po==null){
                     document.getElementById('input_itGoodsFrm:poNumber').setAttribute("value",x );
                 }else{

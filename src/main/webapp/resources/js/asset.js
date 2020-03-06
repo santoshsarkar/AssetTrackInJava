@@ -11,9 +11,9 @@ function callForm728(po,tag,asset){
     var asset_type=asset;
     //alert("Po: "+poNo+"Asst Type: "+asset_type);
     if(asset_type=="IT Hardware" || asset_type=="IT Software"  )
-    { location.replace("/Form728/faces/itGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
+    { location.replace("/Assets/faces/itGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
     else
-    {location.replace("/Form728/faces/nonItGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
+    {location.replace("/Assets/faces/nonItGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
 }
 
 

@@ -6,60 +6,61 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
-            
+
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="Form728"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <div class="container maincontent margintop">
-            <div class="title"><h1><a href="/Form728/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
-             
-             <h:form  id="form">
-              <h:panelGroup id="messagePanel" layout="block">
-               <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-              </h:panelGroup>    
-                
-                <p:dataTable reflow="true" id="dtable" var="item" value="#{assetsController.items}">
-                    
-                 <p:column headerText="Purchase Order" sortBy="#{item.purchaseOrder}" >
-                    <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
-                 </p:column> 
-                    <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
-                    <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.tagNumber}</a>    
-                 </p:column>    
-                
-                    <ui:remove>
-                        <!--
-                        
-                 <p:column headerText="Asset Type"  >
-                    <h:outputText value="#{item.asset}" />
-                 </p:column>
-                 <p:column headerText="Asset Subtype" >
-                    <h:outputText value="#{item.asset_subtype}" />
-                 </p:column>
-                    -->
-                    </ui:remove>
+            <div class="container margintop">
 
-                </p:dataTable>  
-             <br/><br/>
-             
-             
-             
-             
-             
-             </h:form>
-                
-            
-            
-            
-         
-        </div>    <!-- Container -->
+                <h:form>
+                    <div class="index_logo">
+                        <center><span><a href="#" ><h:graphicImage width="" height="150" value="../resources/img/hcd_logo.png"/></a></span>
+                            <p><h2>FORM - 728 </h2></p>
+                        </center>
+                    </div>    
+                    <div class="row text-center">
+                        <div class="col-sm-5">
+                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex">
+                                    <i class="icon-layers m-auto text-primary"></i>
+                                </div>
+
+                                <a href="/Assets/faces/itGoods/index.xhtml">
+                                    <i class="fa fa-laptop" aria-hidden="true"></i>
+                                    <h3>IT Goods</h3>
+                                </a> <hr/>
+                                <p class="lead mb-0">The purpose of this form is to track receipt of IT goods received in BSO.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex">
+                                    <i style="color: #24b663" class="icon-screen-desktop m-auto text-primary"></i>
+                                </div>
+                                <a href="/Assets/faces/nonItGoods/index.xhtml">  <i class="fa fa-list" aria-hidden="true"></i> 
+                                    <h3>Non-IT Goods </h3> </a><hr/>
+                                <p class="lead mb-0">The purpose of this form is to track receipt of Non-IT goods received in BSO.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    
+                    
+                </h:form>
+
+
+
+
+
+            </div>    <!-- Container -->
         </ui:define>
     </ui:composition>
 
 
-    
-    
+
+
 </html>
 
