@@ -15,39 +15,50 @@
             <div class="container margintop">
 
                 <h:form>
-                    <div class="index_logo">
-                        <center><span><a href="#" ><h:graphicImage width="" height="150" value="../resources/img/hcd_logo.png"/></a></span>
-                            <p><h2>FORM - 728 </h2></p>
-                        </center>
-                    </div>    
-                    <div class="row text-center">
-                        <div class="col-sm-5">
-                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <div class="features-icons-icon d-flex">
-                                    <i class="icon-layers m-auto text-primary"></i>
-                                </div>
-
-                                <a href="/Assets/faces/itGoods/index.xhtml">
-                                    <i class="fa fa-laptop" aria-hidden="true"></i>
-                                    <h3>IT Goods</h3>
-                                </a> <hr/>
-                                <p class="lead mb-0">The purpose of this form is to track receipt of IT goods received in BSO.</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                                <div class="features-icons-icon d-flex">
-                                    <i style="color: #24b663" class="icon-screen-desktop m-auto text-primary"></i>
-                                </div>
-                                <a href="/Assets/faces/nonItGoods/index.xhtml">  <i class="fa fa-list" aria-hidden="true"></i> 
-                                    <h3>Non-IT Goods </h3> </a><hr/>
-                                <p class="lead mb-0">The purpose of this form is to track receipt of Non-IT goods received in BSO.</p>
-                            </div>
-                        </div>
-
-                    </div>
+                    <h:outputLabel value="PO: " />
+                    <h:inputText value="#{formData.po}" />                  
+                   
+                    <p:commandButton update="table" value="Search" action="#{formData.find()}" />
                     
+                    <p:panel id="pannel1" header="Input Form" >
+                     <div class="row">
+                     <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
+                     <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" /> 
+                     
+                     <p:outputLabel for="poNumber" value="Purchase Order: " />
+                     <p:inputText  id="poNumber" value="#{itGoodsController.selected.poNumber}"  /> 
+                     </div>  
+                     <div class="row">   
+                     <p:outputLabel for="employeereceivingorderBSO" value="Purchase Employee Receiving order: " />
+                     <p:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}"  />
+                     </div>
+                     
+                     
+                     
+                    </p:panel>
+               
+                      
                     
+                    <p:panel id="pannel2" header="Result" >
+                        <p:dataTable id="table" value="#{formData.find()}" var="aset">
+                            <p:column headerText="id">
+                                <p:outputLabel id="id" value="#{aset.id}" />
+                            </p:column>
+                            <p:column headerText="Descr">
+                                <p:outputLabel id="Descr" value="#{aset.descr}" />
+                            </p:column>
+                        
+                        </p:dataTable>
+                        
+                    </p:panel>
+                    
+                    <b:row>
+                <p:commandLink class="btn btn-primary fa-floppy-o" update="@form"   action="#{itGoodsController.create}" value="Save" />
+                <ui:remove><b:column span="2" offset="0"><b:commandLink update="messagePanel" icon-awesome="fa-floppy-o" action="#{itGoodsController.create}" value="Save" class="btn btn-primary" style="width:100%" /></b:column></ui:remove>
+                <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
+                <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" /></b:column>
+                
+                </b:row>
                     
                 </h:form>
 

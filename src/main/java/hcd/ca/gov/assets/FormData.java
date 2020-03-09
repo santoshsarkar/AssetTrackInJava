@@ -5,7 +5,9 @@
  */
 package hcd.ca.gov.assets;
 
+import hcd.ca.gov.form728.ItGoods;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -216,6 +218,63 @@ public class FormData implements Serializable{
 
     public Map<String, Object> getCategory() {
         return category;
+    }
+    
+    String po;
+
+    public String getPo() {
+        return po;
+    }
+
+    public void setPo(String po) {
+        this.po = po;
+    }
+
+    ItGoods itg=new ItGoods();
+    
+    public String frm728(){
+        FormData fd1=new FormData();
+        fd1.find();
+        return"Form728.xhtml?faces-redirect=true";
+         
+    }
+    public ArrayList<Assets> find(){
+        ArrayList array=new ArrayList();
+        //itg.setPoNumber(po);
+        
+        try {
+            connection = DriverManager.getConnection(myUrl, uname, pass);
+
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement("select * from assets where purchase_order=?");
+            ps.setString(1, po);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Assets aa=new Assets();
+                aa.setId(rs.getInt(1));
+                //aa.setTagNumber(rs.getBigInterger(3));
+                aa.setDescr(rs.getString(4));
+                aa.setAsset(rs.getString(7));
+                aa.setAsset_subtype(rs.getString(8));
+                
+                array.add(aa);
+
+            }
+            rs.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        assetSubTypeList.clear();
+        return array;
+        
+        
+    }
+    
+    public String showPoData(){
+        return"Form728.xhtml?faces-redirect=true";
     }
 
 }

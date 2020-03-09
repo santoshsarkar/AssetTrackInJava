@@ -1,19 +1,27 @@
 $(document).ready(function() {
-    //alert("ss");
+    
     //$('#j_idt12:j_idt14_wrapper') j_idt12:j_idt14
         
 
 } );
-
+function frm728(){
+    $( ".frm728" ).show();
+    
+    
+}
 function callForm728(po,tag,asset){
     var poNo=po;
     var tagNo=tag;
     var asset_type=asset;
     //alert("Po: "+poNo+"Asst Type: "+asset_type);
+    /*
     if(asset_type=="IT Hardware" || asset_type=="IT Software"  )
     { location.replace("/Assets/faces/itGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
     else
     {location.replace("/Assets/faces/nonItGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
+    */
+   {location.replace("/Assets/faces/itGoods/Form728.xhtml?po="+poNo) }
+   
 }
 
 

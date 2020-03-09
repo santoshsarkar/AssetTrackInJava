@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Form728"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="container margintop">
+                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
+                <h:form>
+                    <h:outputLabel value="PO: " />
+                    <h:inputText id="po" class="po_no" value="#{formData.po}" />                  
+                   
+                    <p:commandButton update="@form" value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
+                    
+                    
+                    
+                    <div id="frm728" class="frm728">
+                    <p:panel id="pannel1" header="Input Form" >
+                     <div class="row">
+                     <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
+                     <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" /> 
+                     
+                     <p:outputLabel for="poNumber" value="Purchase Order: " />
+                     <p:inputText id="poNumber" value="#{itGoodsController.selected.poNumber}"  /> 
+                     </div>  
+                     <div class="row">   
+                     <p:outputLabel for="employeereceivingorderBSO" value="Purchase Employee Receiving order: " />
+                     <p:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}"  />
+                     </div>
+                     
+                     <b:row>
+                        <b:column span="3"><b:selectBooleanCheckbox id="partialOrder" value="#{itGoodsController.selected.partialOrder}" caption="Partial order" label="" /></b:column>
+                        <b:column span="4"><b:selectBooleanCheckbox id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}"  caption="Complete/Remainder of order" label="" /></b:column>
+                    </b:row> 
+                    <b:panel title="(ITB completes this section)" look="primary">
+                    <b:row>
+                        <b:column span="4"><b:datepicker  id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" label="Date order received from BSO"  /></b:column>
+                        <b:column span="4"><b:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" label="Employee receiving order" /></b:column>
+                    </b:row>
+                    </b:panel>    
+                     
+                    </p:panel>
+               
+                      
+                    
+                    <p:panel id="pannel2" header="Result" >
+                        <p:dataTable id="table" value="#{formData.find()}" var="aset">
+                            <p:column headerText="id">
+                                <p:outputLabel id="id" value="#{aset.id}" />
+                            </p:column>
+                            <p:column headerText="Descr">
+                                <p:outputLabel id="Descr" value="#{aset.descr}" />
+                            </p:column>
+                            <p:column headerText="Asset Type">
+                                <p:outputLabel id="asset" value="#{aset.asset}" />
+                            </p:column>
+                            <p:column headerText="Asset Sub Type">
+                                <p:outputLabel id="asset_subtype" value="#{aset.asset_subtype}" />
+                            </p:column>
+                        
+                        </p:dataTable>
+                        
+                    </p:panel>
+                  <br/>  
+                <div class="row"> 
+                <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{itGoodsController.create}" value="Save" />
+                <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" immediate="true"/>
+                <p:commandLink class="btn btn-primary" value="Back"  />
+                
+                </div>
+                 </div>  <!-- #frm728 Div -->   
+                </h:form>
+                
+                <br/><br/><br/>
+                
+                <script>
+                    const queryString = window.location.search;
+                    const urlParams = new URLSearchParams(queryString);
+                    const non='';
+                    var po = urlParams.get('po')
+                    if (po!=null){
+                        document.getElementById('j_idt12:po').setAttribute("value",po );
+                        document.getElementById('j_idt12:poNumber').setAttribute("value",po );
+                    }else
+                    {
+                        document.getElementById('j_idt12:po').setAttribute("value",non );
+                        document.getElementById('j_idt12:poNumber').setAttribute("value",non );
+                    }
+                    //alert(po);
+                    
+                    $( ".frm728" ).hide();
+                    
+                    
+                    
+                </script>
+
+
+
+
+
+            </div>    <!-- Container -->
+        </ui:define>
+    </ui:composition>
+
+
+
+
+</html>
+

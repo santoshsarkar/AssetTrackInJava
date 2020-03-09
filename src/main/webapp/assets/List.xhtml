@@ -35,14 +35,15 @@
                             
                             <ui:remove>
                             <p:column sortBy="#{item.purchaseOrder}"  headerText="PO">
+                                
                                 <a href="/Form728/faces/itGoods/Create.xhtml?po=#{item.purchaseOrder}#{assetsController.ss()}tag=#{item.tagNumber}#{assetsController.ss()}asset_type=#{item.asset}
                                    ">#{item.purchaseOrder}</a>
-                               
+                                
                             </p:column> 
                             </ui:remove>
                             <p:column sortBy="#{item.purchaseOrder}" class="po"  headerText="PO">
                                 <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
-                               
+                                <ui:remove> <p:commandLink value="#{item.purchaseOrder}" action="#{formData.frm728()}" /> </ui:remove>
                             </p:column>
                             <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
                                 <h:outputText value="#{item.tagNumber}" />
