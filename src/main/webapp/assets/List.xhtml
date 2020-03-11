@@ -18,10 +18,12 @@
                     <h:form  id="form" class="frm_aaset_list">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>                        
+                        </h:panelGroup>        
+                        
                         <p:dataTable reflow="true" id="checkboxDT" var="item" value="#{assetsController.items}" selection="#{assetsController.selectedAssets}" 
                                      rowKey="#{item.id}" style="margin-bottom:0"
-                                     rows="10"
+                                     rows="10" sortBy="#{item.id}" sortOrder="descending"  paginatorPosition="bottom"
+                                    
                                     paginator="true"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -32,23 +34,29 @@
 
                             <ui:remove>    <p:column selectionMode="multiple" style="width:16px;text-align:center"/></ui:remove>
                             
-                            
+                            <f:facet name="header">
+                                <h:commandLink action="#{assetsController.prepareCreate}" value="Create New"/>
+                            </f:facet>
+                            <p:column filterBy="#{item.purchaseOrder}" filterMatchMode="contains" class="po" headerText="PO"  sortBy="#{item.purchaseOrder}">
+                            <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
+                            </p:column>
                             <ui:remove>
-                            <p:column sortBy="#{item.purchaseOrder}"  headerText="PO">
+                                <p:column filterValue="#{item.purchaseOrder}" filterMatchMode="contains" sortBy="#{item.purchaseOrder}"  headerText="PO">
                                 
                                 <a href="/Form728/faces/itGoods/Create.xhtml?po=#{item.purchaseOrder}#{assetsController.ss()}tag=#{item.tagNumber}#{assetsController.ss()}asset_type=#{item.asset}
                                    ">#{item.purchaseOrder}</a>
                                 
                             </p:column> 
-                            </ui:remove>
-                            <p:column sortBy="#{item.purchaseOrder}" class="po"  headerText="PO">
+                            
+                            <p:column filterValue="#{item.purchaseOrder}" filterMatchMode="contains" sortBy="#{item.purchaseOrder}" class="po"  headerText="PO">
                                 <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
                                 <ui:remove> <p:commandLink value="#{item.purchaseOrder}" action="#{formData.frm728()}" /> </ui:remove>
                             </p:column>
-                            <p:column headerText="Tag Number" sortBy="#{item.tagNumber}" >
+                            </ui:remove>    
+                            <p:column filterBy="#{item.tagNumber}" filterMatchMode="contains" headerText="Tag Number" sortBy="#{item.tagNumber}" >
                                 <h:outputText value="#{item.tagNumber}" />
                             </p:column>
-                            <p:column headerText="Asset Type">
+                            <p:column filterValue="#{item.asset}" filterMatchMode="contains" headerText="Asset Type">
                                 <h:outputText value="#{item.asset}" />
                             </p:column>
                             <p:column headerText="Asset SubType">
@@ -72,7 +80,7 @@
                             <p:column headerText="Action">
                                 <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}/#{item.descr}">Print</a>
                                 <h:outputText value=" | "/>
-                                <h:commandLink action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
+                                <h:commandLink style="color: blue" action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
                                 <h:outputText value=" | "/>
                                 <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>
                             </p:column>
@@ -87,6 +95,23 @@
                                 
                             </f:facet>
                         </p:dataTable>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <p:dialog header="Selected Cars" widgetVar="multiAssetDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                             <p:outputPanel id="multiAssetDetail" style="text-align:center;">
                                 <p>URL: <a href="#">Click Here</a> </p>

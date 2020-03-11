@@ -1,10 +1,21 @@
 $(document).ready(function() {
     
+    
+  $( "#j_idt13:j_idt14_next" ).click(function() {
+  alert( "Handler for .click() called." );
+});
+    
     //$('#j_idt12:j_idt14_wrapper') j_idt12:j_idt14
         
 
 } );
+
+$("j_idt13:j_idt14_next").click(function(){
+    alert("Hi");
+  });
 function frm728(){
+    var porder=document.getElementById('j_idt12:po_input').value;
+    document.getElementById('j_idt12:poNumber').value=porder;
     $( ".frm728" ).show();
     
     
@@ -60,6 +71,9 @@ window.onload = function() {
   document.getElementById("j_idt13:asset").value="";
   document.getElementById("j_idt13:asset_subtypeInner").value="";
   document.getElementById("j_idt13:asset_items").value="";
+  
+
+  
   
   
   

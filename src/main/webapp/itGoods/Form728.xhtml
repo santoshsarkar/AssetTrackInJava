@@ -15,10 +15,13 @@
             <div class="container margintop">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
                 <h:form>
-                    <h:outputLabel value="PO: " />
-                    <h:inputText id="po" class="po_no" value="#{formData.po}" />                  
-                   
-                    <p:commandButton update="@form" value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
+                    <h:outputLabel value="PO: " for="po" />
+                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}" />  
+        <ui:remove>
+        <p:outputLabel value="PO:" for="acSimple" />
+        <p:autoComplete id="acSimple" value="#{formData.po}" completeMethod="#{formData.get_po()}" />
+        </ui:remove>                       
+                    <p:commandButton update="@form poNumber" value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
                     
                     
                     
@@ -87,7 +90,7 @@
                     const non='';
                     var po = urlParams.get('po')
                     if (po!=null){
-                        document.getElementById('j_idt12:po').setAttribute("value",po );
+                        document.getElementById('j_idt12:po_input').setAttribute("value",po );
                         document.getElementById('j_idt12:poNumber').setAttribute("value",po );
                     }else
                     {
