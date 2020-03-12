@@ -27,6 +27,14 @@
 }
 .ui-wizard-nav-next .ui-button-text,.ui-wizard-nav-back .ui-button-text{ background-color: #4BADEF; color: white; font-weight: normal;text-align: center;border: 1px solid #4BADEF;    border-radius: 2px;}
  .ui-outputlabel-rfi{color: red}
+ .ui-state-error{color: black}
+
+ /* Asset Create Form */
+.asset_form input.ui-state-error{color: black; }
+ .asset_form .row{margin-bottom: 15px; }
+ .asset_form label{display: block}
+ .asset_form input{ width: 80% }
+
 /* Footer  */
 .global-footer {
     

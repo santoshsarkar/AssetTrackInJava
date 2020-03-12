@@ -34,6 +34,17 @@ public class FormData implements Serializable{
     String uname = "santosh";
     String pass = "sarkar@1234";
     Connection connection = null;
+    
+    private List<Assets> filteredAssets;
+
+    public List<Assets> getFilteredAssets() {
+        return filteredAssets;
+    }
+
+    public void setFilteredAssets(List<Assets> filteredAssets) {
+        this.filteredAssets = filteredAssets;
+    }
+    
 
     public FormData() {
         assetTypeList.clear();
@@ -70,7 +81,18 @@ public class FormData implements Serializable{
         this.assetSubTypeList = assetSubTypeList;
     }
     
-    /* Setter & Getter */    
+    /* Setter & Getter */  
+    BigInteger tagNumber=BigInteger.valueOf(maxTagNumber());
+
+    public BigInteger getTagNumber() {
+        return BigInteger.valueOf(maxTagNumber());
+    }
+
+    public void setTagNumber(BigInteger tagNumber) {
+        this.tagNumber = BigInteger.valueOf(maxTagNumber());
+    }
+    
+
     int maxTagNum=0;
     public int maxTagNumber(){
         

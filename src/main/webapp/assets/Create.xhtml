@@ -26,7 +26,173 @@
                 <p:wizard nextLabel="Preview" styleClass="asset_wizard" showStepStatus="false" >
               <p:tab id="personal" title="Create Form">  
                <p:panel header="Asset Form">
-                  <table class="table">
+                   <div>
+                   <div class="row hidden">
+                    <div class="col-sm-6">
+                     <h:outputText value="Business Unit" />
+                            <p:selectOneMenu id="businessUnit" value="#{assetsController.selected.businessUnit}" >
+                              <f:selectItem itemLabel="2240" itemValue="2240" /> 
+                              <f:facet name="prepend">
+                                <h:outputText value="Business Unit" />
+                              </f:facet>
+                          </p:selectOneMenu>   
+                    </div>
+                    <div class="col-sm-5">
+                        <h:outputText value="NTFC" />   
+                         <p:selectOneMenu id="ntfcType" value="#{assetsController.selected.ntfcType}">
+                              <f:selectItem itemLabel="FAD" itemValue="FAD" /> 
+                              <f:facet name="prepend">
+                                <h:outputText value="Transaction Type" />
+                              </f:facet>                        
+                          </p:selectOneMenu>
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                        <p:outputLabel for="purchaseOrder" value="PO: " />
+                        <p:inputText required="true" id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}"/>  
+
+                    </div>
+                    <div class="col-sm-5">
+                        <p:button onclick="resetForm();" value="Reset Form" />
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                        <p:outputLabel for="transDt" value="Transaction Date:" />
+                        <p:datePicker id="transDt" value="#{assetsController.selected.transDt}" showIcon="true" pattern="dd/MM/yyyy"  required="true" />
+                    </div>
+                    <div class="col-sm-5">
+                        <p:outputLabel for="accountingDt" value="Accounting Date:" />
+                        <p:datePicker required="true" id="accountingDt" value="#{assetsController.selected.accountingDt}"  showIcon="true" />
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                        <p:outputLabel for="inServiceDt" value="In Service Date:" />
+                            <p:datePicker  required="true" id="inServiceDt" value="#{assetsController.selected.inServiceDt}" showIcon="true" />
+                    </div>
+                    <div class="col-sm-5">
+                    <p:outputLabel for="acquisitionDt" value="Acquisition Date:" />
+                    <p:datePicker  required="true" id="acquisitionDt" value="#{assetsController.selected.acquisitionDt}" showIcon="true"  />
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-4">
+                        <p:outputLabel for="asset" value="Asset Type: " />
+                            <p:selectOneMenu required="true" id="asset" value="#{assetsController.selected.asset}" label="Asset Type" valueChangeListener="#{formData.change_asset_type}" 
+                                             filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Select Asset Type" itemValue="" />
+                            <f:selectItem itemLabel="IT Hardware" itemValue="010" />
+                            <f:selectItem itemLabel="IT Software" itemValue="020" />
+                            <f:selectItem itemLabel="Equipment" itemValue="040" />
+                            <f:selectItem itemLabel="Property" itemValue="050" />
+                            <f:selectItem itemLabel="Fleet" itemValue="060" />
+                            <f:selectItem itemLabel="Machinery" itemValue="070" />
+                            <f:selectItem itemLabel="Furniture" itemValue="080" />
+                            <f:selectItem itemLabel="Facility" itemValue="090" />
+                            <f:selectItem itemLabel="Intangible" itemValue="100" />
+                            <f:selectItem itemLabel="Asset Retirement Obligations" itemValue="200" />
+                            <f:selectItem itemLabel="Other" itemValue="999" />
+                            
+                            <p:ajax listener="#{formData.get_asset_subtype}" update="asset_subtype"/>
+                            </p:selectOneMenu>
+                    </div>
+                    <div class="col-sm-4">
+                        <p:outputLabel for="asset_subtype" value="Asset Sub Type: "  />
+                            <p:selectOneMenu id="asset_subtype" value="#{assetsController.selected.asset_subtype}" label="Asset Subtype"
+                                             filter="true" filterMatchMode="startsWith">
+                                <f:selectItems value="#{formData.get_asset_subtype()}"></f:selectItems>
+                            </p:selectOneMenu>
+                    </div>
+                       <div class="col-sm-3">
+                           <p:outputLabel for="tagNumber" value="Tag No: " />
+                            <p:inputText disabled="TRUE" type="number"  id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}" required="false" />
+                       
+                       </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                     
+                          <p:outputLabel for="descr" value="Description: " />  
+                          <p:inputText id="descr" value="#{assetsController.selected.descr}"  required="true" />
+                    </div>
+                    <div class="col-sm-5">
+                        <p:outputLabel for="descrshort" value="Description Short: " />
+                          <p:inputText id="descrshort" value="#{assetsController.selected.descrshort}"  required="true" />
+                      
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                        <p:outputLabel for="locations" value="Location " />
+                           <p:selectOneMenu id="locations" value="#{assetsController.selected.locations}" label="Location"  required="true" 
+                                            filter="true" filterMatchMode="startsWith">
+                                <f:selectItems value="#{formData.locations}" />
+                            </p:selectOneMenu>   
+                          
+                    </div>
+                    <div class="col-sm-5">
+                        <p:outputLabel for="locationEffdt" value="Location Eff Date " />
+                            <p:datePicker showIcon="true"  required="true" id="locationEffdt" value="#{assetsController.selected.locationEffdt}"  />                        
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                    <p:outputLabel for="vin" value="VIN:" />   
+                           <p:inputText id="vin" value="#{assetsController.selected.vin}" /> 
+                    </div>
+                    <div class="col-sm-5">
+                        <p:outputLabel for="serialId" value="Serial Id:" />   
+                           <p:inputText id="serialId" value="#{assetsController.selected.serialId}"  /> 
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-4">
+                        <p:outputLabel for="profileId" value="Profile Id: " />  
+                            <p:selectOneMenu id="profileId" value="#{assetsController.selected.profileId}" label="Profile Id" 
+                                             filter="true" filterMatchMode="startsWith" required="true">
+                                <f:selectItems value="#{formData.profileid}" />
+                            </p:selectOneMenu>
+                    </div>
+                    <div class="col-sm-4">
+                        <p:outputLabel for="category" value="Category: " /> 
+                           <p:selectOneMenu id="category" value="#{assetsController.selected.category}" label="#{bundle.CreateAssetsTitle_category}" 
+                                            filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{formData.category}" />
+                            </p:selectOneMenu> 
+                    </div>
+                    <div class="col-sm-3">
+                       <p:outputLabel for="fundCode" value="Fund Code " />   
+                        <p:inputText placeholder="0648" id="fundCode" value="#{assetsController.selected.fundCode}" label="Fund Code" required="true" />  
+                         
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-6">
+                        <p:outputLabel for="quantity" value="Quantity: " />   
+                        <p:inputText type="number" id="quantity" value="#{assetsController.selected.quantity}" label="#{bundle.CreateAssetsTitle_quantity}" required="true" />  
+                    </div>
+                    <div class="col-sm-5">
+                        <p:outputLabel for="cost" value="Cost: " />    
+                           <p:inputText type="number" id="cost" value="#{assetsController.selected.cost}" label="#{bundle.CreateAssetsTitle_cost}" required="true" />   
+                          
+                    </div>
+                   </div>
+                   <div class="row hidden">
+                       <div>
+                           <p:outputLabel for="status" value="Status:" />
+                              <ui:remove><p:inputSwitch onLabel="Active" offLabel="Retire" label="true" id="status" value="#{assetsController.selected.status}" /></ui:remove>
+                              <p:selectOneMenu id="status" value="#{assetsController.selected.status}" >
+                              <f:selectItem itemLabel="Active" itemValue="true" />
+                              <f:selectItem itemLabel="Retire" itemValue="false" />
+                              </p:selectOneMenu>
+                       </div>
+                   </div>
+                   </div>
+                  
+                   <ui:remove>
+                   <table class="table">
                       <tr class="hidden">
                         <td>
                             <h:outputText value="Business Unit" />
@@ -125,6 +291,10 @@
                                 <f:selectItems value="#{formData.get_asset_subtype()}"></f:selectItems>
                             </p:selectOneMenu>
                         </td> 
+                        <td>
+                            <p:outputLabel for="tagNumber" value="Tag No: " />
+                            <p:inputText disabled="TRUE" type="number"  id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}" required="false" />
+                        </td>  
                            
                       </tr>
                       
@@ -184,7 +354,7 @@
                         <td>
                             <p:outputLabel for="tagNumber" value="Tag No: " />
                             <p:inputText disabled="TRUE" type="number"  id="tagNumber" value="#{assetsController.selected.tagNumber}" placeholder="#{formData.maxTagNumber()}" required="false" />
-                           </td>
+                        </td>
                         <td>
                             <p:outputLabel for="fundCode" value="Fund Code " />   
                             <p:inputText placeholder="0648" id="fundCode" value="#{assetsController.selected.fundCode}" label="Fund Code" required="true" />  
@@ -216,7 +386,7 @@
                       
                       
                   </table>  
-                 
+                   </ui:remove>
                 </p:panel>       
                 </p:tab> 
                 
