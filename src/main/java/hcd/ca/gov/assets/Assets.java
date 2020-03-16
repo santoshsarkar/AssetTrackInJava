@@ -138,13 +138,21 @@ public class Assets implements Serializable {
         this.status = status;
     }
     
-
+public void maxTagNo(){
+        
+        FormData fdt=new FormData(); 
+        int tn=fdt.maxTagNumber();
+        tagNumber=BigInteger.valueOf(tn);
+    }
     public Assets() {
+        /*
         int maxTagNo=0;
         FormData fd=new FormData();
         maxTagNo=fd.maxTagNumber();
         System.out.println("MaxTagNumber="+maxTagNo);
         tagNumber=BigInteger.valueOf(maxTagNo);
+        */
+        this.maxTagNo();
     }
 
     public Assets(Integer id) {

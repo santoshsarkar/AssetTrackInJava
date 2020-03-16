@@ -22,6 +22,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.model.LazyDataModel;
 
 @Named("assetsController")
 @SessionScoped
@@ -35,6 +36,22 @@ public class AssetsController implements Serializable {
     private int selectedItemIndex;
     
     /* Santosh Code */
+    /*
+    private LazyDataModel lazy;
+
+    public LazyDataModel getLazy() {
+        return lazy;
+    }
+
+    public void setLazy(LazyDataModel lazy) {
+        this.lazy = lazy;
+    }
+*/
+
+   
+    
+    
+    
     private Assets selectedAsset;
     private List<Assets> selectedAssets;
 

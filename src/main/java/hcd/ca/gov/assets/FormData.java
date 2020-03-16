@@ -92,7 +92,7 @@ public class FormData implements Serializable{
         this.tagNumber = BigInteger.valueOf(maxTagNumber());
     }
     
-
+    //public int maxTagN=maxTagNumber();
     int maxTagNum=0;
     public int maxTagNumber(){
         
