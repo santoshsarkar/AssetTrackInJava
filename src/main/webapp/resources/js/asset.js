@@ -35,7 +35,12 @@ function callForm728(po,tag,asset){
    
 }
 
-
+function wizComplete(){
+    
+   // var po=document.getElementById('j_idt13:output_po').value;
+   
+    PF('wiz').loadStep(PF('wiz').cfg.steps[0], true)
+}
 
 window.onload = function() {
     var today = new Date();

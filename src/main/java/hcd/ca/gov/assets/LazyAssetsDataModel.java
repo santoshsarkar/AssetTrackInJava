@@ -20,6 +20,10 @@ import org.primefaces.model.SortMeta;
 public class LazyAssetsDataModel extends LazyDataModel<Assets> {
  private List<Assets> datasource;
  
+     public LazyAssetsDataModel(){
+         
+     }
+    
     public LazyAssetsDataModel(List<Assets> datasource) {
         this.datasource = datasource;
     }

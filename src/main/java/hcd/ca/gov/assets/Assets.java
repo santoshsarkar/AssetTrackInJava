@@ -152,7 +152,7 @@ public void maxTagNo(){
         System.out.println("MaxTagNumber="+maxTagNo);
         tagNumber=BigInteger.valueOf(maxTagNo);
         */
-        this.maxTagNo();
+        //this.maxTagNo();
     }
 
     public Assets(Integer id) {

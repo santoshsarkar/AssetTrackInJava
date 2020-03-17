@@ -32,7 +32,7 @@
                                      emptyMessage="No cars found with given criteria" 
                                      filteredValue="#{formData.filteredAssets}"
                                      widgetVar="assetsTable1"
-                                    paginator="true"
+                                     paginator="true" 
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                                     rowsPerPageTemplate="5,10,15">
@@ -57,6 +57,11 @@
                                 </div>    
                                 
                             </f:facet>
+                            <p:column headerText="Print">
+                            <label for="Print Asset">
+                                <input type="checkbox" id="printasset" onclick="printAssets('#{item.tagNumber}'/'#{item.descr}')"></input>
+                            </label>
+                             </p:column>
                             <p:column filterBy="#{item.purchaseOrder}" filterMatchMode="contains" class="po" headerText="PO"  sortBy="#{item.purchaseOrder}">
                             <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
                             </p:column>

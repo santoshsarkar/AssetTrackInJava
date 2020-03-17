@@ -23,7 +23,7 @@
             <h:form class="asset_form">
 
                 
-                <p:wizard nextLabel="Preview" styleClass="asset_wizard" showStepStatus="false" >
+                <p:wizard nextLabel="Preview" styleClass="asset_wizard" showStepStatus="false" widgetVar="wiz" >
               <p:tab id="personal" title="Create Form">  
                <p:panel header="Asset Form">
                    <div>
@@ -404,24 +404,15 @@
                              <h:outputText value="#{assetsController.selected.ntfcType}" styleClass="outputLabel"/>   
                             </td>
                         </tr>
+                        
                         <tr>
                             <td>
                             <h:outputText value="PO:  " />
-                            <h:outputText value="#{assetsController.selected.purchaseOrder}" styleClass="outputLabel"/>   
+                            <h:outputText value="#{assetsController.selected.purchaseOrder}" styleClass="outputLabel output_po" id="output_po"/>   
                             </td>
                             <td>
                             <h:outputText value="Tag No:  " />
-                            <h:outputText value="#{assetsController.selected.tagNumber}" styleClass="outputLabel"/>   
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <h:outputText value="PO:  " />
-                            <h:outputText value="#{assetsController.selected.purchaseOrder}" styleClass="outputLabel"/>   
-                            </td>
-                            <td>
-                            <h:outputText value="Tag No:  " />
-                            <h:outputText value="#{assetsController.selected.tagNumber}" styleClass="outputLabel"/>   
+                            <h:outputText value="#{formData.maxTagNumber()}" styleClass="outputLabel"/>   
                             </td>
                         </tr>
                         <tr>
@@ -506,7 +497,8 @@
                             
                     </table>
                         <div style="text-align: center">
-                        <p:commandLink class="btn btn-primary" value="Submit" action="#{assetsController.create}"  update="growl" process="@this"/>
+                        <p:commandButton class="btn btn-primary" value="Submit" action="#{assetsController.create}" oncomplete="wizComplete()"  update="growl messagePanel" />
+                        
                     </div>
                     
                     
@@ -514,7 +506,8 @@
                 </p:panel>    
                 </p:tab>
             </p:wizard>    
-                <h:commandLink action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}"  immediate="true"/>
+                
             </h:form>        
             </div>
             

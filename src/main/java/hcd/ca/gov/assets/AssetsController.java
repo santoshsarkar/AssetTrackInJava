@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -36,21 +38,23 @@ public class AssetsController implements Serializable {
     private int selectedItemIndex;
     
     /* Santosh Code */
-    /*
-    private LazyDataModel lazy;
-
-    public LazyDataModel getLazy() {
-        return lazy;
-    }
-
-    public void setLazy(LazyDataModel lazy) {
-        this.lazy = lazy;
-    }
-*/
-
+ 
    
-    
-    
+    private LazyDataModel<Assets> lazyModel;
+
+    public LazyDataModel<Assets> getLazyModel() {
+        return lazyModel;
+    }
+
+    public void setLazyModel(LazyDataModel<Assets> lazyModel) {
+        this.lazyModel = lazyModel;
+    }
+
+@PostConstruct
+    public void init() {
+        //lazyModel = new LazyAssetsDataModel();
+    }
+  
     
     private Assets selectedAsset;
     private List<Assets> selectedAssets;
@@ -98,7 +102,13 @@ public class AssetsController implements Serializable {
 
     /* Santosh Code */
     
-
+public void maxTagNo(){
+        
+        FormData fdt=new FormData(); 
+        int tn=fdt.maxTagNumber();
+        BigInteger tagN=BigInteger.valueOf(tn);
+        current.setTagNumber(tagN);
+    }
     public AssetsController() {
     }
 
@@ -143,6 +153,12 @@ public class AssetsController implements Serializable {
         return "View";
     }
 
+     public String createAgain() {
+        current = new Assets();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+        recreateModel();
+        return "Create";
+     }
     public String prepareCreate() {
         current = new Assets();
         selectedItemIndex = -1;
@@ -151,10 +167,12 @@ public class AssetsController implements Serializable {
 
     public String create() {
         try {
+            this.maxTagNo();
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AssetsCreated"));
+            
             //return prepareCreate();
-            return prepareList();
+            return createAgain();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
