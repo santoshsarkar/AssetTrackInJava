@@ -130,6 +130,7 @@ public class FormData implements Serializable{
             while (rs.next()) {
                 //assetType.put("asset_type", "asset_type");
                 poList.add(rs.getString("purchase_order"));
+                
 
             }
             rs.close();
@@ -372,6 +373,10 @@ public class FormData implements Serializable{
                 aa.setDescr(rs.getString(4));
                 aa.setAsset(rs.getString(7));
                 aa.setAsset_subtype(rs.getString(8));
+                aa.setPurchaseOrder(rs.getString("purchase_order"));
+                aa.setAccountingDt(rs.getDate("accounting_dt"));
+                
+                
                 
                 array.add(aa);
 

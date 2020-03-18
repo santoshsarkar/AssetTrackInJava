@@ -16,11 +16,13 @@
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
                 <h:form>
                     <h:outputLabel value="PO: " for="po" />
-                    <p:autoComplete   id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}" />  
-        <ui:remove>
-        <p:outputLabel value="PO:" for="acSimple" />
-        <p:autoComplete id="acSimple" value="#{formData.po}" completeMethod="#{formData.get_po()}" />
-        </ui:remove>                       
+                    <ui:remove>
+                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}" />  
+                    </ui:remove>
+                    <p:selectOneMenu id="pos" value="#{formData.po}" style=" width: 200px"                                             filter="true" filterMatchMode="startsWith">
+                        <f:selectItems value="#{formData.get_po()}"></f:selectItems>
+                    </p:selectOneMenu>
+                       
                     <p:commandButton update="@form poNumber" value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
                     
                     
@@ -56,8 +58,11 @@
                     
                     <p:panel id="pannel2" header="Result" >
                         <p:dataTable id="table" value="#{formData.find()}" var="aset">
-                            <p:column headerText="id">
-                                <p:outputLabel id="id" value="#{aset.id}" />
+                            <p:column headerText="Date Recv">
+                                <p:outputLabel id="accountingDt" value="#{aset.accountingDt}" />
+                            </p:column>
+                            <p:column headerText="PO">
+                                <p:outputLabel id="po" value="#{aset.purchaseOrder}" />
                             </p:column>
                             <p:column headerText="Descr">
                                 <p:outputLabel id="Descr" value="#{aset.descr}" />
@@ -72,7 +77,28 @@
                         </p:dataTable>
                         
                     </p:panel>
-                  <br/>  
+                    <p:panel id="pannel3" header="STOCK RECEIVED VERIFICATION" style=" width: 65%; float: right;" >
+                        <div class="form-group row stv">
+                            <div class="col-sm-7">
+                             <p:outputLabel for="stockRcvDate" value="Date Rec'd: "  />
+                             <p:datePicker id="stockRcvDate" value="#{itGoodsController.selected.stockRcvDate}" showIcon="true"  />
+                             <br/>
+                             <p:outputLabel for="stockRcvQuantity" value="Qty. Rec'd: "  />
+                             <p:inputText id="stockRcvQuantity" value="#{itGoodsController.selected.stockRcvQuantity}"  />
+                             <br/>
+                             <p:outputLabel for="stockRcvBy" value="Received by: "  />
+                             <p:inputText id="stockRcvBy" value="#{itGoodsController.selected.stockRcvBy}"  />
+                            </div>
+                            <div class="col-sm-5">
+                                
+                                    <p:selectBooleanCheckbox id="stockRcvPartialOrder" value="#{itGoodsController.selected.stockRcvPartialOrder}"  itemLabel="Partial order" />
+                                    <p:selectBooleanCheckbox id="stockRcvCompleteOrder" value="#{itGoodsController.selected.stockRcvCompleteOrder}"  itemLabel="Complete/Remainder of order" />
+                             
+                            </div>
+                        </div>   
+
+                    </p:panel>
+                  <br/>  <br/><br/>
                 <div class="row"> 
                 <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{itGoodsController.create}" value="Save" />
                 <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" immediate="true"/>
@@ -89,13 +115,18 @@
                     const urlParams = new URLSearchParams(queryString);
                     const non='';
                     var po = urlParams.get('po')
+                    
                     if (po!=null){
-                        document.getElementById('j_idt12:po_input').setAttribute("value",po );
+                        document.getElementById('j_idt12:pos_input').value=po;
+                        // document.getElementById('j_idt12:po_input').setAttribute("value",po );
                         document.getElementById('j_idt12:poNumber').setAttribute("value",po );
                     }else
                     {
+                        /*
                         document.getElementById('j_idt12:po').setAttribute("value",non );
                         document.getElementById('j_idt12:poNumber').setAttribute("value",non );
+                        */
+                       document.getElementById('j_idt12:pos_input').value=null;
                     }
                     //alert(po);
                     

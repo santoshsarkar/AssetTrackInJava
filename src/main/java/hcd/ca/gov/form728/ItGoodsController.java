@@ -95,6 +95,12 @@ public class ItGoodsController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
+    
+    public String prepareForm728() {
+        current = new ItGoods();
+        recreateModel();
+        return "Form728?faces-redirect=true";
+    }
     public String prepareCreate() {
         if(!lineItemList.isEmpty()){lineItemList.clear();}
         current = new ItGoods();
@@ -149,8 +155,9 @@ public class ItGoodsController implements Serializable {
             JsfUtil.addSuccessMessage(lineItemList.size()+" " + ResourceBundle.getBundle("/Bundle").getString("ItGoodsLineitemCreated"));
             lineItemList.clear();
             lineItem = new ItGoodsLineitem();
+            
             //return prepareCreate();
-            return prepareList();
+            return prepareForm728();
         } catch (Exception e) {
             e.printStackTrace();
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));

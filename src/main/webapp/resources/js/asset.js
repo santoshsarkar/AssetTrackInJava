@@ -14,10 +14,15 @@ $("j_idt13:j_idt14_next").click(function(){
     alert("Hi");
   });
 function frm728(){
-    var porder=document.getElementById('j_idt12:po_input').value;
+    var porder=document.getElementById('j_idt12:pos_label').textContent;
     document.getElementById('j_idt12:poNumber').value=porder;
     $( ".frm728" ).show();
     
+    /*
+    var porder=document.getElementById('j_idt12:po_input').value;
+    document.getElementById('j_idt12:poNumber').value=porder;
+    $( ".frm728" ).show();
+    */
     
 }
 function callForm728(po,tag,asset){
