@@ -25,7 +25,8 @@
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                         </h:panelGroup>        
-                        
+                        <ui:remove>
+                        <!-- 
                         <p:dataTable reflow="true" id="checkboxDT" var="item" value="#{assetsController.items}" selection="#{assetsController.selectedAssets}" 
                                      rowKey="#{item.id}" style="margin-bottom:0"
                                      rows="10" sortBy="#{item.id}" sortOrder="descending"  paginatorPosition="bottom"
@@ -120,11 +121,40 @@
                                 
                             </f:facet>
                         </p:dataTable>
+                        -->
+                        </ui:remove>
+                        <h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="Create New"/>
+                        <b:dataTable var="item" value="#{assetsController.items}" style="width:100%" id="dt_asset" 
+                                     responsive="true" 
+                                     >
+                            
+                            <b:dataTableColumn label=" Print ">
+                            <input type="checkbox" id="printasset" onclick="printAssets('#{item.tagNumber}'/'#{item.descr}')"></input>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label=" PO ">
+                            <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
+                            </b:dataTableColumn>
+                         <b:dataTableColumn value="#{item.tagNumber}" data-order="#{item.tagNumber}" order="asc" />
+                         <b:dataTableColumn value="#{item.asset}" />
+                         <b:dataTableColumn value="#{item.asset_subtype}" />
+                         <b:dataTableColumn value="#{item.descr}" />
+                         <b:dataTableColumn value="#{item.transDt}" />
+                         <b:dataTableColumn value="#{item.accountingDt}" />
+                         <b:dataTableColumn value="#{item.quantity}" />
+                         <b:dataTableColumn value="#{item.cost}" />
+                         
+                         <b:dataTableColumn label=" Action " >
+                             <b:row>
+                            <b:column><b:commandLink icon-awesome="fa-edit" action="#{assetsController.prepareEdit}" value="Edit"/></b:column>
+                        </b:row>
+                         </b:dataTableColumn>
+                        
+                        
+                        </b:dataTable>
                         
                         
                         
-                        
-                        
+                        <h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="Create New"/>
                         
                         
                         
@@ -145,7 +175,13 @@
                                 </ui:repeat>
                             </p:outputPanel>
                         </p:dialog>
-                    </h:form>                        
+                    </h:form>  
+                    
+                    <script>
+                        document.getElementsByName("search").value = "";
+                        
+                        
+                    </script>
 
                 </div></div><br/><br/>
         </ui:define>

@@ -16,13 +16,18 @@
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
                 <h:form>
                     <h:outputLabel value="PO: " for="po" />
+                    
+                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}">
+                        <p:ajax event="keyup" listener="#{formData.handleKeyEvent}" />
+                    </p:autoComplete> 
+                  
+                    
+                    
                     <ui:remove>
-                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}" />  
-                    </ui:remove>
                     <p:selectOneMenu id="pos" value="#{formData.po}" style=" width: 200px"                                             filter="true" filterMatchMode="startsWith">
                         <f:selectItems value="#{formData.get_po()}"></f:selectItems>
                     </p:selectOneMenu>
-                       
+                    </ui:remove>   
                     <p:commandButton update="@form poNumber" value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
                     
                     
@@ -102,8 +107,8 @@
                 <div class="row"> 
                 <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{itGoodsController.create}" value="Save" />
                 <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" immediate="true"/>
-                <p:commandLink class="btn btn-primary" value="Back"  />
-                
+                <p:commandLink class="btn btn-primary" value="Print" onclick="myFunction()"  />
+                 
                 </div>
                  </div>  <!-- #frm728 Div -->   
                 </h:form>
@@ -117,22 +122,24 @@
                     var po = urlParams.get('po')
                     
                     if (po!=null){
-                        document.getElementById('j_idt12:pos_input').value=po;
-                        // document.getElementById('j_idt12:po_input').setAttribute("value",po );
+                        //document.getElementById('j_idt12:pos_input').value=po;
+                         document.getElementById('j_idt12:po_input').setAttribute("value",po );
                         document.getElementById('j_idt12:poNumber').setAttribute("value",po );
                     }else
                     {
-                        /*
+                        
                         document.getElementById('j_idt12:po').setAttribute("value",non );
                         document.getElementById('j_idt12:poNumber').setAttribute("value",non );
-                        */
-                       document.getElementById('j_idt12:pos_input').value=null;
+                        
+                       //document.getElementById('j_idt12:pos_input').value=null;
                     }
                     //alert(po);
                     
                     $( ".frm728" ).hide();
-                    
-                    
+                    function myFunction() {
+                            window.print();
+                          }
+                          
                     
                 </script>
 

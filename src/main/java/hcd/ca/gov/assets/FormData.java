@@ -124,7 +124,7 @@ public class FormData implements Serializable{
             connection = DriverManager.getConnection(myUrl, uname, pass);
 
             PreparedStatement ps = null;
-            ps = connection.prepareStatement("select distinct purchase_order from assets");
+            ps = connection.prepareStatement("select distinct purchase_order from assets where purchase_order LIKE '%" + po + "%'");
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -142,6 +142,11 @@ public class FormData implements Serializable{
         
         return poList;
     }
+    public void handleKeyEvent() {
+        System.out.println("Key Up.....");
+        System.out.println("PO....."+po);
+    }
+    
     
     public List<String> get_asset_type() {
         assetTypeList.clear();

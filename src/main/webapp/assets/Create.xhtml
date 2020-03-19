@@ -102,6 +102,7 @@
                         <p:outputLabel for="asset_subtype" value="Asset Sub Type: "  />
                             <p:selectOneMenu id="asset_subtype" value="#{assetsController.selected.asset_subtype}" label="Asset Subtype"
                                              filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="Select Asset Subtype" itemValue="" />
                                 <f:selectItems value="#{formData.get_asset_subtype()}"></f:selectItems>
                             </p:selectOneMenu>
                     </div>

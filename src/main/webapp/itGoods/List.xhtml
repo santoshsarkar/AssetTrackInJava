@@ -22,7 +22,7 @@
                     <a  target="_blank" href="ITLineItemServlet?id=#{item.itGoodsId}">#{item.itGoodsId}</a>
                     </b:dataTableColumn>
                     <b:dataTableColumn  label="PO">
-                    <a  target="_blank" href="ITLineItemServlet?id=#{item.itGoodsId}">#{item.poNumber}</a>
+                        <a  target="_blank" href="ITLineItemServlet?po=#{item.poNumber}">#{item.poNumber}</a>
                     </b:dataTableColumn>
                     
                     <b:dataTableColumn value="#{item.dateorderReceivingFromVendor}" label="Dat Order Receiving From Vendor" />

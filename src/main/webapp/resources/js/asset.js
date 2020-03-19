@@ -14,15 +14,17 @@ $("j_idt13:j_idt14_next").click(function(){
     alert("Hi");
   });
 function frm728(){
-    var porder=document.getElementById('j_idt12:pos_label').textContent;
-    document.getElementById('j_idt12:poNumber').value=porder;
-    $( ".frm728" ).show();
     
-    /*
+    /* Form728 */
+    var today = new Date();
+    var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+    document.getElementById('j_idt12:dateorderReceivingFromVendor_input').setAttribute("value",date );
+    
     var porder=document.getElementById('j_idt12:po_input').value;
     document.getElementById('j_idt12:poNumber').value=porder;
     $( ".frm728" ).show();
-    */
+    //var porder=document.getElementById('j_idt12:pos_label').textContent;
+    //document.getElementById('j_idt12:poNumber').value=porder;
     
 }
 function callForm728(po,tag,asset){
@@ -56,6 +58,9 @@ window.onload = function() {
     document.getElementById('j_idt13:inServiceDt_input').setAttribute("value",date );
     document.getElementById('j_idt13:acquisitionDt_input').setAttribute("value",date );
     document.getElementById('j_idt13:locationEffdt_input').setAttribute("value",date );
+    
+    
+  
     
 
   }
