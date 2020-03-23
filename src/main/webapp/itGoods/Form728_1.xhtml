@@ -33,73 +33,34 @@
                     
                     
                     <div id="frm728" class="frm728">
-                     <p:panel id="pp">  
-                         <div class="row">
-                            <div class="col">
-                              STATE OF CALIFORNIA <br/>Stock Received Inventory - IT Goods<br/>HCD 728-Non-IT(New 08/14) 
-                            </div>
-                            <div class="col">
-                              DEPARTMENT OF HOUSING AND COMMUNITY DEVELOPMENT<br/>ADMINISTRATION AND MANAGEMENT DIVISION<br/>BUSINESS SERVICES OFFICE
-                            </div>
-                          </div>
-                         <br/>
-                         <div class="row">
-                             <div class="col">
-                             <p>Purpose: <br/>The purpose of this form is to track receipt of IT goods received in BSO,inform IT of delivery,obtain signatures from IT staff and release IT goods to IT staff.</p>
-                             <p>BSO staff will document the date received, item description,serial number and tag equipment with a decal number.This information will be entered in the table below prior to releasing IT goods to IT staff.</p>
-                             </div>
-                         </div>
-                    <p:panel id="pannel1" header="BSO completes this section:" >
-                     <p:row>
-                      <p:column>
-                        <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
-                        <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" /> 
-                      </p:column>
-                     <p:column>   
+                    <p:panel id="pannel1" header="Input Form" >
+                     <div class="row">
+                     <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
+                     <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" /> 
+                     
                      <p:outputLabel for="poNumber" value="Purchase Order: " />
                      <p:inputText id="poNumber" value="#{itGoodsController.selected.poNumber}"  /> 
-                     </p:column> 
-                     </p:row> 
-                        <br/><br/>
-                     <p:row>
-                         <p:column>
+                     </div>  
+                     <div class="row">   
                      <p:outputLabel for="employeereceivingorderBSO" value="Purchase Employee Receiving order: " />
                      <p:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}"  />
-                     </p:column>
-                     </p:row> 
-                        <br/><br/>
-                     <p:row>
-                         <p:column>
-                         <p:selectBooleanCheckbox id="partialOrder" value="#{itGoodsController.selected.partialOrder}" itemLabel="Partial order" />
-                         <p:selectBooleanCheckbox id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}" itemLabel="Complete/Remainder of order" />
-                         </p:column>   
-                     </p:row>
-                        <br/><br/>
-                     <ui:remove>
+                     </div>
+                     
                      <b:row>
                         <b:column span="3"><b:selectBooleanCheckbox id="partialOrder" value="#{itGoodsController.selected.partialOrder}" caption="Partial order" label="" /></b:column>
                         <b:column span="4"><b:selectBooleanCheckbox id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}"  caption="Complete/Remainder of order" label="" /></b:column>
-                    </b:row>
-                    </ui:remove>  
-                    </p:panel>
-                    <p:panel header="(ITB completes this section)" >  
-                    <ui:remove>
+                    </b:row> 
+                    <b:panel title="(ITB completes this section)" look="primary">
                     <b:row>
                         <b:column span="4"><b:datepicker  id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" label="Date order received from BSO"  /></b:column>
                         <b:column span="4"><b:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" label="Employee receiving order" /></b:column>
                     </b:row>
-                    </ui:remove>
-                    <div class="row">
-                        <div class="col">
-                        <p:outputLabel for="dateorderreceivingfromBSO" value="Date order received from BSO: " />
-                        <p:datePicker showIcon="true" id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" /> 
-                        </div>
-                        <div class="col">
-                        <p:outputLabel for="employeereceivingorderITB" value="Employee receiving order: " />
-                        <p:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" />  
-                        </div>
-                    </div>    
-                    </p:panel> 
+                    </b:panel>    
+                     
+                    </p:panel>
+               
+                      
+                    
                     <p:panel id="pannel2" header="Result" >
                         <p:dataTable id="table" value="#{formData.find()}" var="aset">
                             <p:column headerText="Date Recv">
@@ -121,45 +82,34 @@
                         </p:dataTable>
                         
                     </p:panel>
-                    <p:panelGrid style="float: right; width: 60%">
-                                       <p:row>
-                                           <p:column>
-                                               <p:panel id="pannel3" header="STOCK RECEIVED VERIFICATION"   >
-                                                    <div class="form-group row stv">
-                                                        <div class="col">
-                                                         <p:outputLabel for="stockRcvDate" value="Date Rec'd: "  />
-                                                         <p:datePicker id="stockRcvDate" value="#{itGoodsController.selected.stockRcvDate}" showIcon="true"  />
-                                                         <br/>
-                                                         <p:outputLabel for="stockRcvQuantity" value="Qty. Rec'd: "  />
-                                                         <p:inputText id="stockRcvQuantity" value="#{itGoodsController.selected.stockRcvQuantity}"  />
-                                                         <br/>
-                                                         <p:outputLabel for="stockRcvBy" value="Received by: "  />
-                                                         <p:inputText id="stockRcvBy" value="#{itGoodsController.selected.stockRcvBy}"  />
-                                                        </div>
-                                                        <div class="col">
+                    <p:panel id="pannel3" header="STOCK RECEIVED VERIFICATION" style=" width: 65%; float: right;" >
+                        <div class="form-group row stv">
+                            <div class="col-sm-7">
+                             <p:outputLabel for="stockRcvDate" value="Date Rec'd: "  />
+                             <p:datePicker id="stockRcvDate" value="#{itGoodsController.selected.stockRcvDate}" showIcon="true"  />
+                             <br/>
+                             <p:outputLabel for="stockRcvQuantity" value="Qty. Rec'd: "  />
+                             <p:inputText id="stockRcvQuantity" value="#{itGoodsController.selected.stockRcvQuantity}"  />
+                             <br/>
+                             <p:outputLabel for="stockRcvBy" value="Received by: "  />
+                             <p:inputText id="stockRcvBy" value="#{itGoodsController.selected.stockRcvBy}"  />
+                            </div>
+                            <div class="col-sm-5">
+                                
+                                    <p:selectBooleanCheckbox id="stockRcvPartialOrder" value="#{itGoodsController.selected.stockRcvPartialOrder}"  itemLabel="Partial order" />
+                                    <p:selectBooleanCheckbox id="stockRcvCompleteOrder" value="#{itGoodsController.selected.stockRcvCompleteOrder}"  itemLabel="Complete/Remainder of order" />
+                             
+                            </div>
+                        </div>   
 
-                                                                <p:selectBooleanCheckbox id="stockRcvPartialOrder" value="#{itGoodsController.selected.stockRcvPartialOrder}"  itemLabel="Partial order" />
-                                                                <p:selectBooleanCheckbox id="stockRcvCompleteOrder" value="#{itGoodsController.selected.stockRcvCompleteOrder}"  itemLabel="Complete/Remainder of order" />
-
-                                                        </div>
-                                                    </div>   
-
-                                                </p:panel>
-                                           </p:column>
-                                       </p:row>
-                                   </p:panelGrid>
-                     </p:panel>   
-                        
+                    </p:panel>
                   <br/>  <br/><br/>
                 <div class="row"> 
                 <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{itGoodsController.create}" value="Save" />
                 <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" immediate="true"/>
-                <p:commandLink class="btn btn-primary" value="Full Print" onclick="myFunction()"  />
+                <p:commandLink class="btn btn-primary" value="Print" onclick="myFunction()"  />
                  
                 </div>
-                  <p:commandLink value="Print (Area Only)" type="button" class="btn btn-primary">
-                    <p:printer target="pp" />
-                </p:commandLink>
                  </div>  <!-- #frm728 Div -->   
                 </h:form>
                 

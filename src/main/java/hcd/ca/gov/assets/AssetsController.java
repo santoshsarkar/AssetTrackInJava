@@ -159,6 +159,26 @@ public void maxTagNo(){
         recreateModel();
         return "Create";
      }
+     FormData fd2=new FormData(); 
+     public String form728() {
+        
+        current = (Assets) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+       
+        fd2.setPo(current.getPurchaseOrder());
+        String assettype=current.getAsset();
+        System.out.println("Purchase Order="+current.getPurchaseOrder());
+        System.out.println("Asset Type="+assettype);
+        
+        if(assettype.equals("IT Hardware") || assettype.equals("IT Software")){
+            System.out.println("If Condition="+assettype);
+            return "ItForm728?po="+current.getPurchaseOrder()+"faces-redirect=true";
+        }
+        else{
+            System.out.println("Else Condition="+assettype);
+        return "NonItForm728?po="+current.getPurchaseOrder()+"faces-redirect=true";
+        }
+    }
     public String prepareCreate() {
         current = new Assets();
         selectedItemIndex = -1;
@@ -184,6 +204,8 @@ public void maxTagNo(){
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
+    
+    
 
     public String update() {
         try {

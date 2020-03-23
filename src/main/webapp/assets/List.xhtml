@@ -132,7 +132,10 @@
                             <input type="checkbox" id="printasset" onclick="printAssets('#{item.tagNumber}'/'#{item.descr}')"></input>
                             </b:dataTableColumn>
                             <b:dataTableColumn label=" PO ">
-                            <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
+                                <ui:remove>
+                                <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
+                                </ui:remove>
+                                <b:commandLink icon-awesome="fa-edit" action="#{assetsController.form728}" value="#{item.purchaseOrder}"/>
                             </b:dataTableColumn>
                          <b:dataTableColumn value="#{item.tagNumber}" data-order="#{item.tagNumber}" order="asc" />
                          <b:dataTableColumn value="#{item.asset}" />

@@ -35,7 +35,12 @@
  .asset_form label{display: block}
  .asset_form input{ width: 80% }
  
- .stv label {min-width: 115px;}
+ .stv .col{padding: 0px;}
+ .stv .col label{min-width: 95px}
+ .stv .col input{max-width: 145px}
+ .stv .col .ui-widget {font-size: 14px; padding: 0px}
+ .stv .col .p-datepicker{ min-width: 7em}
+ 
 
 /* Footer  */
 .global-footer {
