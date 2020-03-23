@@ -40,7 +40,15 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "NonItGoods.findByPartialOrder", query = "SELECT n FROM NonItGoods n WHERE n.partialOrder = :partialOrder")
     , @NamedQuery(name = "NonItGoods.findByCompleteOfOrder", query = "SELECT n FROM NonItGoods n WHERE n.completeOfOrder = :completeOfOrder")
     , @NamedQuery(name = "NonItGoods.findByDateorderReceivingFromContractor", query = "SELECT n FROM NonItGoods n WHERE n.dateorderReceivingFromContractor = :dateorderReceivingFromContractor")
-    , @NamedQuery(name = "NonItGoods.findByEmployeeReceivingOrderProgram", query = "SELECT n FROM NonItGoods n WHERE n.employeeReceivingOrderProgram = :employeeReceivingOrderProgram")})
+    , @NamedQuery(name = "NonItGoods.findByEmployeeReceivingOrderProgram", query = "SELECT n FROM NonItGoods n WHERE n.employeeReceivingOrderProgram = :employeeReceivingOrderProgram")
+
+    , @NamedQuery(name = "NonItGoods.findByStockRcvDate", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvDate = :stockRcvDate")
+    , @NamedQuery(name = "NonItGoods.findByStockRcvQuantity", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvQuantity = :stockRcvQuantity")
+    , @NamedQuery(name = "NonItGoods.findByStockRcvBy", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvBy = :stockRcvBy")
+    , @NamedQuery(name = "NonItGoods.findByStockRcvPartialOrder", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvPartialOrder = :stockRcvPartialOrder")
+    , @NamedQuery(name = "NonItGoods.findByStockRcvCompleteOrder", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvCompleteOrder = :stockRcvCompleteOrder")    
+
+})
 public class NonItGoods implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,6 +76,65 @@ public class NonItGoods implements Serializable {
     @Size(max = 50)
     @Column(name = "employee_receiving_order_program")
     private String employeeReceivingOrderProgram;
+    
+    //03232020 New Fields added
+    @Column(name = "stock_rcv_date")
+    @Temporal(TemporalType.DATE)
+    private Date stockRcvDate;
+    @Size(max = 60)
+    @Column(name = "stock_rcv_quantity")
+    private String stockRcvQuantity;
+    @Size(max = 60)
+    @Column(name = "stock_rcv_by")
+    private String stockRcvBy;
+    @Column(name = "stock_rcv_partial_order")
+    private Boolean stockRcvPartialOrder;
+    @Column(name = "stock_rcv_complete_order")
+    private Boolean stockRcvCompleteOrder;
+    
+
+    public Date getStockRcvDate() {
+        return stockRcvDate;
+    }
+
+    public void setStockRcvDate(Date stockRcvDate) {
+        this.stockRcvDate = stockRcvDate;
+    }
+
+    public String getStockRcvQuantity() {
+        return stockRcvQuantity;
+    }
+
+    public void setStockRcvQuantity(String stockRcvQuantity) {
+        this.stockRcvQuantity = stockRcvQuantity;
+    }
+
+    public String getStockRcvBy() {
+        return stockRcvBy;
+    }
+
+    public void setStockRcvBy(String stockRcvBy) {
+        this.stockRcvBy = stockRcvBy;
+    }
+
+    public Boolean getStockRcvPartialOrder() {
+        return stockRcvPartialOrder;
+    }
+
+    public void setStockRcvPartialOrder(Boolean stockRcvPartialOrder) {
+        this.stockRcvPartialOrder = stockRcvPartialOrder;
+    }
+
+    public Boolean getStockRcvCompleteOrder() {
+        return stockRcvCompleteOrder;
+    }
+
+    public void setStockRcvCompleteOrder(Boolean stockRcvCompleteOrder) {
+        this.stockRcvCompleteOrder = stockRcvCompleteOrder;
+    }
+    
+    
+    //03232020 New Fields added
     @OneToMany(mappedBy = "nonItGoodsId")
     private Collection<NonItGoodsLineitem> nonItGoodsLineitemCollection;
 

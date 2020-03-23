@@ -135,7 +135,7 @@
                                 <ui:remove>
                                 <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
                                 </ui:remove>
-                                <b:commandLink icon-awesome="fa-edit" action="#{assetsController.form728}" value="#{item.purchaseOrder}"/>
+                                <b:commandLink outcome="itGoods/Form728.xhtml" action="#{assetsController.form728}" value="#{item.purchaseOrder}"/>
                             </b:dataTableColumn>
                          <b:dataTableColumn value="#{item.tagNumber}" data-order="#{item.tagNumber}" order="asc" />
                          <b:dataTableColumn value="#{item.asset}" />

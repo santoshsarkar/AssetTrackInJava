@@ -13,11 +13,11 @@
         </ui:define>
         <ui:define name="body">
             <div class="container margintop">
-                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
+                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728 (It Goods)</h1></div><hr/>
                 <h:form>
                     <h:outputLabel value="PO: " for="po" />
                     
-                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}">
+                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.itget_po()}">
                         <p:ajax event="keyup" listener="#{formData.handleKeyEvent}" />
                     </p:autoComplete> 
                   
@@ -36,7 +36,7 @@
                      <p:panel id="pp">  
                          <div class="row">
                             <div class="col">
-                              STATE OF CALIFORNIA <br/>Stock Received Inventory - IT Goods<br/>HCD 728-Non-IT(New 08/14) 
+                              STATE OF CALIFORNIA <br/>Stock Received Inventory - IT Goods<br/>HCD 728-IT(Rev 08/14) 
                             </div>
                             <div class="col">
                               DEPARTMENT OF HOUSING AND COMMUNITY DEVELOPMENT<br/>ADMINISTRATION AND MANAGEMENT DIVISION<br/>BUSINESS SERVICES OFFICE

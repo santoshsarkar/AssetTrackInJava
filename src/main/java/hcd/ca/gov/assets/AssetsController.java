@@ -172,11 +172,11 @@ public void maxTagNo(){
         
         if(assettype.equals("IT Hardware") || assettype.equals("IT Software")){
             System.out.println("If Condition="+assettype);
-            return "ItForm728?po="+current.getPurchaseOrder()+"faces-redirect=true";
+            return "/itGoods/Form728?po="+current.getPurchaseOrder()+"faces-redirect=true";
         }
         else{
             System.out.println("Else Condition="+assettype);
-        return "NonItForm728?po="+current.getPurchaseOrder()+"faces-redirect=true";
+        return "/nonItGoods/Form728?po="+current.getPurchaseOrder()+"faces-redirect=true";
         }
     }
     public String prepareCreate() {

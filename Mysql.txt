@@ -4,6 +4,7 @@ CREATE TABLE assets(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY, sid int, tag_num
 CREATE TABLE asset_type_subtype(tid int(11) DEFAULT NULL,revision_id int(11) DEFAULT NULL,parent_target_id int(11) DEFAULT NULL,name varchar(50) DEFAULT NULL,asset_Type varchar(50) DEFAULT NULL,asset_Sub_Type varchar(50) DEFAULT NULL,asset_type_no varchar(50) DEFAULT NULL)
 
 ALTER TABLE it_goods ADD stock_rcv_date date, ADD stock_rcv_quantity VARCHAR(60),ADD stock_rcv_by VARCHAR(60),ADD stock_rcv_partial_order BOOLEAN,ADD stock_rcv_complete_order BOOLEAN;
+ALTER TABLE non_it_goods ADD stock_rcv_date date, ADD stock_rcv_quantity VARCHAR(60),ADD stock_rcv_by VARCHAR(60),ADD stock_rcv_partial_order BOOLEAN,ADD stock_rcv_complete_order BOOLEAN;
 
 
 

@@ -118,7 +118,31 @@ public class FormData implements Serializable{
     }
     
     private List<String> poList = new ArrayList<>();
-    public List<String> get_po() {
+    public List<String> itget_po() {
+        poList.clear();
+        try {
+            connection = DriverManager.getConnection(myUrl, uname, pass);
+
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement("select distinct purchase_order from assets where purchase_order LIKE '%" + po + "%'");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                //assetType.put("asset_type", "asset_type");
+                poList.add(rs.getString("purchase_order"));
+                
+
+            }
+            rs.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return poList;
+    }
+    public List<String> nonitget_po() {
         poList.clear();
         try {
             connection = DriverManager.getConnection(myUrl, uname, pass);

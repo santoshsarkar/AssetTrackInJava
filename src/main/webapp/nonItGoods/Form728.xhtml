@@ -13,30 +13,19 @@
         </ui:define>
         <ui:define name="body">
             <div class="container margintop">
-                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728</h1></div><hr/>
+                <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728 (Non-IT Goods)</h1></div><hr/>
                 <h:form>
                     <h:outputLabel value="PO: " for="po" />
-                    
-                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.get_po()}">
+                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.nonitget_po()}">
                         <p:ajax event="keyup" listener="#{formData.handleKeyEvent}" />
                     </p:autoComplete> 
-                  
-                    
-                    
-                    <ui:remove>
-                    <p:selectOneMenu id="pos" value="#{formData.po}" style=" width: 200px"                                             filter="true" filterMatchMode="startsWith">
-                        <f:selectItems value="#{formData.get_po()}"></f:selectItems>
-                    </p:selectOneMenu>
-                    </ui:remove>   
-                    <p:commandButton update="@form poNumber" value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
-                    
-                    
+                    <p:commandButton update="@form " value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
                     
                     <div id="frm728" class="frm728">
-                     <p:panel id="pp">  
-                         <div class="row">
+                        <p:panel id="pp">
+                            <div class="row">
                             <div class="col">
-                              STATE OF CALIFORNIA <br/>Stock Received Inventory - IT Goods<br/>HCD 728-Non-IT(New 08/14) 
+                              STATE OF CALIFORNIA <br/>Stock Received Inventory - NON-IT Goods<br/>HCD 728-Non-IT(New 08/14) 
                             </div>
                             <div class="col">
                               DEPARTMENT OF HOUSING AND COMMUNITY DEVELOPMENT<br/>ADMINISTRATION AND MANAGEMENT DIVISION<br/>BUSINESS SERVICES OFFICE
@@ -45,61 +34,50 @@
                          <br/>
                          <div class="row">
                              <div class="col">
-                             <p>Purpose: <br/>The purpose of this form is to track receipt of IT goods received in BSO,inform IT of delivery,obtain signatures from IT staff and release IT goods to IT staff.</p>
-                             <p>BSO staff will document the date received, item description,serial number and tag equipment with a decal number.This information will be entered in the table below prior to releasing IT goods to IT staff.</p>
+                             <p>Purpose: <br/>The purpose of this form is to track receipt of Non-IT goods received in BSO.</p>
+                             <p>BSO staff will document the date and line item number from the PO. The following will be documented if possible; Item description,serial number and tag equipment with a decal number.This information will be entered in the table below prior to releasing/delivering Non-IT goods to the assigned location.</p>
                              </div>
                          </div>
-                    <p:panel id="pannel1" header="BSO completes this section:" >
+                         
+                         <p:panel id="pannel1" header="BSO completes this section:" >
                      <p:row>
                       <p:column>
                         <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
-                        <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" /> 
+                        <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{nonItGoodsController.selected.dateorderReceivingFromVendor}"  /> 
                       </p:column>
                      <p:column>   
                      <p:outputLabel for="poNumber" value="Purchase Order: " />
-                     <p:inputText id="poNumber" value="#{itGoodsController.selected.poNumber}"  /> 
+                     <p:inputText id="poNumber" value="#{nonItGoodsController.selected.poNumber}"  /> 
                      </p:column> 
                      </p:row> 
                         <br/><br/>
                      <p:row>
                          <p:column>
-                     <p:outputLabel for="employeereceivingorderBSO" value="Purchase Employee Receiving order: " />
-                     <p:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}"  />
+                     <p:outputLabel for="employeereceivingorderBSO" value="Employee Receiving order: " />
+                     <p:inputText id="employeereceivingorderBSO" value="#{nonItGoodsController.selected.employeereceivingorderBSO}"  />
                      </p:column>
                      </p:row> 
                         <br/><br/>
                      <p:row>
                          <p:column>
-                         <p:selectBooleanCheckbox id="partialOrder" value="#{itGoodsController.selected.partialOrder}" itemLabel="Partial order" />
-                         <p:selectBooleanCheckbox id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}" itemLabel="Complete/Remainder of order" />
+                         <p:selectBooleanCheckbox id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" itemLabel="Partial order" />
+                         <p:selectBooleanCheckbox id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" itemLabel="Complete/Remainder of order" />
                          </p:column>   
                      </p:row>
-                        <br/><br/>
-                     <ui:remove>
-                     <b:row>
-                        <b:column span="3"><b:selectBooleanCheckbox id="partialOrder" value="#{itGoodsController.selected.partialOrder}" caption="Partial order" label="" /></b:column>
-                        <b:column span="4"><b:selectBooleanCheckbox id="completeOfOrder" value="#{itGoodsController.selected.completeOfOrder}"  caption="Complete/Remainder of order" label="" /></b:column>
-                    </b:row>
-                    </ui:remove>  
+                        <br/><br/> 
                     </p:panel>
-                    <p:panel header="(ITB completes this section)" >  
-                    <ui:remove>
-                    <b:row>
-                        <b:column span="4"><b:datepicker  id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" label="Date order received from BSO"  /></b:column>
-                        <b:column span="4"><b:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" label="Employee receiving order" /></b:column>
-                    </b:row>
-                    </ui:remove>
+                    <p:panel header="(Program completes this section)" >  
                     <div class="row">
                         <div class="col">
-                        <p:outputLabel for="dateorderreceivingfromBSO" value="Date order received from BSO: " />
-                        <p:datePicker showIcon="true" id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" /> 
+                        <p:outputLabel for="dateorderReceivingFromContractor" value="Date order received from Contractor: " />
+                        <p:datePicker showIcon="true" id="dateorderReceivingFromContractor" value="#{nonItGoodsController.selected.dateorderReceivingFromContractor}" /> 
                         </div>
                         <div class="col">
-                        <p:outputLabel for="employeereceivingorderITB" value="Employee receiving order: " />
-                        <p:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" />  
+                        <p:outputLabel for="employeeReceivingOrderProgram" value="Employee receiving order: " />
+                        <p:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" />  
                         </div>
                     </div>    
-                    </p:panel> 
+                    </p:panel>
                     <p:panel id="pannel2" header="Result" >
                         <p:dataTable id="table" value="#{formData.find()}" var="aset">
                             <p:column headerText="Date Recv">
@@ -120,7 +98,7 @@
                         
                         </p:dataTable>
                         
-                    </p:panel>
+                    </p:panel> 
                     <p:panelGrid style="float: right; width: 60%">
                                        <p:row>
                                            <p:column>
@@ -128,18 +106,18 @@
                                                     <div class="form-group row stv">
                                                         <div class="col">
                                                          <p:outputLabel for="stockRcvDate" value="Date Rec'd: "  />
-                                                         <p:datePicker id="stockRcvDate" value="#{itGoodsController.selected.stockRcvDate}" showIcon="true"  />
+                                                         <p:datePicker id="stockRcvDate" value="#{nonItGoodsController.selected.stockRcvDate}" showIcon="true"  />
                                                          <br/>
                                                          <p:outputLabel for="stockRcvQuantity" value="Qty. Rec'd: "  />
-                                                         <p:inputText id="stockRcvQuantity" value="#{itGoodsController.selected.stockRcvQuantity}"  />
+                                                         <p:inputText id="stockRcvQuantity" value="#{nonItGoodsController.selected.stockRcvQuantity}"  />
                                                          <br/>
                                                          <p:outputLabel for="stockRcvBy" value="Received by: "  />
-                                                         <p:inputText id="stockRcvBy" value="#{itGoodsController.selected.stockRcvBy}"  />
+                                                         <p:inputText id="stockRcvBy" value="#{nonItGoodsController.selected.stockRcvBy}"  />
                                                         </div>
                                                         <div class="col">
 
-                                                                <p:selectBooleanCheckbox id="stockRcvPartialOrder" value="#{itGoodsController.selected.stockRcvPartialOrder}"  itemLabel="Partial order" />
-                                                                <p:selectBooleanCheckbox id="stockRcvCompleteOrder" value="#{itGoodsController.selected.stockRcvCompleteOrder}"  itemLabel="Complete/Remainder of order" />
+                                                                <p:selectBooleanCheckbox id="stockRcvPartialOrder" value="#{nonItGoodsController.selected.stockRcvPartialOrder}"  itemLabel="Partial order" />
+                                                                <p:selectBooleanCheckbox id="stockRcvCompleteOrder" value="#{nonItGoodsController.selected.stockRcvCompleteOrder}"  itemLabel="Complete/Remainder of order" />
 
                                                         </div>
                                                     </div>   
@@ -147,20 +125,29 @@
                                                 </p:panel>
                                            </p:column>
                                        </p:row>
-                                   </p:panelGrid>
-                     </p:panel>   
-                        
-                  <br/>  <br/><br/>
+                                   </p:panelGrid>     
+                            
+                            
+                            
+                        </p:panel>
+                    
+                    
+                    
+                    
+                <br/>  <br/><br/> 
                 <div class="row"> 
-                <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{itGoodsController.create}" value="Save" />
-                <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" immediate="true"/>
+                <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" />
+                <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{nonItGoodsController.prepareList}" value="#{bundle.CreateNonItGoodsShowAllLink}" class="btn btn-primary" immediate="true"/>
                 <p:commandLink class="btn btn-primary" value="Full Print" onclick="myFunction()"  />
                  
                 </div>
-                  <p:commandLink value="Print (Area Only)" type="button" class="btn btn-primary">
+                <p:commandLink value="Print (Area Only)" type="button" class="btn btn-primary">
                     <p:printer target="pp" />
                 </p:commandLink>
-                 </div>  <!-- #frm728 Div -->   
+                    
+                 </div>   
+                    
+                    
                 </h:form>
                 
                 <br/><br/><br/>

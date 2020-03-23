@@ -87,7 +87,7 @@ public class ItGoodsController implements Serializable {
     public String prepareList() {
         if(!lineItemList.isEmpty()){lineItemList.clear();}
         recreateModel();
-        return "List";
+        return "List?faces-redirect=true";
     }
 
     public String prepareView() {
@@ -99,7 +99,7 @@ public class ItGoodsController implements Serializable {
     public String prepareForm728() {
         current = new ItGoods();
         recreateModel();
-        return "Form728?faces-redirect=true";
+        return "List?faces-redirect=true";
     }
     public String prepareCreate() {
         if(!lineItemList.isEmpty()){lineItemList.clear();}
