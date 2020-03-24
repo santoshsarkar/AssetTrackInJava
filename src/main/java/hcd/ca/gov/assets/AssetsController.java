@@ -154,10 +154,12 @@ public void maxTagNo(){
     }
 
      public String createAgain() {
-        current = new Assets();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+        //current = new Assets();
+        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
         recreateModel();
-        return "Create";
+        //selectedItemIndex = -1;
+        current.setId(null);
+        return "Create?faces-redirect=true";
      }
      FormData fd2=new FormData(); 
      public String form728() {

@@ -124,8 +124,9 @@ public class FormData implements Serializable{
             connection = DriverManager.getConnection(myUrl, uname, pass);
 
             PreparedStatement ps = null;
-            ps = connection.prepareStatement("select distinct purchase_order from assets where purchase_order LIKE '%" + po + "%'");
-
+            ps = connection.prepareStatement("select distinct purchase_order from assets where (asset='010' or asset='020') and purchase_order LIKE '%" + po + "%'");
+            //ps = connection.prepareStatement("select distinct purchase_order from assets where (asset<>'010' or asset<>'020') and purchase_order LIKE '%" + po + "%'");
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 //assetType.put("asset_type", "asset_type");
@@ -148,8 +149,9 @@ public class FormData implements Serializable{
             connection = DriverManager.getConnection(myUrl, uname, pass);
 
             PreparedStatement ps = null;
-            ps = connection.prepareStatement("select distinct purchase_order from assets where purchase_order LIKE '%" + po + "%'");
-
+            //ps = connection.prepareStatement("select distinct purchase_order from assets where purchase_order LIKE '%" + po + "%'");
+            ps = connection.prepareStatement("select distinct purchase_order from assets where (asset='100' or asset='040' or asset='050' or asset='060' or asset='070' or asset='080' or asset='090' or asset='99' or asset='200') and purchase_order LIKE '%" + po + "%'");
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 //assetType.put("asset_type", "asset_type");
