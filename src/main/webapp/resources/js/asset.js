@@ -1,6 +1,5 @@
 $(document).ready(function() {
     
-    
   $( "#j_idt13:j_idt14_next" ).click(function() {
   alert( "Handler for .click() called." );
 });
@@ -58,6 +57,10 @@ window.onload = function() {
     document.getElementById('j_idt13:inServiceDt_input').setAttribute("value",date );
     document.getElementById('j_idt13:acquisitionDt_input').setAttribute("value",date );
     document.getElementById('j_idt13:locationEffdt_input').setAttribute("value",date );
+    var fundcode='0648';
+    document.getElementById('j_idt13:fundCode').setAttribute("value",fundcode );
+    
+    
     
     
   

@@ -24,7 +24,7 @@
                     
                     
                     <ui:remove>
-                    <p:selectOneMenu id="pos" value="#{formData.po}" style=" width: 200px"                                             filter="true" filterMatchMode="startsWith">
+                    <p:selectOneMenu id="pos" value="#{formData.po}" style=" width: 200px" filter="true" filterMatchMode="startsWith">
                         <f:selectItems value="#{formData.get_po()}"></f:selectItems>
                     </p:selectOneMenu>
                     </ui:remove>   
@@ -64,7 +64,8 @@
                      <p:row>
                          <p:column>
                      <p:outputLabel for="employeereceivingorderBSO" value="Purchase Employee Receiving order: " />
-                     <p:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}"  />
+                     <p:inputText id="employeereceivingorderBSO" value="#{itGoodsController.selected.employeereceivingorderBSO}" placeholder="#{request.remoteUser}"  />
+                     
                      </p:column>
                      </p:row> 
                         <br/><br/>
@@ -95,8 +96,13 @@
                         <p:datePicker showIcon="true" id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" /> 
                         </div>
                         <div class="col">
+                            <p id="frmusr">#{request.remoteUser}</p>
                         <p:outputLabel for="employeereceivingorderITB" value="Employee receiving order: " />
-                        <p:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" />  
+                        <p:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" /> 
+                        <br/>
+                        <p:outputLabel id="sign" value="Employee Signature: " />
+                        <p:signature style="width:300px; height: 100px" widgetVar="sig" id="sig" />
+                        
                         </div>
                     </div>    
                     </p:panel> 

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -32,6 +33,7 @@ public class ItGoodsController implements Serializable {
     private static ItGoodsLineitem lineItem =  new ItGoodsLineitem();
 
     public ItGoodsController() {
+                        
     }
 
     public ItGoodsLineitem getLineItem() {
@@ -135,7 +137,7 @@ public class ItGoodsController implements Serializable {
         JsfUtil.addSuccessMessage("All line items are removed");
         return null;
     }
-
+   
     public String create() {
         try {
             FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -143,6 +145,8 @@ public class ItGoodsController implements Serializable {
                     facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "itGoodsLineitemController");
                     //facesContext.getExternalContext().getSessionMap().get("itGoodsLineitemController");
+                    //current.setEmployeereceivingorderBSO("9661765");
+                    
             
             getFacade().create(current);
             System.out.println("It Goods id : "+current.getItGoodsId());

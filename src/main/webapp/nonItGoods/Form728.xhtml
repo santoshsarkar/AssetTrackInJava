@@ -39,31 +39,35 @@
                              </div>
                          </div>
                          
-                         <p:panel id="pannel1" header="BSO completes this section:" >
-                     <p:row>
-                      <p:column>
+                     <p:panel id="pannel1" header="BSO completes this section:" >
+                     <div class="row">
+                      <div class="col">
                         <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
                         <p:datePicker showIcon="true" id="dateorderReceivingFromVendor" value="#{nonItGoodsController.selected.dateorderReceivingFromVendor}"  /> 
-                      </p:column>
-                     <p:column>   
-                     <p:outputLabel for="poNumber" value="Purchase Order: " />
-                     <p:inputText id="poNumber" value="#{nonItGoodsController.selected.poNumber}"  /> 
-                     </p:column> 
-                     </p:row> 
+                      </div> 
+                     <div class="col"> 
+                        <p:outputLabel for="poNumber" value="Purchase Order: " />
+                        <p:inputText id="poNumber" value="#{nonItGoodsController.selected.poNumber}"  /> 
+                      </div> 
+                     </div> 
                         <br/><br/>
-                     <p:row>
-                         <p:column>
+                     <div class="row">
+                     <div class="col">
                      <p:outputLabel for="employeereceivingorderBSO" value="Employee Receiving order: " />
                      <p:inputText id="employeereceivingorderBSO" value="#{nonItGoodsController.selected.employeereceivingorderBSO}"  />
-                     </p:column>
-                     </p:row> 
+                     </div>
+                    <div class="col">
+                        <p:outputLabel value="Signature: " />
+                    </div>    
+                     </div>
                         <br/><br/>
-                     <p:row>
-                         <p:column>
+                       
+                     <div class="row">
+                         <div class="col">
                          <p:selectBooleanCheckbox id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" itemLabel="Partial order" />
                          <p:selectBooleanCheckbox id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" itemLabel="Complete/Remainder of order" />
-                         </p:column>   
-                     </p:row>
+                         </div> 
+                     </div>
                         <br/><br/> 
                     </p:panel>
                     <p:panel header="(Program completes this section)" >  
@@ -75,6 +79,9 @@
                         <div class="col">
                         <p:outputLabel for="employeeReceivingOrderProgram" value="Employee receiving order: " />
                         <p:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" />  
+                        <br/><br/>
+                        <p:outputLabel  value="Signature: " />
+                    
                         </div>
                     </div>    
                     </p:panel>
@@ -136,15 +143,21 @@
                     
                 <br/>  <br/><br/> 
                 <div class="row"> 
-                <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" />
-                <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{nonItGoodsController.prepareList}" value="#{bundle.CreateNonItGoodsShowAllLink}" class="btn btn-primary" immediate="true"/>
-                <p:commandLink class="btn btn-primary" value="Full Print" onclick="myFunction()"  />
-                 
+                    <div class="col"><p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" /></div>
+                    <div class="col"><p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{nonItGoodsController.prepareList}" value="Show All" class="btn btn-primary" immediate="true"/></div>
+                    <div class="col"><p:commandLink class="btn btn-primary" value="Full Print" onclick="myFunction()"  /></div>
                 </div>
+                <BR/>
+                <div class="row">
+                    <div class="col" style="text-align: center">
                 <p:commandLink value="Print (Area Only)" type="button" class="btn btn-primary">
                     <p:printer target="pp" />
                 </p:commandLink>
-                    
+                </div>  
+                </div>
+                
+                
+                
                  </div>   
                     
                     
