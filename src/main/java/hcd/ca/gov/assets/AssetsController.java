@@ -5,11 +5,13 @@ import hcd.ca.gov.assets.util.PaginationHelper;
 import java.io.IOException;
 
 import java.io.Serializable;
+import static java.lang.Integer.getInteger;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -24,7 +26,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import org.primefaces.model.LazyDataModel;
+
 
 @Named("assetsController")
 @SessionScoped
@@ -39,20 +41,42 @@ public class AssetsController implements Serializable {
     
     /* Santosh Code */
  
-   
-    private LazyDataModel<Assets> lazyModel;
+    /* Filter Search Box Code */
+    private List<Assets> filteredAssets;
 
-    public LazyDataModel<Assets> getLazyModel() {
-        return lazyModel;
+    public List<Assets> getFilteredAssets() {
+        return filteredAssets;
     }
 
-    public void setLazyModel(LazyDataModel<Assets> lazyModel) {
-        this.lazyModel = lazyModel;
+    public void setFilteredAssets(List<Assets> filteredAssets) {
+        this.filteredAssets = filteredAssets;
     }
+ 
+ public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (filterText == null || filterText.equals("")) {
+            return true;
+        }
+        int filterInt = getInteger(filterText);
+ System.out.println("Global Filter is Working: ");
+        
+ /*
+        current = (Assets) getItems().getRowData();
+        return current.getId().toString().toLowerCase().contains(filterText)
+                || current.getAsset().toLowerCase().contains(filterText)
+                || current.getAsset_subtype().toLowerCase().contains(filterText)
+                ;
+    
+*/
+
+     return false;
+ }
+     /* Filter Search Box Code */  
+    
 
 @PostConstruct
     public void init() {
-        //lazyModel = new LazyAssetsDataModel();
+        
     }
   
     
@@ -202,8 +226,11 @@ public void maxTagNo(){
     }
 
     public String prepareEdit() {
+        
         current = (Assets) getItems().getRowData();
+        System.out.println(current);
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        System.out.println("Current selected index: "+selectedItemIndex);
         return "Edit";
     }
     

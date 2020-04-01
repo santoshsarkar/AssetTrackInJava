@@ -7,16 +7,46 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        
     </h:head>
+    
+    
 
     <h:body>
-        <h1>
+       
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+        <a href="/Assets/faces/index.xhtml"> <img style="height: 55px; padding-right: 10px;" src="/Assets/faces/resources/img/header-ca.gov.png" alt=""/></a>
+      <a class="navbar-brand js-scroll-trigger" href="/Assets/faces/index.xhtml">Asset Management</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/Assets/faces/index.xhtml">Home</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/Assets/faces/assets/List.xhtml">Print Asset</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/Assets/faces/Form728.xhtml">Form728</a>
+          </li>  
+
+            <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+         <h1>
             <ui:insert name="title">Default Title</ui:insert>
         </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
+        
+        <ui:insert name="body"/>
     </h:body>
 
 </html>
