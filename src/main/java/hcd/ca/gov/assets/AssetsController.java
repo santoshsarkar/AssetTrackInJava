@@ -5,13 +5,11 @@ import hcd.ca.gov.assets.util.PaginationHelper;
 import java.io.IOException;
 
 import java.io.Serializable;
-import static java.lang.Integer.getInteger;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -26,7 +24,9 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.primefaces.model.LazyDataModel;
 
 @Named("assetsController")
 @SessionScoped
@@ -40,43 +40,25 @@ public class AssetsController implements Serializable {
     private int selectedItemIndex;
     
     /* Santosh Code */
- 
-    /* Filter Search Box Code */
-    private List<Assets> filteredAssets;
+    /*
+    private List<Assets> assetList;
 
-    public List<Assets> getFilteredAssets() {
-        return filteredAssets;
+    public List<Assets> getAssetList() {
+        return assetList;
     }
 
-    public void setFilteredAssets(List<Assets> filteredAssets) {
-        this.filteredAssets = filteredAssets;
+    public void setAssetList(List<Assets> assetList) {
+        this.assetList = assetList;
     }
- 
- public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
-        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
-        if (filterText == null || filterText.equals("")) {
-            return true;
-        }
-        int filterInt = getInteger(filterText);
- System.out.println("Global Filter is Working: ");
-        
- /*
-        current = (Assets) getItems().getRowData();
-        return current.getId().toString().toLowerCase().contains(filterText)
-                || current.getAsset().toLowerCase().contains(filterText)
-                || current.getAsset_subtype().toLowerCase().contains(filterText)
-                ;
     
-*/
-
-     return false;
- }
-     /* Filter Search Box Code */  
-    
-
+    public List getCustomers() {
+        //return em.createNamedQuery("Customer.findAll").getResultList();
+        return ejbFacade.findAll();
+    }
+ */
 @PostConstruct
     public void init() {
-        
+       //assetList = this.getCustomers();
     }
   
     
@@ -147,10 +129,20 @@ public void maxTagNo(){
     private AssetsFacade getFacade() {
         return ejbFacade;
     }
+    
+    
+    @PersistenceContext
+    private EntityManager entityManager;
+    public List<Assets> findOrderedByLimitedTo(int limit) {
+        return entityManager.createQuery("SELECT p FROM Assets p ORDER BY p.tagNumber DESC",
+          Assets.class).setMaxResults(limit).getResultList();
+    }
+    
+   
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
-            pagination = new PaginationHelper(500000000) {
+            pagination = new PaginationHelper(getFacade().count()) {
 
                 @Override
                 public int getItemsCount() {
@@ -159,7 +151,8 @@ public void maxTagNo(){
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(findOrderedByLimitedTo(25));
                 }
             };
         }
@@ -179,7 +172,7 @@ public void maxTagNo(){
 
      public String createAgain() {
         //current = new Assets();
-        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
         recreateModel();
         //selectedItemIndex = -1;
         current.setId(null);
@@ -228,12 +221,11 @@ public void maxTagNo(){
     public String prepareEdit() {
         
         current = (Assets) getItems().getRowData();
-        System.out.println(current);
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        System.out.println("Current selected index: "+selectedItemIndex);
         return "Edit";
     }
     
+
     
 
     public String update() {
@@ -294,9 +286,11 @@ public void maxTagNo(){
     }
 
     public DataModel getItems() {
+        
         if (items == null) {
             items = getPagination().createPageDataModel();
         }
+
         return items;
     }
 

@@ -7,6 +7,7 @@ package hcd.ca.gov.assets;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -43,13 +44,19 @@ public abstract class AbstractFacade<T> {
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
+    
 
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
+        Root<Assets> from = cq.from(Assets.class);
+        cq.orderBy(getEntityManager().getCriteriaBuilder().desc(from.get("tagNumber")));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(range[1] - range[0] + 1);
+        System.out.println("getMaxResults :"+q.getMaxResults());
         q.setFirstResult(range[0]);
+        q.setMaxResults(25);
+       
         return q.getResultList();
     }
 

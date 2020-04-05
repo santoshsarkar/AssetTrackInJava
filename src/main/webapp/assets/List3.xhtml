@@ -4,8 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui"
-     
+      
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
@@ -22,22 +21,71 @@
             <div class="container maincontent margintop">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Assets(List)</h1></div><hr/>
                 <div class="row">
-                    
-                    <f:view>
+                    <h:form  id="form" class="frm_aaset_list">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup> 
+                        
+                        <p:dataTable var="item" value="#{assetsController.items}" widgetVar="carsTable2" rows="10" sortBy="#{item.tagNumber}" sortOrder="descending"
+                                     editable="true" rowKey="#{item.id}"
+                                     paginator="true" 
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                    rowsPerPageTemplate="10,25,50" paginatorPosition="bottom" 
+                                     
+                                     >
 
+                            <ui:remove>
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Search" />
+                                    <p:inputText id="globalFilter" onkeyup="PF('carsTable2').filter()" style="width:150px" placeholder="Enter keyword"/>
+                                </p:outputPanel>
+                                
+                            </f:facet>
+                            </ui:remove>
+                            <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </p:column>
+                            <p:column filterBy="#{item.purchaseOrder}" filterMatchMode="contains"  class="po" headerText="PO"  sortBy="#{item.purchaseOrder}">
+                            <p:commandLink action="#{assetsController.form728}" value="#{item.purchaseOrder}"/>
+                            </p:column>
+                            <p:column filterBy="#{item.tagNumber}" filterMatchMode="contains"  headerText="Tag Number" sortBy="#{item.tagNumber}" >
+                                <h:outputText value="#{item.tagNumber}" />
+                            </p:column>
+                            
+                            <p:column headerText="Asset Type">
+                                <h:outputText value="#{item.asset}" />
+                            </p:column>
 
-                        <h:form>
-                            <h1><h:outputText value="List"/></h1>
-                            
-                            
-                            
-                            
-                            
-                        </h:form>
-                    </f:view>
+                            <p:column headerText="asset subtype">
+                                <h:outputText value="#{item.asset_subtype}" />
+                            </p:column>
 
-                    
-                    
+                            <p:column headerText="Descr">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{item.descr}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{item.descr}" style="width:100%" label="Descr"/></f:facet>
+                                
+                                </p:cellEditor>
+                            </p:column>
+                            
+                            <p:column headerText="Action">
+                                <h:commandLink style="color: blue" action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
+                                
+                            </p:column>
+                           <p:column style="width:35px">
+                                <p:rowEditor />
+                            </p:column>
+                            
+                        </p:dataTable>
+                        
+                        <h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="Create New"/>
+                        
+                       </h:form>  
                     
                     <script>
                         document.getElementsByName("search").value = "";

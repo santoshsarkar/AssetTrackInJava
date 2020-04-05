@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "assets", catalog = "form728", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Assets.findAll", query = "SELECT a FROM Assets a"),
+    @NamedQuery(name = "Assets.findAll", query = "SELECT a FROM Assets a ORDER BY A.tagNumber DESC "),
     @NamedQuery(name = "Assets.findById", query = "SELECT a FROM Assets a WHERE a.id = :id"),
     @NamedQuery(name = "Assets.findBySid", query = "SELECT a FROM Assets a WHERE a.sid = :sid"),
     @NamedQuery(name = "Assets.findByTagNumber", query = "SELECT a FROM Assets a WHERE a.tagNumber = :tagNumber"),
