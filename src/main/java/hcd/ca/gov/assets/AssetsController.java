@@ -152,7 +152,7 @@ public void maxTagNo(){
                 @Override
                 public DataModel createPageDataModel() {
                     //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
-                    return new ListDataModel(findOrderedByLimitedTo(25));
+                    return new ListDataModel(findOrderedByLimitedTo(50));
                 }
             };
         }
