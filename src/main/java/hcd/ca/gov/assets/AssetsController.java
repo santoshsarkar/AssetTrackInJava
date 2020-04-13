@@ -26,6 +26,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.primefaces.model.LazyDataModel;
 
 @Named("assetsController")
@@ -40,7 +41,7 @@ public class AssetsController implements Serializable {
     private int selectedItemIndex;
     
     /* Santosh Code */
-    /*
+    
     private List<Assets> assetList;
 
     public List<Assets> getAssetList() {
@@ -55,7 +56,7 @@ public class AssetsController implements Serializable {
         //return em.createNamedQuery("Customer.findAll").getResultList();
         return ejbFacade.findAll();
     }
- */
+ 
 @PostConstruct
     public void init() {
        //assetList = this.getCustomers();
@@ -138,6 +139,51 @@ public void maxTagNo(){
           Assets.class).setMaxResults(limit).getResultList();
     }
     
+    public int  maxTagNumber() {
+        Query q =  entityManager.createQuery("SELECT MAX(p.tagNumber) FROM Assets p");   
+        int assetMaxTagNo = Integer.parseInt(q.getSingleResult().toString());
+        System.out.println("Assets: Max Tag no: "+assetMaxTagNo);
+        return assetMaxTagNo+1;
+    }   
+
+    public void setMaxTagNumber() {
+        Query q =  entityManager.createQuery("SELECT MAX(p.tagNumber) FROM Assets p");   
+        int assetMaxTagNo = Integer.parseInt(q.getSingleResult().toString());
+        System.out.println("Assets: Max Tag no: "+assetMaxTagNo);
+        BigInteger newMaxTagNo = BigInteger.valueOf(assetMaxTagNo+1);
+        current.setTagNumber(newMaxTagNo);
+    }
+    
+    
+    String po;
+
+    public String getPo() {
+        return po;
+    }
+
+    public void setPo(String po) {
+        this.po = po;
+    }
+    
+    private List<String> poList = new ArrayList<>();
+    public List<String> itget_po() {
+        poList.clear();
+        Query q =  entityManager.createQuery("SELECT DISTINCT p.purchaseOrder FROM Assets p where (p.asset='010' or p.asset='020') and p.purchaseOrder LIKE '%" + po + "%'");
+        poList=q.getResultList();
+        return poList;
+    }
+     public List<String> nonitget_po() {
+         poList.clear();
+        Query q =  entityManager.createQuery("SELECT DISTINCT p.purchaseOrder FROM Assets p where ((p.asset='100' or p.asset='040' or p.asset='050' or p.asset='060' or p.asset='070' or p.asset='080' or p.asset='090' or p.asset='99' or p.asset='200') and p.purchaseOrder LIKE '%" + po + "%'");
+        poList=q.getResultList();
+        return poList;
+     }
+    
+    public void handleKeyEvent() {
+        System.out.println("Key Up.....");
+        System.out.println("PO....."+po);
+    }
+    
    
 
     public PaginationHelper getPagination() {
@@ -189,7 +235,7 @@ public void maxTagNo(){
         System.out.println("Purchase Order="+current.getPurchaseOrder());
         System.out.println("Asset Type="+assettype);
         
-        if(assettype.equals("IT Hardware") || assettype.equals("IT Software")){
+        if(assettype.equals("010") || assettype.equals("020")){
             System.out.println("If Condition="+assettype);
             return "/itGoods/Form728?po="+current.getPurchaseOrder()+"faces-redirect=true";
         }
