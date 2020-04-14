@@ -16,10 +16,10 @@
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728 (Non-IT Goods)</h1></div><hr/>
                 <h:form>
                     <h:outputLabel value="PO: " for="po" />
-                    <p:autoComplete id="po" class="po_no" value="#{formData.po}" completeMethod="#{formData.nonitget_po()}">
-                        <p:ajax event="keyup" listener="#{formData.handleKeyEvent}" />
+                    <p:autoComplete id="po" class="po_no" value="#{assetsController.po}" completeMethod="#{assetsController.nonitget_po()}">
+                        <p:ajax event="keyup" listener="#{assetsController.handleKeyEvent}" />
                     </p:autoComplete> 
-                    <p:commandButton update="@form " value="Search" actionListener="#{formData.find()}" onclick="frm728()" />
+                    <p:commandButton update="@form poNumber" value="Search" actionListener="#{assetsController.findAssetsByPO()}" onclick="frm728()" />
                     
                     <div id="frm728" class="frm728">
                         <p:panel id="pp">
@@ -86,7 +86,7 @@
                     </div>    
                     </p:panel>
                     <p:panel id="pannel2" header="Result" >
-                        <p:dataTable id="table" value="#{formData.find()}" var="aset">
+                        <p:dataTable id="table" value="#{assetsController.findAssetsByPO()}" var="aset">
                             <p:column headerText="Date Recv">
                                 <p:outputLabel id="accountingDt" value="#{aset.accountingDt}" />
                             </p:column>

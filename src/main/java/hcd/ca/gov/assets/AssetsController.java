@@ -139,6 +139,8 @@ public void maxTagNo(){
           Assets.class).setMaxResults(limit).getResultList();
     }
     
+    
+    
     public int  maxTagNumber() {
         Query q =  entityManager.createQuery("SELECT MAX(p.tagNumber) FROM Assets p");   
         int assetMaxTagNo = Integer.parseInt(q.getSingleResult().toString());
@@ -174,7 +176,7 @@ public void maxTagNo(){
     }
      public List<String> nonitget_po() {
          poList.clear();
-        Query q =  entityManager.createQuery("SELECT DISTINCT p.purchaseOrder FROM Assets p where ((p.asset='100' or p.asset='040' or p.asset='050' or p.asset='060' or p.asset='070' or p.asset='080' or p.asset='090' or p.asset='99' or p.asset='200') and p.purchaseOrder LIKE '%" + po + "%'");
+        Query q =  entityManager.createQuery("SELECT DISTINCT p.purchaseOrder FROM Assets p where (p.asset='100' or p.asset='040' or p.asset='050' or p.asset='060' or p.asset='070' or p.asset='080' or p.asset='090' or p.asset='99' or p.asset='200') and p.purchaseOrder LIKE '%" + po + "%'");
         poList=q.getResultList();
         return poList;
      }
@@ -182,6 +184,16 @@ public void maxTagNo(){
     public void handleKeyEvent() {
         System.out.println("Key Up.....");
         System.out.println("PO....."+po);
+    }
+    
+    public List<Assets> findAssetsByPO() {
+        System.out.println("findAssetsByPO: "+po);
+        List<Assets> assetsList = new ArrayList<>();
+        Query q =  entityManager.createQuery("SELECT p FROM Assets p WHERE p.purchaseOrder = :po",
+          Assets.class);
+        q.setParameter("po", po);        
+        assetsList = q.getResultList();        
+        return assetsList;
     }
     
    

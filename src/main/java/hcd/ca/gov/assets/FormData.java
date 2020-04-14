@@ -387,9 +387,7 @@ public class FormData implements Serializable{
     
     public ArrayList<Assets> find(){
         ArrayList array=new ArrayList();
-        //itg.setPoNumber(po);
         
-       
         try {
             connection = DriverManager.getConnection(myUrl, uname, pass);
 
