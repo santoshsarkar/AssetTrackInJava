@@ -1,4 +1,3 @@
-/* .ui-state-highlight{ display: none;} */
 .hidden{ display: none;}
 #growl{ z-index: 999999}
 /* .maincontent{ margin-top:115px; } 
@@ -10,8 +9,6 @@
 .asset_form label,.editasset label{ min-width: 180px}
 .asset_form{ padding-bottom: 100px}
 .outputLabel{font-weight: bold;}
- #j_idt13 .ui-inputswitch, #j_idt13 .ui-inputswitch-handle,#j_idt13 .ui-state-active{ min-height: 30px}
- .frm_aaset_list .po a{ color: green;}
 
 .container .fa-laptop, .container .fa-list {
     font-size: 5rem;
@@ -25,23 +22,24 @@
     border-radius: 50%;
     padding: 20px 25px;
 }
-.ui-wizard-nav-next .ui-button-text,.ui-wizard-nav-back .ui-button-text{ background-color: #4BADEF; color: white; font-weight: normal;text-align: center;border: 1px solid #4BADEF;    border-radius: 2px;}
+ #j_idt13 .ui-inputswitch, #j_idt13 .ui-inputswitch-handle,#j_idt13 .ui-state-active{ min-height: 30px}
+ .frm_aaset_list .po a{ color: green;}
+ 
+ .ui-wizard-nav-next .ui-button-text,.ui-wizard-nav-back .ui-button-text{ background-color: #4BADEF; color: white; font-weight: normal;text-align: center;border: 1px solid #4BADEF;    border-radius: 2px;}
  .ui-outputlabel-rfi{color: red}
- .ui-state-error{color: black}
-
- /* Asset Create Form */
+ 
+  /* Asset Create Form */
 .asset_form input.ui-state-error{color: black; }
  .asset_form .row{margin-bottom: 15px; }
  .asset_form label{display: block}
  .asset_form input{ width: 80% }
- 
+ .frm_aaset_list .ui-column-filter{display: none;}
+  
  .stv .col{padding: 0px;}
  .stv .col label{min-width: 95px}
  .stv .col input{max-width: 145px}
  .stv .col .ui-widget {font-size: 14px; padding: 0px}
  .stv .col .p-datepicker{ min-width: 7em}
- 
-
 /* Footer  */
 .global-footer {
     

@@ -68,7 +68,7 @@ public class NonItGoodsController implements Serializable {
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
-            pagination = new PaginationHelper(10000) {
+            pagination = new PaginationHelper(500000) {
 
                 @Override
                 public int getItemsCount() {
@@ -94,12 +94,6 @@ public class NonItGoodsController implements Serializable {
         current = (NonItGoods) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
-    }
-    
-    public String prepareForm728() {
-        current = new NonItGoods();
-        recreateModel();
-        return "List?faces-redirect=true";
     }
     public String prepareCreate() {
         if(!lineItemList.isEmpty()){lineItemList.clear();}
@@ -135,7 +129,11 @@ public class NonItGoodsController implements Serializable {
         JsfUtil.addSuccessMessage("All line items are removed");
         return null;
     }
-
+    public String prepareForm728() {
+        current = new NonItGoods();
+        recreateModel();
+        return "List?faces-redirect=true";
+    }
     public String create() {
         try {
             FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -155,8 +153,8 @@ public class NonItGoodsController implements Serializable {
             JsfUtil.addSuccessMessage(lineItemList.size()+" " + ResourceBundle.getBundle("/Bundle").getString("NonItGoodsLineitemCreated"));
             lineItemList.clear();
             lineItem = new NonItGoodsLineitem();
-            //return prepareCreate();
             return prepareForm728();
+            //return prepareList();
         } catch (Exception e) {
             e.printStackTrace();
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));

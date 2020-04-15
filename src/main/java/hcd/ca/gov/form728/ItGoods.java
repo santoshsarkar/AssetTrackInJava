@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ItGoods.findByCompleteOfOrder", query = "SELECT i FROM ItGoods i WHERE i.completeOfOrder = :completeOfOrder")
     , @NamedQuery(name = "ItGoods.findByDateorderreceivingfromBSO", query = "SELECT i FROM ItGoods i WHERE i.dateorderreceivingfromBSO = :dateorderreceivingfromBSO")
     , @NamedQuery(name = "ItGoods.findByEmployeereceivingorderITB", query = "SELECT i FROM ItGoods i WHERE i.employeereceivingorderITB = :employeereceivingorderITB")
-       
+
     , @NamedQuery(name = "ItGoods.findByStockRcvDate", query = "SELECT i FROM ItGoods i WHERE i.stockRcvDate = :stockRcvDate")
     , @NamedQuery(name = "ItGoods.findByStockRcvQuantity", query = "SELECT i FROM ItGoods i WHERE i.stockRcvQuantity = :stockRcvQuantity")
     , @NamedQuery(name = "ItGoods.findByStockRcvBy", query = "SELECT i FROM ItGoods i WHERE i.stockRcvBy = :stockRcvBy")
@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ItGoods.findByStockRcvCompleteOrder", query = "SELECT i FROM ItGoods i WHERE i.stockRcvCompleteOrder = :stockRcvCompleteOrder")
   
 
-    
+
 })
 public class ItGoods implements Serializable {
 
@@ -140,6 +140,7 @@ public class ItGoods implements Serializable {
     
     
     //03182020 New Fields added
+    
     @OneToMany(mappedBy = "itGoodsId")
     private Collection<ItGoodsLineitem> itGoodsLineitemCollection;
 

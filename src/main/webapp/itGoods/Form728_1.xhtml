@@ -33,6 +33,7 @@
                     
                     
                     <div id="frm728" class="frm728">
+                        <p:panel id="pp">
                     <p:panel id="pannel1" header="Input Form" >
                      <div class="row">
                      <p:outputLabel for="dateorderReceivingFromVendor" value="Date Rcv From Vendor: " />
@@ -53,14 +54,12 @@
                     <b:panel title="(ITB completes this section)" look="primary">
                     <b:row>
                         <b:column span="4"><b:datepicker  id="dateorderreceivingfromBSO" value="#{itGoodsController.selected.dateorderreceivingfromBSO}" label="Date order received from BSO"  /></b:column>
-                        <b:column span="4"><b:inputText id="employeereceivingorderITB" value="#{itGoodsController.selected.employeereceivingorderITB}" placeholder="input anything here" label="Employee receiving order" /></b:column>
+                        <b:column span="4"><b:inputText id="employeereceivingorderITB" value="#request.remoteUser}" placeholder="input anything here" label="Employee receiving order" /></b:column>
                     </b:row>
                     </b:panel>    
                      
                     </p:panel>
                
-                      
-                    
                     <p:panel id="pannel2" header="Result" >
                         <p:dataTable id="table" value="#{formData.find()}" var="aset">
                             <p:column headerText="Date Recv">
@@ -104,11 +103,16 @@
 
                     </p:panel>
                   <br/>  <br/><br/>
+                </p:panel>
+                        
                 <div class="row"> 
                 <p:commandLink class="btn btn-primary fa-floppy-o" update="growl"   action="#{itGoodsController.create}" value="Save" />
                 <p:commandLink style="margin-left: 10px; margin-right: 10px;" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" immediate="true"/>
                 <p:commandLink class="btn btn-primary" value="Print" onclick="myFunction()"  />
-                 
+                 <p:commandLink value="Print" type="button" class="btn btn-primary">
+                    <p:printer target="pp" />
+                     
+                </p:commandLink>
                 </div>
                  </div>  <!-- #frm728 Div -->   
                 </h:form>

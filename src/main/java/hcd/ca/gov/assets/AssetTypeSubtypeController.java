@@ -37,11 +37,11 @@ public class AssetTypeSubtypeController implements Serializable {
     private EntityManager entityManager;
     private String selectedAsset= null ;
     
-    /* Setter & Getter */
-    
-    
     private List<String> assetTypeList = new ArrayList<>();
     private List<String> assetSubTypeList = new ArrayList<>();
+    
+
+    /* Setter & Getter */
     public List<String> getAssetTypeList() {
         return assetTypeList;
     }

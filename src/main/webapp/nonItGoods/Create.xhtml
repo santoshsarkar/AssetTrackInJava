@@ -39,42 +39,7 @@
                         <b:column span="4"><b:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" placeholder="input anything here" label="Employee receiving order Program" /></b:column>
                     </b:row>
                 </b:panel>
-                    <ui:remove>
-                    <!--    
-                    <h:panelGrid columns="2">    
-                        
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_nonItGoodsId}" for="nonItGoodsId" />
-                    <h:inputText id="nonItGoodsId" value="#{nonItGoodsController.selected.nonItGoodsId}" title="#{bundle.CreateNonItGoodsTitle_nonItGoodsId}" required="true" requiredMessage="#{bundle.CreateNonItGoodsRequiredMessage_nonItGoodsId}"/>
-                        
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_poNumber}" for="poNumber" />
-                    <h:inputText id="poNumber" value="#{nonItGoodsController.selected.poNumber}" title="#{bundle.CreateNonItGoodsTitle_poNumber}" />
-                    
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_dateorderReceivingFromVendor}" for="dateorderReceivingFromVendor" />
-                    
-                    <h:inputText id="dateorderReceivingFromVendor" value="#{nonItGoodsController.selected.dateorderReceivingFromVendor}" title="#{bundle.CreateNonItGoodsTitle_dateorderReceivingFromVendor}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_employeereceivingorderBSO}" for="employeereceivingorderBSO" />
-                    <h:inputText id="employeereceivingorderBSO" value="#{nonItGoodsController.selected.employeereceivingorderBSO}" title="#{bundle.CreateNonItGoodsTitle_employeereceivingorderBSO}" />
-                    <ui:remove>
-                    <h:inputText id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" title="#{bundle.CreateNonItGoodsTitle_partialOrder}" />
-                    <h:inputText id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" title="#{bundle.CreateNonItGoodsTitle_completeOfOrder}" />
-                    </ui:remove>
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_partialOrder}" for="partialOrder" />
-                    <h:selectBooleanCheckbox id="partialOrder" value="#{nonItGoodsController.selected.partialOrder}" title="#{bundle.CreateNonItGoodsTitle_partialOrder}" />
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_completeOfOrder}" for="completeOfOrder" />
-                    <h:selectBooleanCheckbox id="completeOfOrder" value="#{nonItGoodsController.selected.completeOfOrder}" title="#{bundle.CreateNonItGoodsTitle_completeOfOrder}" />
-                    
-                    
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_dateorderReceivingFromContractor}" for="dateorderReceivingFromContractor" />
-                    <h:inputText id="dateorderReceivingFromContractor" value="#{nonItGoodsController.selected.dateorderReceivingFromContractor}" title="#{bundle.CreateNonItGoodsTitle_dateorderReceivingFromContractor}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateNonItGoodsLabel_employeeReceivingOrderProgram}" for="employeeReceivingOrderProgram" />
-                    <h:inputText id="employeeReceivingOrderProgram" value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" title="#{bundle.CreateNonItGoodsTitle_employeeReceivingOrderProgram}" />
-                </h:panelGrid>
-                -->
-                </ui:remove>
+                   
                     <b:panel title="Non-IT Goods Line Item" look="primary">
                      <span>Prepare line items from Excel file below</span> 
                      <p:fileUpload id="fileUpload2"  fileUploadListener="#{fileUploadController2.upload}"  auto="true" mode="advanced" dragDropSupport="false" 
@@ -117,7 +82,8 @@
                 <br />
                 
                 <b:row>
-                <b:column span="2" offset="0"><b:commandLink icon-awesome="fa-floppy-o" action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" class="btn btn-primary" style="width:100%"/></b:column>
+                <ui:remove><b:column span="2" offset="0"><b:commandLink icon-awesome="fa-floppy-o" action="#{nonItGoodsController.create}" value="#{bundle.CreateNonItGoodsSaveLink}" class="btn btn-primary" style="width:100%"/></b:column></ui:remove>
+                <p:commandLink class="btn btn-primary" update="@form growl" action="#{nonItGoodsController.create}" value="Save" />
                 <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{nonItGoodsController.prepareList}" value="#{bundle.CreateNonItGoodsShowAllLink}" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
                 <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="index" value="Back" style="width:100%" /></b:column>
                 
@@ -133,19 +99,20 @@
                 <h:link outcome="/index" value="#{bundle.CreateNonItGoodsIndexLink}"/>
                 </ui:remove>
             </h:form>
-            
-            
             <script>
                 const queryString = window.location.search;
                 console.log(queryString);
                 const urlParams = new URLSearchParams(queryString);
-               
+                var x="";
                 var po = urlParams.get('asset')
                 var po = urlParams.get('po')
                 var tag = urlParams.get('tag')
-                alert("po: "+po+"Tag: "+tag);
-                
+                //alert("po: "+po+"Tag: "+tag);
+                if(po==null){
+                    document.getElementById('input_nonItGoodsFrm:poNumber').setAttribute("value",x );
+                }else{
                 document.getElementById('input_nonItGoodsFrm:poNumber').setAttribute("value",po );
+            }
             </script>
         </div>
         </ui:define>

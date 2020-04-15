@@ -47,6 +47,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "NonItGoods.findByStockRcvBy", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvBy = :stockRcvBy")
     , @NamedQuery(name = "NonItGoods.findByStockRcvPartialOrder", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvPartialOrder = :stockRcvPartialOrder")
     , @NamedQuery(name = "NonItGoods.findByStockRcvCompleteOrder", query = "SELECT n FROM NonItGoods n WHERE n.stockRcvCompleteOrder = :stockRcvCompleteOrder")    
+    
 
 })
 public class NonItGoods implements Serializable {

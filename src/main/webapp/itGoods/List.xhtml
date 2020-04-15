@@ -13,16 +13,16 @@
             <h:head>
                 <title>IT-Goods (List)</title>
             </h:head>   
-            <h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> IT Goods (List)</h1><hr/>
+            <h1><a href="/Form728/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> IT Goods (List)</h1><hr/>
             
             
             <h:form>
                 <b:dataTable value="#{itGoodsController.items}" var="item" >
                     <b:dataTableColumn value="" label="ID" order="desc" data-order="desc">
-                    <a  target="_blank" href="ITLineItemServlet?id=#{item.itGoodsId}">#{item.itGoodsId}</a>
+                    #{item.itGoodsId}
                     </b:dataTableColumn>
                     <b:dataTableColumn  label="PO">
-                        <a  target="_blank" href="ITLineItemServlet?po=#{item.poNumber}">#{item.poNumber}</a>
+                    #{item.poNumber}
                     </b:dataTableColumn>
                     
                     <b:dataTableColumn value="#{item.dateorderReceivingFromVendor}" label="Dat Order Receiving From Vendor" />
@@ -34,8 +34,8 @@
                     
                     <b:dataTableColumn label=" Action " >
                         <b:row>
-                            <b:column><b:commandLink icon-awesome="fa-search" action="#{itGoodsController.prepareView}" value="View"/></b:column>
-                            <b:column><b:commandLink icon-awesome="fa-edit" action="#{itGoodsController.prepareEdit}" value="Edit"/></b:column>
+                            <b:column><b:commandLink icon-awesome="fa-search" action="#{itGoodsController.prepareView}" value="#{bundle.ListItGoodsViewLink}"/></b:column>
+                            <b:column><b:commandLink icon-awesome="fa-edit" action="#{itGoodsController.prepareEdit}" value="#{bundle.ListItGoodsEditLink}"/></b:column>
                         </b:row>
                         
              <ui:remove> <!--    <b:commandLink icon-awesome="fa-close" action="#{itGoodsController.destroy}" value="#{bundle.ListItGoodsDestroyLink}"/> --></ui:remove>
@@ -45,8 +45,8 @@
                 
                 
                 <b:row>
-                        <b:column span="3"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareCreate}" value="Create New ItGoods"/></b:column>
-                        <b:column span="3"><b:link icon-awesome="fas fa-arrow-left" class="btn btn-primary" style="width:100%" outcome="/index" value="Back"/></b:column>
+                    <ui:remove> <b:column span="3"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareCreate}" value="#{bundle.ListItGoodsCreateLink}"/></b:column></ui:remove>
+                        <b:column span="3"><b:link icon-awesome="fas fa-arrow-left" class="btn btn-primary" style="width:100%" outcome="/index" value="Index"/></b:column>
                     </b:row>    
                     <br/><br/><br/>
                     

@@ -18,11 +18,19 @@
                 <title>IT-Goods (Create)</title>
             </h:head>   
         
-            <div class="title"><h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>IT Goods (Create)</h1></div><hr/>
+            <div class="title"><h1><a href="/Form728/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a>IT Goods (Create)</h1></div><hr/>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>                
             </h:panelGroup>
             <h:form id="itGoodsFrm" enctype="multipart/form-data">
+                
+                <b:row>
+                <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{itGoodsController.prepareList}" value="#{bundle.CreateItGoodsShowAllLink}" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
+                
+                
+                </b:row>
+                
+                <ui:remove>
                 <b:panel title="(BSO completes this section)" look="primary">
                  <b:row>
                      <b:column span="4"><b:datepicker required="true"  id="dateorderReceivingFromVendor" value="#{itGoodsController.selected.dateorderReceivingFromVendor}" label="Date order received from vendor"  /></b:column>
@@ -43,7 +51,6 @@
                 </b:panel>
                 <br />
                 
-            
                 
                 <b:panel title="IT Goods Line Item" look="primary">
                     <span>Prepare line items from Excel file below</span> 
@@ -54,20 +61,20 @@
                         
                   <p:dataTable id="itGoodsLineItemTbl" value="#{itGoodsController.lineItemList}" var="item" 
                              rowIndexVar="index" style="border:solid 1px">
-                        <p:column headerText="DateReceived">
+                        <p:column headerText="#{bundle.ListItGoodsLineitemTitle_dateReceived}">
                             <h:outputText value="#{item.dateReceived}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Item Desc">
+                        <p:column headerText="#{bundle.ListItGoodsLineitemTitle_itemDesc}">
                             <h:outputText value="#{item.itemDesc}"/>
                         </p:column>
                         <p:column headerText="Serial Number">
                             <h:outputText value="#{item.serialNum}"/>
                         </p:column>
                       
-                        <p:column headerText="Decal No">
+                        <p:column headerText="#{bundle.ListItGoodsLineitemTitle_decalNo}">
                             <h:outputText value="#{item.decalNo}"/>
                         </p:column>
                         <p:column headerText="Action">
@@ -84,15 +91,13 @@
                 </b:panel>
                 
                
-                
-                
                 <br />
                
                 <b:row>
-                <p:commandLink class="btn btn-primary fa-floppy-o" update="@form"   action="#{itGoodsController.create}" value="Save" />
+                <p:commandLink class="btn btn-primary fa-floppy-o" update="@form growl"   action="#{itGoodsController.create}" value="Save" />
                 <ui:remove><b:column span="2" offset="0"><b:commandLink update="messagePanel" icon-awesome="fa-floppy-o" action="#{itGoodsController.create}" value="Save" class="btn btn-primary" style="width:100%" /></b:column></ui:remove>
-                <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{itGoodsController.prepareList}" value="Show All ItGoods" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
-                <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" /></b:column>
+                <b:column span="3"><b:commandLink icon-awesome="fa-th-list" action="#{itGoodsController.prepareList}" value="#{bundle.CreateItGoodsShowAllLink}" class="btn btn-primary" style="width:100%" immediate="true"/></b:column>
+                <b:column span="2"><b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="index" value="Back" style="width:100%" /></b:column>
                 
                 </b:row>
               
@@ -102,10 +107,11 @@
                 <br />
                 <h:link outcome="/Form728/faces/itGoods/index" value="#{bundle.CreateItGoodsIndexLink}"/>
                 </ui:remove>
+                
+                
+              </ui:remove>  
             <br /><br /><br />
             </h:form>
-        
-        
             <script>
                 const queryString = window.location.search;
                 console.log(queryString);
@@ -121,8 +127,6 @@
                 document.getElementById('input_itGoodsFrm:poNumber').setAttribute("value",po );
             }
             </script>
-        
-        
         </div>
         </ui:define>
     </ui:composition>

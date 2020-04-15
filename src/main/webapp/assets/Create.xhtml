@@ -26,7 +26,7 @@
                 <p:wizard nextLabel="Preview" styleClass="asset_wizard" showStepStatus="false" widgetVar="wiz" >
               <p:tab id="personal" title="Create Form">  
                <p:panel header="Asset Form">
-                   <div>
+                  <div>
                    <div class="row hidden">
                     <div class="col-sm-6">
                      <h:outputText value="Business Unit" />
@@ -49,18 +49,18 @@
                    </div>
                    <div class="row">
                     <div class="col-sm-6">
-                        <p:outputLabel for="purchaseOrder" value="PO: " />
+                        <p:outputLabel for="purchaseOrder" value="Purchase Order(PO): " />
                         <p:inputText required="true" id="purchaseOrder" value="#{assetsController.selected.purchaseOrder}"/>  
 
                     </div>
                     <div class="col-sm-5">
-                        <p:button onclick="resetForm();" value="Reset Form" />
+                        <p:button onclick="resetForm();" value="Reset Button" />
                     </div>
                    </div>
                    <div class="row">
                     <div class="col-sm-6">
                         <p:outputLabel for="transDt" value="Transaction Date:" />
-                        <p:datePicker id="transDt" value="#{assetsController.selected.transDt}" showIcon="true"  required="true" />
+                        <p:datePicker  id="transDt" value="#{assetsController.selected.transDt}" showIcon="true"  required="true" />
                     </div>
                     <div class="col-sm-5">
                         <p:outputLabel for="accountingDt" value="Accounting Date:" />
@@ -134,7 +134,7 @@
                           
                     </div>
                     <div class="col-sm-5">
-                        <p:outputLabel for="locationEffdt" value="Location Eff Date " />
+                        <p:outputLabel for="locationEffdt" value="Location Effective Date " />
                             <p:datePicker showIcon="true"  required="true" id="locationEffdt" value="#{assetsController.selected.locationEffdt}"  />                        
                     </div>
                    </div>
@@ -191,13 +191,12 @@
                        </div>
                    </div>
                    </div>
-                  
-                   
+                 
                 </p:panel>       
                 </p:tab> 
                 
                 <br></br>
-                <p:tab id="conform" title="Confirmation" disabled="true" class="sdd" >
+                <p:tab id="conform" title="Confirmation">
                     <p:panel header="Confirmation">
                     <table class="table">
                         <tr>
@@ -210,11 +209,10 @@
                              <h:outputText value="#{assetsController.selected.ntfcType}" styleClass="outputLabel"/>   
                             </td>
                         </tr>
-                        
                         <tr>
                             <td>
                             <h:outputText value="PO:  " />
-                            <h:outputText value="#{assetsController.selected.purchaseOrder}" styleClass="outputLabel output_po" id="output_po"/>   
+                            <h:outputText value="#{assetsController.selected.purchaseOrder}" styleClass="outputLabel"/>   
                             </td>
                             <td>
                             <h:outputText value="Tag No:  " />
@@ -229,6 +227,16 @@
                             <td>
                             <h:outputText value="Asset Subtype:  " />
                             <h:outputText value="#{assetsController.selected.asset_subtype}" styleClass="outputLabel"/>   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <h:outputText value="Transaction Date:  " />
+                            <h:outputText value="#{assetsController.selected.transDt}" styleClass="outputLabel"/>   
+                            </td>
+                            <td>
+                            <h:outputText value="Accounting Date:  " />
+                            <h:outputText value="#{assetsController.selected.accountingDt}" styleClass="outputLabel"/>   
                             </td>
                         </tr>
                         <tr>
@@ -286,7 +294,7 @@
                         <tr>
                             <td>
                             <h:outputText value="Quantity:  " />
-                            <h:outputText  value="#{assetsController.selected.quantity}" styleClass="outputLabel"/>   
+                            <h:outputText value="#{assetsController.selected.quantity}" styleClass="outputLabel"/>   
                             </td>
                             <td>
                             <h:outputText value="Cost:  " />
@@ -302,19 +310,27 @@
                         </tr>
                             
                     </table>
-                        <div style="text-align: center">
-                        <p:commandButton class="btn btn-primary" value="Submit" action="#{assetsController.create}" oncomplete="wizComplete()"  update="growl messagePanel" />
-                        
+                    <div style="text-align: center">
+                    <ui:remove><p:commandButton value="Submit" action="#{assetsController.create}"  update="growl" process="@this"/></ui:remove>
+                    <p:commandLink class="btn btn-primary" value="Submit" action="#{assetsController.create}" oncomplete="wizComplete()"  update="growl messagePanel" process="@this"/>
                     </div>
                     
                     
                     
                 </p:panel>    
                 </p:tab>
-            </p:wizard>    
-                <h:commandLink action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}"  immediate="true"/>
-                
-            </h:form>        
+            </p:wizard> 
+                <br/><br/>
+                <ui:remove><p:commandLink  action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}" class="btn btn-primary" style="width:100%" immediate="true"/></ui:remove>
+                <h:commandLink class="btn btn-primary" action="#{assetsController.prepareList}" value="#{bundle.CreateAssetsShowAllLink}" immediate="true"/>
+            </h:form>   
+                    
+                    <script>
+                        var fundcode='0648';
+                        document.getElementById('j_idt13:fundCode').setAttribute("value",fundcode );
+                        var curr_usr=request.remoteUser;
+                        alert(curr_usr);
+                    </script>
             </div>
             
        

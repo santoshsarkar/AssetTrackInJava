@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,7 +15,7 @@
             <h:head>
                 <title>NonIT-Goods (View)</title>
             </h:head>   
-            <div class="title"><h1><a href="/Assets/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> Non-IT Goods (View)</h1></div><hr/>
+            <div class="title"><h1><a href="/Form728/faces/index.xhtml"><i class="fa fa-home" aria-hidden="true"></i></a> Non-IT Goods (View)</h1></div><hr/>
             
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -43,20 +44,27 @@
                     <h:outputText value="#{nonItGoodsController.selected.employeeReceivingOrderProgram}" title="#{bundle.ViewNonItGoodsTitle_employeeReceivingOrderProgram}"/>
                 </h:panelGrid>
                 <br />
-                <ui:remove><h:commandLink action="#{nonItGoodsController.destroyAndView}" value="#{bundle.ViewNonItGoodsDestroyLink}"/></ui:remove>
+               
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewNonItGoodsEditLink}"/>
+                
                 <br />
-                <h:commandLink action="#{nonItGoodsController.prepareCreate}" value="#{bundle.ViewNonItGoodsCreateLink}" />
+                
                 <br />
-                <h:commandLink action="#{nonItGoodsController.prepareList}" value="#{bundle.ViewNonItGoodsShowAllLink}"/>
+                
                 <br />
+                <b:row>
+                   <ui:remove> <b:column span="2"> <h:commandLink action="#{nonItGoodsController.destroyAndView}" value="#{bundle.ViewNonItGoodsDestroyLink}"/></b:column></ui:remove>
+                    <b:column span="2"><b:link icon-awesome="fa-edit" class="btn btn-primary" style="width:100%" outcome="Edit" value="#{bundle.ViewNonItGoodsEditLink}"/></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{nonItGoodsController.prepareCreate}" value="Create New" /></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" action="#{nonItGoodsController.prepareList}" value="Show All"/></b:column>
+                    
+                </b:row>
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewNonItGoodsIndexLink}"/>
 
             </h:form>
-            </div>
+        </div>
         </ui:define>
     </ui:composition>
 

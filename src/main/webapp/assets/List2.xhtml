@@ -24,161 +24,57 @@
                     <h:form  id="form" class="frm_aaset_list">
                         <h:panelGroup id="messagePanel" layout="block">
                             <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>        
-                        <ui:remove>
-                        <!-- 
-                        <p:dataTable reflow="true" id="checkboxDT" var="item" value="#{assetsController.items}" selection="#{assetsController.selectedAssets}" 
-                                     rowKey="#{item.id}" style="margin-bottom:0"
-                                     rows="10" sortBy="#{item.id}" sortOrder="descending"  paginatorPosition="bottom"
-                                     emptyMessage="No cars found with given criteria" 
-                                     filteredValue="#{formData.filteredAssets}"
-                                     widgetVar="assetsTable1"
+                        </h:panelGroup> 
+                        
+                        <p:dataTable var="item" value="#{assetsController.items}" widgetVar="carsTable2" rows="15" sortBy="#{item.tagNumber}" sortOrder="descending"
+                                     
                                      paginator="true" 
-                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                    rowsPerPageTemplate="5,10,15">
+                                    rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
                                      
                                      >
 
-                            <ui:remove>    <p:column selectionMode="multiple" style="width:16px;text-align:center"/></ui:remove>
-                            
+                            <ui:remove>
                             <f:facet name="header">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h:commandLink action="Create?face-redirect=true" value="Create New"/>
-                                    </div>
-                                    
-                                    <div class="col-sm-5">
-                                        <p:outputPanel>
-                                        <h:outputText value="Search all fields:" />
-                                        <p:inputText id="globalFilter" onkeyup="PF('assetsTable1').filter()"  style="width:150px" placeholder="Enter keyword"/>
-                                        </p:outputPanel>
-                                    </div>
-                                
-                                </div>    
+                                <p:outputPanel>
+                                    <h:outputText value="Search" />
+                                    <p:inputText id="globalFilter" onkeyup="PF('carsTable2').filter()" style="width:150px" placeholder="Enter keyword"/>
+                                </p:outputPanel>
                                 
                             </f:facet>
-                            <p:column headerText="Print">
-                            <label for="Print Asset">
-                                <input type="checkbox" id="printasset" onclick="printAssets('#{item.tagNumber}'/'#{item.descr}')"></input>
-                            </label>
-                             </p:column>
-                            <p:column filterBy="#{item.purchaseOrder}" filterMatchMode="contains" class="po" headerText="PO"  sortBy="#{item.purchaseOrder}">
-                            <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
-                            </p:column>
-                            <ui:remove>
-                                <p:column filterValue="#{item.purchaseOrder}" filterMatchMode="contains" sortBy="#{item.purchaseOrder}"  headerText="PO">
-                                
-                                <a href="/Form728/faces/itGoods/Create.xhtml?po=#{item.purchaseOrder}#{assetsController.ss()}tag=#{item.tagNumber}#{assetsController.ss()}asset_type=#{item.asset}
-                                   ">#{item.purchaseOrder}</a>
-                                
-                            </p:column> 
+                            </ui:remove>
                             
-                            <p:column filterValue="#{item.purchaseOrder}" filterMatchMode="contains" sortBy="#{item.purchaseOrder}" class="po"  headerText="PO">
-                                <a href="javascript:callForm728(#{item.purchaseOrder},#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
-                                <ui:remove> <p:commandLink value="#{item.purchaseOrder}" action="#{formData.frm728()}" /> </ui:remove>
+                            <p:column  class="po" headerText="PO"  sortBy="#{item.purchaseOrder}">
+                            <p:commandLink action="#{assetsController.form728}" value="#{item.purchaseOrder}"/>
                             </p:column>
-                            </ui:remove>    
-                            <p:column filterBy="#{item.tagNumber}" filterMatchMode="contains" headerText="Tag Number" sortBy="#{item.tagNumber}" >
+                            <p:column  headerText="Tag Number" sortBy="#{item.tagNumber}" >
                                 <h:outputText value="#{item.tagNumber}" />
                             </p:column>
-                            <p:column filterValue="#{item.asset}" filterMatchMode="contains" headerText="Asset Type">
+                            
+                            <p:column headerText="Asset Type">
                                 <h:outputText value="#{item.asset}" />
                             </p:column>
-                            <p:column headerText="Asset SubType">
+
+                            <p:column headerText="asset subtype">
                                 <h:outputText value="#{item.asset_subtype}" />
                             </p:column>
-                            <p:column headerText="Description">
+
+                            <p:column headerText="Descr">
                                 <h:outputText value="#{item.descr}" />
                             </p:column>
-                            <p:column headerText="Transaction Date">
-                                <h:outputText value="#{item.transDt}" />
-                            </p:column>
-                            <p:column headerText="Accounting Date">
-                                <h:outputText value="#{item.accountingDt}" />
-                            </p:column>
-                            <p:column headerText="Quantity">
-                                <h:outputText value="#{item.quantity}" />
-                            </p:column>
-                            <p:column headerText="Cost">
-                                <h:outputText value="#{item.cost}" />
-                            </p:column> 
-                            <p:column headerText="Action">
-                                <a  target="_blank" href="http://localhost/Assets/api/AssetAPIController/action?code=#{item.tagNumber}/#{item.descr}">Print</a>
-                                <h:outputText value=" | "/>
-                                <h:commandLink style="color: blue" action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
-                                <h:outputText value=" | "/>
-                                <h:commandLink action="#{assetsController.destroy}" value="#{bundle.ListAssetsDestroyLink}"/>
-                            </p:column>
-
-
-                            <f:facet name="footer">
-                                <ui:remove><p:commandButton process="checkboxDT" update=":form:multiAssetDetail" icon="pi pi-search" value="Print" oncomplete="PF('multiAssetDialog').show()"  /></ui:remove>
-                                <ui:remove><p:commandButton action="#{assetsController.printAssets}" value="Print" /></ui:remove>
-                                
-                                
-                                <h:commandLink action="#{assetsController.prepareCreate}" value="Create New"/>
-                                
-                            </f:facet>
-                        </p:dataTable>
-                        -->
-                        </ui:remove>
-                        <h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="Create New"/>
-                        <b:dataTable var="item" value="#{assetsController.items}" style="width:100%" id="dt_asset" 
-                                     responsive="true" 
-                                     >
                             
-                            <b:dataTableColumn label=" Print ">
-                            <input type="checkbox" id="printasset" onclick="printAssets('#{item.tagNumber}'/'#{item.descr}')"></input>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label=" PO ">
-                                <ui:remove>
-                                <a href="javascript:callForm728('#{item.purchaseOrder}',#{item.tagNumber},'#{item.asset}')">#{item.purchaseOrder}</a>
-                                </ui:remove>
-                                <b:commandLink outcome="itGoods/Form728.xhtml" action="#{assetsController.form728}" value="#{item.purchaseOrder}"/>
-                            </b:dataTableColumn>
-                         <b:dataTableColumn value="#{item.tagNumber}" data-order="#{item.tagNumber}" order="desc" />
-                         <b:dataTableColumn value="#{item.asset}" />
-                         <b:dataTableColumn value="#{item.asset_subtype}" />
-                         <b:dataTableColumn value="#{item.descr}" />
-                         <b:dataTableColumn value="#{item.transDt}" />
-                         <b:dataTableColumn value="#{item.accountingDt}" />
-                         <b:dataTableColumn value="#{item.quantity}" />
-                         <b:dataTableColumn value="#{item.cost}" />
-                         
-                         <b:dataTableColumn label=" Action " >
-                             <b:row>
-                            <b:column><b:commandLink icon-awesome="fa-edit" action="#{assetsController.prepareEdit}" value="Edit"/></b:column>
-                        </b:row>
-                         </b:dataTableColumn>
-                        
-                        
-                        </b:dataTable>
-                        
-                        
+                            <p:column headerText="Action">
+                                <h:commandLink style="color: blue" action="#{assetsController.prepareEdit}" value="#{bundle.ListAssetsEditLink}"/>
+                                
+                            </p:column>
+                           
+                            
+                        </p:dataTable>
                         
                         <h:commandLink class="btn btn-primary" action="#{assetsController.prepareCreate}" value="Create New"/>
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <p:dialog header="Selected Cars" widgetVar="multiAssetDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
-                            <p:outputPanel id="multiAssetDetail" style="text-align:center;">
-                                <p>URL: <a href="#">Click Here</a> </p>
-                                <ui:repeat value="#{assetsController.selectedAssets}" var="item">
-                                    <h:outputText value="#{item.id}- #{item.tagNumber}" style=" display: block" />
-                                </ui:repeat>
-                            </p:outputPanel>
-                        </p:dialog>
-                    </h:form>  
+                       </h:form>  
                     
                     <script>
                         document.getElementsByName("search").value = "";

@@ -5,13 +5,10 @@ import hcd.ca.gov.assets.util.PaginationHelper;
 import java.io.IOException;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -27,7 +24,6 @@ import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.primefaces.model.LazyDataModel;
 
 @Named("assetsController")
 @SessionScoped
@@ -39,30 +35,7 @@ public class AssetsController implements Serializable {
     private hcd.ca.gov.assets.AssetsFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    
-    /* Santosh Code */
-    
-    private List<Assets> assetList;
-
-    public List<Assets> getAssetList() {
-        return assetList;
-    }
-
-    public void setAssetList(List<Assets> assetList) {
-        this.assetList = assetList;
-    }
-    
-    public List getCustomers() {
-        //return em.createNamedQuery("Customer.findAll").getResultList();
-        return ejbFacade.findAll();
-    }
- 
-@PostConstruct
-    public void init() {
-       //assetList = this.getCustomers();
-    }
-  
-    
+    /* 28-02-2020 Code */
     private Assets selectedAsset;
     private List<Assets> selectedAssets;
 
@@ -107,15 +80,16 @@ public class AssetsController implements Serializable {
     }
  
 
-    /* Santosh Code */
-    
-public void maxTagNo(){
+    /* 28-02-2020 Code */
+    /*
+    public void maxTagNo(){
         
         FormData fdt=new FormData(); 
         int tn=fdt.maxTagNumber();
         BigInteger tagN=BigInteger.valueOf(tn);
         current.setTagNumber(tagN);
     }
+*/
     public AssetsController() {
     }
 
@@ -130,16 +104,13 @@ public void maxTagNo(){
     private AssetsFacade getFacade() {
         return ejbFacade;
     }
-    
-    
+
     @PersistenceContext
     private EntityManager entityManager;
     public List<Assets> findOrderedByLimitedTo(int limit) {
         return entityManager.createQuery("SELECT p FROM Assets p ORDER BY p.tagNumber DESC",
           Assets.class).setMaxResults(limit).getResultList();
     }
-    
-    
     
     public int  maxTagNumber() {
         Query q =  entityManager.createQuery("SELECT MAX(p.tagNumber) FROM Assets p");   
@@ -156,9 +127,7 @@ public void maxTagNo(){
         current.setTagNumber(newMaxTagNo);
     }
     
-    
     String po;
-
     public String getPo() {
         return po;
     }
@@ -196,11 +165,13 @@ public void maxTagNo(){
         return assetsList;
     }
     
-   
-
+    
+    
+    
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(getFacade().count()) {
+            //pagination = new PaginationHelper(25) {
 
                 @Override
                 public int getItemsCount() {
@@ -209,8 +180,10 @@ public void maxTagNo(){
 
                 @Override
                 public DataModel createPageDataModel() {
+                   // DataModel fullDM = new ListDataModel(getFacade().findAll());
                     //return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
-                    return new ListDataModel(findOrderedByLimitedTo(50));
+                    return new ListDataModel(findOrderedByLimitedTo(25));
+                    
                 }
             };
         }
@@ -221,28 +194,34 @@ public void maxTagNo(){
         recreateModel();
         return "List";
     }
+    public String prepareList2() {
+        recreateModel();
+        return "/assets/List.xhtml?faces-redirect=true";
+    }
 
     public String prepareView() {
         current = (Assets) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-
-     public String createAgain() {
+    public String createAgain() {
         //current = new Assets();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
-        recreateModel();
-        //selectedItemIndex = -1;
         current.setId(null);
         return "Create?faces-redirect=true";
      }
-     FormData fd2=new FormData(); 
-     public String form728() {
+    public String prepareCreate() {
+        current = new Assets();
+        selectedItemIndex = -1;
+        return "Create";
+    }
+    
+    //FormData fd2=new FormData(); 
+    public String form728() {
         
         current = (Assets) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
        
-        fd2.setPo(current.getPurchaseOrder());
+        this.setPo(current.getPurchaseOrder());
         String assettype=current.getAsset();
         System.out.println("Purchase Order="+current.getPurchaseOrder());
         System.out.println("Asset Type="+assettype);
@@ -256,18 +235,16 @@ public void maxTagNo(){
         return "/nonItGoods/Form728?po="+current.getPurchaseOrder()+"faces-redirect=true";
         }
     }
-    public String prepareCreate() {
-        current = new Assets();
-        selectedItemIndex = -1;
-        return "Create";
-    }
+    
+    //FormData fdt=new FormData(); 
+    //int tn=fdt.maxTagNumber();
 
     public String create() {
         try {
-            this.maxTagNo();
+            this.setMaxTagNumber();
+            //this.maxTagNo();
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AssetsCreated"));
-            
             //return prepareCreate();
             return createAgain();
         } catch (Exception e) {
@@ -277,14 +254,10 @@ public void maxTagNo(){
     }
 
     public String prepareEdit() {
-        
         current = (Assets) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
-    
-
-    
 
     public String update() {
         try {
@@ -344,11 +317,9 @@ public void maxTagNo(){
     }
 
     public DataModel getItems() {
-        
         if (items == null) {
             items = getPagination().createPageDataModel();
         }
-
         return items;
     }
 

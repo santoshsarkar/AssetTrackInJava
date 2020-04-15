@@ -56,16 +56,16 @@
                     <ui:remove>
                     <b:column span="2"><b:commandLink icon-awesome="fa-remove" class="btn btn-primary" style="width:100%" action="#{itGoodsController.destroyAndView}" value="#{bundle.ViewItGoodsDestroyLink}"/></b:column>
                     </ui:remove>
-                    <b:column span="2"><b:link icon-awesome="fa-edit" class="btn btn-primary" style="width:100%" outcome="Edit" value="Edit"/></b:column>
-                    <b:column span="2"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareCreate}" value="Create New ItGoods" /></b:column>
+                    <b:column span="2"><b:link icon-awesome="fa-edit" class="btn btn-primary" style="width:100%" outcome="Edit" value="#{bundle.ViewItGoodsEditLink}"/></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-file" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareCreate}" value="#{bundle.ViewItGoodsCreateLink}" /></b:column>
                     <b:column span="2"><b:commandLink icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareList}" value="Show All"/></b:column>
                     
                 </b:row>
                <br />
                 
                 <br />
-                <b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" />
-                <br /><br />
+                <b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="index" value="Back" style="width:100%" />
+                
 
             </h:form>
         </div>

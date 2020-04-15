@@ -50,14 +50,13 @@
                 
                 
                 <b:row>
-                    <b:column span="2"><b:commandLink icon-awesome="fa-floppy-o" class="btn btn-primary" style="width:100%" action="#{itGoodsController.update}" value="Save"/></b:column>
-                    <b:column span="2"><b:link icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" outcome="View" value="View"/></b:column>
+                    <b:column span="2"><b:commandLink icon-awesome="fa-floppy-o" class="btn btn-primary" style="width:100%" action="#{itGoodsController.update}" value="#{bundle.EditItGoodsSaveLink}"/></b:column>
+                    <b:column span="2"><b:link icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" outcome="View" value="#{bundle.EditItGoodsViewLink}"/></b:column>
                     <b:column span="2"><b:commandLink icon-awesome="fa-th-list" class="btn btn-primary" style="width:100%" action="#{itGoodsController.prepareList}" value="Show All" immediate="true"/></b:column>
                 </b:row> 
                 <br />
                 <br />
-                <b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="/index" value="Back" style="width:100%" />
-            <br /><br /><br />
+                <b:commandLink icon-awesome="fas fa-arrow-left" class="btn btn-primary" outcome="index" value="Back" style="width:100%" />
             </h:form>
         </div>
         </ui:define>
