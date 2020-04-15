@@ -14,7 +14,7 @@
         <ui:define name="body">
             <div class="container margintop">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728 (IT Goods)</h1></div><hr/>
-                <h:form>
+                <h:form id="myfrm">
                     <h:outputLabel value="PO: " for="po" />
                     
                     <p:autoComplete id="po" class="po_no" value="#{assetsController.po}" completeMethod="#{assetsController.itget_po()}">
@@ -25,7 +25,15 @@
                     
                     
                     <div id="frm728" class="frm728">
+                       <h3>Export Page Data Only</h3>
+                       <h:commandLink>
+                            <p:graphicImage name="img/pdf.jpg" width="24px" />
+                            <p:dataExporter type="pdf" target="table" fileName="Form728(IT)" pageOnly="true" />
+                            
+                       </h:commandLink>
+                       
                      <p:panel id="pp">  
+                         
                          <div class="row">
                             <div class="col">
                               STATE OF CALIFORNIA <br/>Stock ReceivedInventory-IT Goods<br/>HCD 728-IT(New 08/14) 

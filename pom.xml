@@ -20,6 +20,11 @@
             <url>http://repository.primefaces.org</url>  
             <layout>default</layout>  
         </repository>
+        <repository>
+    <id>itext-snapshot</id>
+    <name>iText Repository - snapshots</name>
+    <url>https://repo.itextsupport.com/snapshot</url>
+  </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -75,6 +80,16 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.1</version>
         </dependency>
+<!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+<dependency>
+    <groupId>com.lowagie</groupId>
+    <artifactId>itext</artifactId>
+    <version>2.1.7</version>
+</dependency>
+
+
+
+
     </dependencies>
 
 
