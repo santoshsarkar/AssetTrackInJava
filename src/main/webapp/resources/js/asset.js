@@ -72,14 +72,14 @@ function callForm728(po,tag,asset){
     var poNo=po;
     var tagNo=tag;
     var asset_type=asset;
-    //alert("Po: "+poNo+"Asst Type: "+asset_type);
-    /*
-    if(asset_type=="IT Hardware" || asset_type=="IT Software"  )
-    { location.replace("/Assets/faces/itGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
+    alert("Po: "+poNo+"Asst Type: "+asset_type);
+    
+    if(asset_type=="010" || asset_type=="020"  )
+    { location.replace("/Assets/faces/itGoods/Form728.xhtml?po="+poNo+"&tag="+tagNo) }
     else
-    {location.replace("/Assets/faces/nonItGoods/Create.xhtml?po="+poNo+"&tag="+tagNo) }
-    */
-   {location.replace("/Assets/faces/itGoods/Form728.xhtml?po="+poNo) }
+    {location.replace("/Assets/faces/nonItGoods/Form728.xhtml?po="+poNo+"&tag="+tagNo) }
+    
+   // {location.replace("/Assets/faces/itGoods/Form728.xhtml?po="+poNo) }
    
 }
 
@@ -99,5 +99,14 @@ function printAssets(tag) {
 
     Http.onreadystatechange = (e) => {
         console.log(Http.responseText)
+    }
+}
+
+function handleSubmit(args, dialog) {
+    var jqDialog = jQuery('#' + dialog);
+    if (args.validationFailed) {
+        jqDialog.effect('shake', {times: 3}, 100);
+    } else {
+        PF(dialog).hide();
     }
 }

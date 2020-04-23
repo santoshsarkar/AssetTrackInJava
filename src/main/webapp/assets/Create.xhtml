@@ -312,7 +312,7 @@
                     </table>
                     <div style="text-align: center">
                     <ui:remove><p:commandButton value="Submit" action="#{assetsController.create}"  update="growl" process="@this"/></ui:remove>
-                    <p:commandLink class="btn btn-primary" value="Submit" action="#{assetsController.create}" oncomplete="wizComplete()"  update="growl messagePanel" process="@this"/>
+                    <p:commandLink class="btn btn-primary" value="Submit" action="#{assetsController.create}" oncomplete="wizComplete()"  update="growl, messagePanel" process="@this"/>
                     </div>
                     
                     

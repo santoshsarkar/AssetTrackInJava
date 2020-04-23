@@ -1,4 +1,4 @@
-create database test;
+create database form728;
 CREATE TABLE assets(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY, sid int, tag_number BigInt(20), descr VARCHAR(60),  accounting_dt date, acquisition_dt date, asset VARCHAR(60),asset_subtype VARCHAR(60), business_unit VARCHAR(60), category VARCHAR(60), cost DOUBLE, descrshort VARCHAR(60), fund_code VARCHAR(60), in_service_dt date, locations VARCHAR(60), location_effdt date, ntfc_type VARCHAR(60), profile_id VARCHAR(60), purchase_order VARCHAR(60), quantity  BigInt(20), serial_id VARCHAR(60), trans_dt date, vin VARCHAR(60),status BOOLEAN);
 
 CREATE TABLE asset_type_subtype(tid int(11) DEFAULT NULL,revision_id int(11) DEFAULT NULL,parent_target_id int(11) DEFAULT NULL,name varchar(50) DEFAULT NULL,asset_Type varchar(50) DEFAULT NULL,asset_Sub_Type varchar(50) DEFAULT NULL,asset_type_no varchar(50) DEFAULT NULL)
@@ -6,35 +6,6 @@ CREATE TABLE asset_type_subtype(tid int(11) DEFAULT NULL,revision_id int(11) DEF
 ALTER TABLE it_goods ADD stock_rcv_date date, ADD stock_rcv_quantity VARCHAR(60),ADD stock_rcv_by VARCHAR(60),ADD stock_rcv_partial_order BOOLEAN,ADD stock_rcv_complete_order BOOLEAN;
 ALTER TABLE non_it_goods ADD stock_rcv_date date, ADD stock_rcv_quantity VARCHAR(60),ADD stock_rcv_by VARCHAR(60),ADD stock_rcv_partial_order BOOLEAN,ADD stock_rcv_complete_order BOOLEAN;
 
-
-
-
-
-
-/* Not Used */
-CREATE TABLE assets(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY, sid int, tag_number BigInt(20), descr VARCHAR(60),  accounting_dt date, acquisition_dt date, asset VARCHAR(60), business_unit VARCHAR(60), category VARCHAR(60), cost DOUBLE, descrshort VARCHAR(60), fund_code VARCHAR(60), in_service_dt date, locations VARCHAR(60), location_effdt date, ntfc_type VARCHAR(60), profile_id VARCHAR(60), purchase_order VARCHAR(60), quantity  BigInt(20), serial_id VARCHAR(60), trans_dt date, vin VARCHAR(60));
-CREATE TABLE asset_type(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY,asset_type_no varchar(50),asset_type varchar(50))
-CREATE TABLE asset_subtype(id int UNSIGNED AUTO_INCREMENT PRIMARY KEY)
-
-ALTER TABLE assets ADD asset_subtype VARCHAR(60) AFTER asset;
-ALTER TABLE assets ADD status BOOLEAN;
-
-
-INSERT INTO asset_type (asset_type_no,asset_type)
-VALUES ('010','IT Hardware'),('020','IT Software'),('040','Equipment'),('050','Property'),('060','Fleet'),('070','Machinery'),('080','Furniture'),('090','Facility'),('100','Intangible'),('999','Other')
-
-
-CREATE TABLE `asset_type_subtype` (
-  `tid` int(11) DEFAULT NULL,
-  `revision_id` int(11) DEFAULT NULL,
-  `parent_target_id` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `asset_Type` varchar(50) DEFAULT NULL,
-  `asset_Sub_Type` varchar(50) DEFAULT NULL,
-  `asset_type_no` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/* Not Used */
 
 --
 -- Dumping data for table `asset_type_subtype`

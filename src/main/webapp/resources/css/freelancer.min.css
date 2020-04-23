@@ -44,6 +44,7 @@
  .navbar-text{display:inline-block;padding-top:.5rem;padding-bottom:.5rem}
   .navbar-toggler-icon{display:inline-block;width:1.5em;height:1.5em;vertical-align:middle;content:"";background:no-repeat center center;background-size:100% 100%}
   .navbar-toggler:focus,.navbar-toggler:hover{text-decoration:none}
+  
  .navbar-collapse{flex-basis:100%;flex-grow:1;align-items:center}
 
  .navbar-toggler{padding:.25rem .75rem;font-size:1.25rem;line-height:1;background-color:transparent;border:.125rem solid transparent;border-radius:.5rem}

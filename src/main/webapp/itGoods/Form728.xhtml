@@ -14,7 +14,7 @@
         <ui:define name="body">
             <div class="container margintop">
                 <div class="title"><h1><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>Form728 (IT Goods)</h1></div><hr/>
-                <h:form id="myfrm">
+                <h:form>
                     <h:outputLabel value="PO: " for="po" />
                     
                     <p:autoComplete id="po" class="po_no" value="#{assetsController.po}" completeMethod="#{assetsController.itget_po()}">
@@ -28,7 +28,7 @@
                        <h3>Export Page Data Only</h3>
                        <h:commandLink>
                             <p:graphicImage name="img/pdf.jpg" width="24px" />
-                            <p:dataExporter type="pdf" target="table" fileName="Form728(IT)" pageOnly="true" />
+                            <p:dataExporter type="pdf" target="table" fileName="cars" />
                             
                        </h:commandLink>
                        
@@ -110,6 +110,9 @@
                     </p:panel> 
                     <p:panel id="pannel2" header="Result" >
                         <p:dataTable id="table" value="#{assetsController.findAssetsByPO()}" var="aset">
+                            <f:facet name="header">
+                                List of Cars
+                            </f:facet>
                             <p:column headerText="Date Recv">
                                 <p:outputLabel id="accountingDt" value="#{aset.accountingDt}" />
                             </p:column>
@@ -165,6 +168,11 @@
                 <p:commandLink class="btn btn-primary" value="Full Print" onclick="myFunction()"  />
                  
                 </div>
+                  <p:commandButton value="Print" type="button" icon="pi pi-print" style="display:block;margin-bottom: 20px">
+                      <p:printer target="pp" />
+                  </p:commandButton>
+                  
+                  
                   <p:commandLink value="Print (Area Only)" type="button" class="btn btn-primary">
                     <p:printer target="pp" />
                 </p:commandLink>
